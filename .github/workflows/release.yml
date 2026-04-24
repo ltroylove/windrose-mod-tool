@@ -1,0 +1,75 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [master]
+    tags:    ["v*.*.*"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build executable
+        run: |
+          pyinstaller `
+            --onefile `
+            --windowed `
+            --name "WindroseModTool" `
+            --add-data "tools/repak;tools/repak" `
+            --add-data "tools/extracted;tools/extracted" `
+            --add-data "tools/extracted_mineral;tools/extracted_mineral" `
+            --add-data "tools/extracted_tree;tools/extracted_tree" `
+            --hidden-import customtkinter `
+            main.py
+        shell: powershell
+        continue-on-error: false
+
+      # ── Nightly pre-release (every push to master) ──────────────────
+      - name: Update nightly pre-release
+        if: github.ref == 'refs/heads/master'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $sha = "${{ github.sha }}".Substring(0, 7)
+          $date = Get-Date -Format "yyyy-MM-dd"
+          $tag  = "nightly"
+          $title = "Latest Build ($date · $sha)"
+          $notes = "Automated build from master branch.``n``nCommit: ${{ github.sha }}``n${{ github.event.head_commit.message }}"
+
+          # Delete old nightly tag/release if present
+          gh release delete $tag --yes 2>$null; $true
+          git push origin --delete $tag 2>$null; $true
+
+          gh release create $tag dist/WindroseModTool.exe `
+            --title $title `
+            --notes $notes `
+            --prerelease `
+            --target master
+        shell: powershell
+
+      # ── Versioned release (on v*.*.* tag) ───────────────────────────
+      - name: Create versioned release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $tag = "${{ github.ref_name }}"
+          gh release create $tag dist/WindroseModTool.exe `
+            --title "Windrose Mod Tool $tag" `
+            --generate-notes `
+            --target master
+        shell: powershell
