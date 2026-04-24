@@ -1,0 +1,65 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 1000,
+		"Weight": 0.5,
+		"ItemTag": {
+			"TagName": "ItemData.Resource.WolfHead.T02"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Resource"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "None"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Loot/SM_Loot_T02_WolfHead_01.SM_Loot_T02_WolfHead_01",
+		"ItemClass": "Default",
+		"Rarity": "Uncommon",
+		"bKeepInInventoryOnDeath": false,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "None",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Loot_T02_WolfHead_01.T_ItemIcon_Loot_T02_WolfHead_01",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_WolfHead_T02_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_WolfHead_T02_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [],
+		"EffectsDescriptions": [],
+		"SetEffectsDescriptions": [],
+		"Category": "Resource",
+		"VanityText": "",
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

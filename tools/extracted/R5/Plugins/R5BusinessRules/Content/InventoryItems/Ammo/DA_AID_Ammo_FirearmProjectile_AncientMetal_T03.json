@@ -1,0 +1,82 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 4000,
+		"Weight": 0.1,
+		"ItemTag": {
+			"TagName": "AmmoData.Ammo.FirearmProjectile.AncientMetal.T03"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Ammo.GunFireProjectile"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "None"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Craft/SM_CraftT03_AmmoIron_01.SM_CraftT03_AmmoIron_01",
+		"ItemClass": "Ammo",
+		"Rarity": "Rare",
+		"bKeepInInventoryOnDeath": true,
+		"AmmoBaseParams": "/R5BusinessRules/ItemsLogic/Ammo/DA_WeaponAmmo_FirearmProjectile_AncientMetal.DA_WeaponAmmo_FirearmProjectile_AncientMetal",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "None",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Craft_Ammo_Kaatl_T3.T_ItemIcon_Craft_Ammo_Kaatl_T3",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_FirearmProjectile_AncientMetal_T03_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_FirearmProjectile_AncientMetal_T03_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [
+			{
+				"CurveTable": "/Game/Gameplay/ItemsLogic/Weapon/Shared/CT_Weapon_GE_Values.CT_Weapon_GE_Values",
+				"RowName": "Ammo_FirearmProjectile_AncientMetal_T03_UI_Effect1",
+				"CurveLevel": 0,
+				"DisplayType": "RatioToPercent",
+				"bInverseValue": false
+			}
+		],
+		"EffectsDescriptions": [
+			{
+				"TableId": "InventoryItems",
+				"Key": "AID_Ammo_FirearmProjectile_AncientMetal_T03_Effect1"
+			},
+			{
+				"TableId": "InventoryItems",
+				"Key": "AID_Ammo_FirearmProjectile_AncientMetal_T03_Effect2"
+			}
+		],
+		"SetEffectsDescriptions": [],
+		"Category": "Ammo",
+		"VanityText": "",
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

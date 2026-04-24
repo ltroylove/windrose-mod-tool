@@ -1,0 +1,76 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 3000,
+		"Weight": 0.2,
+		"ItemTag": {
+			"TagName": "ConsData.Food.Dough.CornCasabe.T02"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Food"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.Food"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Consumables/SM_Consumables_T02_CornTortillas_01.SM_Consumables_T02_CornTortillas_01",
+		"ItemClass": "Consumable",
+		"Rarity": "Uncommon",
+		"bKeepInInventoryOnDeath": true,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/Food/ConsumeAbilityData/DA_ConsumableAbilityData_Food_Dough_CornCasabe_T02.DA_ConsumableAbilityData_Food_Dough_CornCasabe_T02",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/Consumables/Food/T_ItemIcon_Consumables_Dough_CornCasabe.T_ItemIcon_Consumables_Dough_CornCasabe",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Food_Dough_CornCasabe_T02_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Food_Dough_CornCasabe_T02_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [
+			{
+				"CurveTable": "/Game/Gameplay/ItemsLogic/Consumables/CT_Food_GE_Values.CT_Food_GE_Values",
+				"RowName": "Food_Dough_CornCasabe_T02_Duration",
+				"CurveLevel": 0,
+				"DisplayType": "SecondsAsMinutes",
+				"bInverseValue": false
+			}
+		],
+		"EffectsDescriptions": [],
+		"SetEffectsDescriptions": [],
+		"Category": "Food",
+		"VanityText": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Food_Dough_CornCasabe_T02_VanityText"
+		},
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

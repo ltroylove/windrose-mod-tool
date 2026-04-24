@@ -1,0 +1,47 @@
+{
+	"InventoryItemGppData": {
+		"Weight": 0.300000011920928,
+		"bKeepInInventoryOnDeath": true,
+		"ConsumableData": "",
+		"AmmoBaseParams": "/R5BusinessRules/ItemsLogic/Ammo/DA_WeaponAmmo_Gunpowder_Homemade.DA_WeaponAmmo_Gunpowder_Homemade",
+		"LootTableData": "",
+		"ItemClass": "Ammo",
+		"ItemTag": {
+			"TagName": "AmmoData.Ammo.Gunpowder.Homemade.T02"
+		},
+		"ActivationAbilityTag": {
+			"TagName": ""
+		},
+		"MaxCountInSlot": 4000,
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Craft/SM_CraftT02_AmmoPowder_01.SM_CraftT02_AmmoPowder_01",
+		"Rarity": "Uncommon",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Ammo.Gunpowder"
+		}
+	},
+	"InventoryItemUIData": {
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_Gunpowder_Homemade_T02_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_Gunpowder_Homemade_T02_ItemDescription"
+		},
+		"VanityText": "",
+		"EffectsDescriptions": [],
+		"ItemDescriptionData": [],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"Category": "Ammo",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Craft_Ammo_Powder_T2.T_ItemIcon_Craft_Ammo_Powder_T2"
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

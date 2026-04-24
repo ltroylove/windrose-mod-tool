@@ -1,0 +1,65 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 5000,
+		"Weight": 0.20000000298023224,
+		"ItemTag": {
+			"TagName": "ItemData.Resource.DodoEgg.T01"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Resource"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "None"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Resources/SM_LootT01_DodoEgg_01.SM_LootT01_DodoEgg_01",
+		"ItemClass": "Default",
+		"Rarity": "Common",
+		"bKeepInInventoryOnDeath": false,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "None",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Resources_T01_DodoEgg_01.T_ItemIcon_Resources_T01_DodoEgg_01",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_DodoEgg_01_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_DodoEgg_01_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [],
+		"EffectsDescriptions": [],
+		"SetEffectsDescriptions": [],
+		"Category": "Resource",
+		"VanityText": "",
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

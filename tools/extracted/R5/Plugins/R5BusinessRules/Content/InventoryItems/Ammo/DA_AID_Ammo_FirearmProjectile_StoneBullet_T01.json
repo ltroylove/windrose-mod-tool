@@ -1,0 +1,82 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 4000,
+		"Weight": 0.1,
+		"ItemTag": {
+			"TagName": "AmmoData.Ammo.FirearmProjectile.StoneBullet.T01"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Ammo.GunFireProjectile"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "None"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Craft/SM_CraftT01_AmmoStone_01.SM_CraftT01_AmmoStone_01",
+		"ItemClass": "Ammo",
+		"Rarity": "Uncommon",
+		"bKeepInInventoryOnDeath": true,
+		"AmmoBaseParams": "/R5BusinessRules/ItemsLogic/Ammo/DA_WeaponAmmo_FirearmProjectile_StoneBullet.DA_WeaponAmmo_FirearmProjectile_StoneBullet",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "None",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Craft_Ammo_Stone_T1.T_ItemIcon_Craft_Ammo_Stone_T1",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_FirearmProjectile_StoneBullet_T01_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_FirearmProjectile_StoneBullet_T01_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [
+			{
+				"CurveTable": "/Game/Gameplay/ItemsLogic/Weapon/Shared/CT_Weapon_GE_Values.CT_Weapon_GE_Values",
+				"RowName": "Ammo_FirearmProjectile_StoneBullet_T01_UI_Effect1",
+				"CurveLevel": 0,
+				"DisplayType": "RatioToPercent",
+				"bInverseValue": true
+			}
+		],
+		"EffectsDescriptions": [
+			{
+				"TableId": "InventoryItems",
+				"Key": "AID_Ammo_FirearmProjectile_StoneBullet_T01_Effect1"
+			},
+			{
+				"TableId": "InventoryItems",
+				"Key": "AID_Ammo_FirearmProjectile_StoneBullet_T01_Effect2"
+			}
+		],
+		"SetEffectsDescriptions": [],
+		"Category": "Ammo",
+		"VanityText": "",
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

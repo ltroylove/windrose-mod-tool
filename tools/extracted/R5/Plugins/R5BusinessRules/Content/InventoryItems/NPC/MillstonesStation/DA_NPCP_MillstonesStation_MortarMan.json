@@ -1,0 +1,69 @@
+{
+	"$type": "R5NPCParams",
+	"NPCItem": "/R5BusinessRules/InventoryItems/NPC/MillstonesStation/DA_EID_NPC_MillstonesStation_MortarMan.DA_EID_NPC_MillstonesStation_MortarMan",
+	"NPCData": {
+		"NPCPawn": "/Game/Gameplay/Character/AI/NPC/MortarMan/BP_NPC_MortarMan.BP_NPC_MortarMan_C",
+		"Cost": [
+			{
+				"Item": {
+					"ItemParams": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+					"Attributes": [],
+					"ItemId": "",
+					"Effects": []
+				},
+				"Count": 500
+			}
+		],
+		"NPCDescription": {
+			"Icon": "/Game/UI/META/NPC/Assets/Portraits/T_PortraitNPC_MortarMan.T_PortraitNPC_MortarMan",
+			"Level": 0,
+			"Name": {
+				"TableId": "ScenarioOther",
+				"Key": "NPC_Name_John"
+			},
+			"Description": ""
+		},
+		"NPCProfessionsDescription": [
+			{
+				"Icon": "/Game/UI/META/Crafting/Production/Assets/Icons/T_Production_MillstonesIcon.T_Production_MillstonesIcon",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_MillstonesStation_Professions_PowderMan"
+				},
+				"Description": ""
+			}
+		],
+		"NPCBonusesDescription": [
+			{
+				"Icon": "/Game/UI/META/Crafting/Assets/T_Icon_Rarity_Legendary.T_Icon_Rarity_Legendary",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_BonusesName_PersonalQuest_Name"
+				},
+				"Description": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_BonusesName_PersonalQuest_Description"
+				}
+			},
+			{
+				"Icon": "/Game/UI/META/Crafting/Assets/T_Icon_Rarity_Uncommon.T_Icon_Rarity_Uncommon",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_CookingStation_BonusesName_ATalentedPowderman_Uncommon"
+				},
+				"Description": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_MillstonesStation_ATalentedPowderman_Uncommon_Description"
+				}
+			}
+		],
+		"Phrase": {
+			"TableId": "ScenarioOther",
+			"Key": "NPC_Params_MillstoneStation_NPCPhrase_Mortarman"
+		}
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5NPCParams'"
+}

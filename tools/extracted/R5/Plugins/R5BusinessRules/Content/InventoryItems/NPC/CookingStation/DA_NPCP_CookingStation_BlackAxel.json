@@ -1,0 +1,57 @@
+{
+	"$type": "R5NPCParams",
+	"NPCItem": "/R5BusinessRules/InventoryItems/NPC/CookingStation/DA_EID_NPC_CookingStation_BlackAxel.DA_EID_NPC_CookingStation_BlackAxel",
+	"NPCData": {
+		"NPCPawn": "/Game/Gameplay/Character/AI/NPC/Employee/CookingStation/BP_NPC_Employee_CookingStation_BlackAxel.BP_NPC_Employee_CookingStation_BlackAxel_C",
+		"Cost": [
+			{
+				"Item": {
+					"ItemParams": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+					"Attributes": [],
+					"ItemId": "",
+					"Effects": []
+				},
+				"Count": 500
+			}
+		],
+		"NPCDescription": {
+			"Icon": "/Game/UI/META/NPC/Assets/Portraits/T_PortraitNPC_BlackAxel.T_PortraitNPC_BlackAxel",
+			"Level": 0,
+			"Name": {
+				"TableId": "ScenarioOther",
+				"Key": "NPC_Params_CookingStation_NPCName_BlackAxel"
+			},
+			"Description": ""
+		},
+		"NPCProfessionsDescription": [
+			{
+				"Icon": "/Game/UI/META/Crafting/Production/Assets/Icons/T_Production_FoodIcon.T_Production_FoodIcon",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_CookingStation_Professions_Cook"
+				},
+				"Description": ""
+			}
+		],
+		"NPCBonusesDescription": [
+			{
+				"Icon": "/Game/UI/META/Crafting/Assets/T_Icon_Rarity_Uncommon.T_Icon_Rarity_Uncommon",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_CookingStation_BonusesName_ATalentedChef_Uncommon"
+				},
+				"Description": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_CookingStation_ATalentedChef_Uncommon_Description"
+				}
+			}
+		],
+		"Phrase": {
+			"TableId": "ScenarioOther",
+			"Key": "NPC_Params_CookingStation_NPCPhrase_BlackAxel"
+		}
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5NPCParams'"
+}

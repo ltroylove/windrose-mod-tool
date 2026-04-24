@@ -1,0 +1,60 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 2000,
+		"Weight": 0.20000000298023224,
+		"ItemTag": {
+			"TagName": "ConsData.Misc.ScallopShellClosed.T01"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Lootable"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.LootContainer"
+		},
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Consumables/SM_Consumables_T01_ScallopShellClosed_01.SM_Consumables_T01_ScallopShellClosed_01",
+		"ItemClass": "Consumable",
+		"Rarity": "Common",
+		"bKeepInInventoryOnDeath": false,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None"
+		},
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/LootContainer/ConsumeAbilityData/DA_ConsumableAbilityData_LootContainer.DA_ConsumableAbilityData_LootContainer",
+		"LootTableData": "/R5BusinessRules/LootTables/ConsumableContainer/DA_LT_LootContainer_ScallopShellClosed_Final.DA_LT_LootContainer_ScallopShellClosed_Final"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Consumables_T01_ScallopShellClosed_01.T_ItemIcon_Consumables_T01_ScallopShellClosed_01",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_ScallopShellClosed_T01_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_ScallopShellClosed_T01_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [],
+		"EffectsDescriptions": [],
+		"Category": "Misc",
+		"VanityText": "",
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

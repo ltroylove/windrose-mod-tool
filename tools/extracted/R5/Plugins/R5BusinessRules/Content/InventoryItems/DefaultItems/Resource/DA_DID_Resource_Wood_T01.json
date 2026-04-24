@@ -1,0 +1,47 @@
+{
+	"InventoryItemGppData": {
+		"Weight": 0.5,
+		"bKeepInInventoryOnDeath": false,
+		"ConsumableData": "",
+		"AmmoBaseParams": "",
+		"LootTableData": "",
+		"ItemClass": "Default",
+		"ItemTag": {
+			"TagName": "ItemData.Resource.Wood.T01"
+		},
+		"ActivationAbilityTag": {
+			"TagName": ""
+		},
+		"MaxCountInSlot": 5000,
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Resources/SM_ResourcesT01_Wood_01.SM_ResourcesT01_Wood_01",
+		"Rarity": "Common",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Resource"
+		}
+	},
+	"InventoryItemUIData": {
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_Wood_T01_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_Wood_T01_ItemDescription"
+		},
+		"VanityText": "",
+		"EffectsDescriptions": [],
+		"ItemDescriptionData": [],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"Category": "Resource",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Raw_Resource_Wood_T1.T_ItemIcon_Raw_Resource_Wood_T1"
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

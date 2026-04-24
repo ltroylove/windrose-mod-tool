@@ -1,0 +1,69 @@
+{
+	"$type": "R5NPCParams",
+	"NPCItem": "/R5BusinessRules/InventoryItems/NPC/AlchemyStation/DA_EID_NPC_AlchemyStation_RosalindaMercer.DA_EID_NPC_AlchemyStation_RosalindaMercer",
+	"NPCData": {
+		"NPCPawn": "/Game/Gameplay/Character/AI/NPC/Employee/AlchemyStation/BP_NPC_Employee_AlchemyStation_RosalindaMercer.BP_NPC_Employee_AlchemyStation_RosalindaMercer_C",
+		"Cost": [
+			{
+				"Item": {
+					"ItemParams": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+					"Attributes": [],
+					"ItemId": "",
+					"Effects": []
+				},
+				"Count": 500
+			}
+		],
+		"NPCDescription": {
+			"Icon": "/Game/UI/META/NPC/Assets/Portraits/T_PortraitNPC_RosalindaMercer.T_PortraitNPC_RosalindaMercer",
+			"Level": 0,
+			"Name": {
+				"TableId": "ScenarioOther",
+				"Key": "NPC_Params_AlchemyStation_NPCName_RosalindaMercer"
+			},
+			"Description": ""
+		},
+		"NPCProfessionsDescription": [
+			{
+				"Icon": "/Game/UI/META/Crafting/Production/Assets/Icons/T_Production_AlchemyIcon.T_Production_AlchemyIcon",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_AlchemyStation_Professions_Alchemist"
+				},
+				"Description": ""
+			}
+		],
+		"NPCBonusesDescription": [
+			{
+				"Icon": "/Game/UI/META/Crafting/Assets/T_Icon_Rarity_Common.T_Icon_Rarity_Common",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_AlchemyStation_BonusesName_BottleMakerMaster_Common"
+				},
+				"Description": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_AlchemyStation_BottleMakerMaster_Common_Description"
+				}
+			},
+			{
+				"Icon": "/Game/UI/META/Crafting/Assets/T_Icon_Rarity_Uncommon.T_Icon_Rarity_Uncommon",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_AlchemyStation_BonusesName_ATalentedAlchemist_Uncommon"
+				},
+				"Description": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_AlchemyStation_ATalentedAlchemist_Uncommon_Description"
+				}
+			}
+		],
+		"Phrase": {
+			"TableId": "ScenarioOther",
+			"Key": "NPC_Params_AlchemistStation_NPCPhrase_RosalindaMercer"
+		}
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5NPCParams'"
+}

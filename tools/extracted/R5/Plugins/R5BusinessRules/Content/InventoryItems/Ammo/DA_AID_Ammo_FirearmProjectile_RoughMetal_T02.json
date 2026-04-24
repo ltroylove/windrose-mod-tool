@@ -1,0 +1,70 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 4000,
+		"Weight": 0.1,
+		"ItemTag": {
+			"TagName": "AmmoData.Ammo.FirearmProjectile.RoughMetal.T02"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Ammo.GunFireProjectile"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "None"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Craft/SM_CraftT02_AmmoIron_01.SM_CraftT02_AmmoIron_01",
+		"ItemClass": "Ammo",
+		"Rarity": "Uncommon",
+		"bKeepInInventoryOnDeath": true,
+		"AmmoBaseParams": "/R5BusinessRules/ItemsLogic/Ammo/DA_WeaponAmmo_FirearmProjectile_RoughMetal.DA_WeaponAmmo_FirearmProjectile_RoughMetal",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "None",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Craft_Ammo_Iron_T2.T_ItemIcon_Craft_Ammo_Iron_T2",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_FirearmProjectile_RoughMetal_T02_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_FirearmProjectile_RoughMetal_T02_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [],
+		"EffectsDescriptions": [
+			{
+				"TableId": "InventoryItems",
+				"Key": "AID_Ammo_FirearmProjectile_RoughMetal_T02_Effect1"
+			}
+		],
+		"SetEffectsDescriptions": [],
+		"Category": "Ammo",
+		"VanityText": "",
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

@@ -1,0 +1,65 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 4000,
+		"Weight": 0.009999999776482582,
+		"ItemTag": {
+			"TagName": "ItemData.Metal.Ingot.AncientMetal.T03"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Resource"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "None"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Craft/SM_CraftT03_IngotIron_01.SM_CraftT03_IngotIron_01",
+		"ItemClass": "Default",
+		"Rarity": "Uncommon",
+		"bKeepInInventoryOnDeath": false,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "None",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Craft_Ingot_Iron_T3.T_ItemIcon_Craft_Ingot_Iron_T3",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Metal_Ingot_Ancient_T03_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Metal_Ingot_Ancient_T03_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [],
+		"EffectsDescriptions": [],
+		"SetEffectsDescriptions": [],
+		"Category": "Metal",
+		"VanityText": "",
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

@@ -1,0 +1,60 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 20000,
+		"Weight": 0,
+		"ItemTag": {
+			"TagName": "AmmoData.Ammo.Cannonball.T01"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Ammo.Cannonball"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "None"
+		},
+		"ItemMesh": "/Game/TMP/PolygonPirates/Meshes/Props/SM_Prop_CannonBalls_01.SM_Prop_CannonBalls_01",
+		"ItemClass": "Default",
+		"Rarity": "Common",
+		"bKeepInInventoryOnDeath": false,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None"
+		},
+		"ConsumableData": "None",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/HUD/Ship/ShipBatteries/T_CannoballsIcon_Cores.T_CannoballsIcon_Cores",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_Cannonball_RegularCannonball_T01_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_Cannonball_RegularCannonball_T01_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [],
+		"EffectsDescriptions": [],
+		"Category": "Ammo",
+		"VanityText": "",
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

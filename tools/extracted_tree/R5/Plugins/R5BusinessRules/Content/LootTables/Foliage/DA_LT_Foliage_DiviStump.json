@@ -1,0 +1,21 @@
+{
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Hardwood_T02.DA_DID_Resource_Hardwood_T02",
+			"LootTable": "",
+			"Min": 4,
+			"Max": 6
+		},
+		{
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Bark_T02.DA_DID_Resource_Bark_T02",
+			"LootTable": "",
+			"Min": 2,
+			"Max": 2
+		}
+	],
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'",
+	"$type": "R5BLLootParams"
+}

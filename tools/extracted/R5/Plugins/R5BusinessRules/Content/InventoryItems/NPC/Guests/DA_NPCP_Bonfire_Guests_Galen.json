@@ -1,0 +1,37 @@
+{
+	"$type": "R5NPCParams",
+	"NPCItem": "/R5BusinessRules/InventoryItems/NPC/Guests/DA_EID_NPC_Bonfire_Guests_Galen.DA_EID_NPC_Bonfire_Guests_Galen",
+	"NPCData": {
+		"NPCPawn": "/Game/Gameplay/Character/AI/NPC/GalenSkelton/BP_NPC_GalenSkelton.BP_NPC_GalenSkelton_C",
+		"Cost": [],
+		"NPCDescription": {
+			"Icon": "/Game/UI/META/NPC/Assets/Portraits/T_PortraitNPC_Galen.T_PortraitNPC_Galen",
+			"Level": 0,
+			"Name": {
+				"TableId": "ScenarioOther",
+				"Key": "NPC_Params_Guests_NPCName_Galen"
+			},
+			"Description": {
+				"TableId": "ScenarioOther",
+				"Key": "NPC_Params_Guests_Description_Galen"
+			}
+		},
+		"NPCProfessionsDescription": [
+			{
+				"Icon": "/Game/UI/HUD/Navigation/PointsOfInterest/Icons/T_MapIcon_Vendor_Workers.T_MapIcon_Vendor_Workers",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_Guests_Professions_Doctor"
+				},
+				"Description": ""
+			}
+		],
+		"NPCBonusesDescription": [],
+		"Phrase": {
+			"TableId": "ScenarioOther",
+			"Key": "NPC_Params_Guests_NPCPhrase_Galen"
+		}
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5NPCParams'"
+}

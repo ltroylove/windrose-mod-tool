@@ -1,0 +1,95 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 1000,
+		"Weight": 0,
+		"ItemTag": {
+			"TagName": "ConsData.Ship.RepairKit.Small"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Ship"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.Ship"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Loot/SM_Loot_Tortuga_LootCrate_01.SM_Loot_Tortuga_LootCrate_01",
+		"ItemClass": "Consumable",
+		"Rarity": "Uncommon",
+		"bKeepInInventoryOnDeath": true,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/ShipConsumables/DA_ConsumableAbilityData_Ship_RepairKitSmall.DA_ConsumableAbilityData_Ship_RepairKitSmall",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Craft_RepairKit.T_ItemIcon_Craft_RepairKit",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Ship_RepairKit_Small_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Ship_RepairKit_Small_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [
+			{
+				"CurveTable": "/Game/Gameplay/Water/Character/Ability/ShipAttributes/CT_ShipEquipStats.CT_ShipEquipStats",
+				"RowName": "40",
+				"CurveLevel": 1,
+				"DisplayType": "ValueAsValue",
+				"bInverseValue": false
+			},
+			{
+				"CurveTable": "/Game/Gameplay/Water/Character/Ability/ShipAttributes/CT_ShipEquipStats.CT_ShipEquipStats",
+				"RowName": "2",
+				"CurveLevel": 1,
+				"DisplayType": "ValueAsValue",
+				"bInverseValue": false
+			},
+			{
+				"CurveTable": "/Game/Gameplay/Water/Character/Ability/ShipAttributes/CT_ShipEquipStats.CT_ShipEquipStats",
+				"RowName": "ColdBarrels_Advanced_Weakspot",
+				"CurveLevel": 1,
+				"DisplayType": "ValueToPercent",
+				"bInverseValue": false
+			}
+		],
+		"EffectsDescriptions": [
+			{
+				"TableId": "InventoryItems",
+				"Key": "CID_Ship_RepairKit_Small_Effect1"
+			}
+		],
+		"SetEffectsDescriptions": [],
+		"Category": "Default",
+		"VanityText": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Ship_RepairKit_Small_VanityText"
+		},
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

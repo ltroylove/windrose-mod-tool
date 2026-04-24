@@ -1,0 +1,69 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 3000,
+		"Weight": 0.10000000149011612,
+		"ItemTag": {
+			"TagName": "ConsData.Food.Raw.UmbraFruit.T03"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Food"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.Food"
+		},
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Resources/SM_Resources_T03_StupefyingFruit_01.SM_Resources_T03_StupefyingFruit_01",
+		"ItemClass": "Consumable",
+		"Rarity": "Common",
+		"bKeepInInventoryOnDeath": false,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None"
+		},
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/Food/ConsumeAbilityData/DA_ConsumableAbilityData_Food_Raw_UmbraFruit_T03.DA_ConsumableAbilityData_Food_Raw_UmbraFruit_T03",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Resources_T03_StupefyingFruit_01.T_ItemIcon_Resources_T03_StupefyingFruit_01",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Food_Raw_UmbraFruit_T03_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Food_Raw_UmbraFruit_T03_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [
+			{
+				"CurveTable": "/Game/Gameplay/ItemsLogic/Consumables/CT_Food_GE_Values.CT_Food_GE_Values",
+				"RowName": "Food_Raw_UmbraFruit_T03_Duration",
+				"CurveLevel": 0,
+				"DisplayType": "SecondsAsMinutes",
+				"bInverseValue": false
+			}
+		],
+		"EffectsDescriptions": [],
+		"Category": "Food",
+		"VanityText": "",
+		"QualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

@@ -1,0 +1,92 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 1000,
+		"Weight": 0.20000000298023224,
+		"ItemTag": {
+			"TagName": "ConsData.Alchemy.Elixir.DamageResist"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Elixir"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.Elixir"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Potions/SM_PotionT01_01.SM_PotionT01_01",
+		"ItemClass": "Consumable",
+		"Rarity": "Rare",
+		"bKeepInInventoryOnDeath": true,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/Elixir/DamageResist/DA_Consumable_Elixir_DamageResist_Default_AbilityData.DA_Consumable_Elixir_DamageResist_Default_AbilityData",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Consumables_T1_Fortitude_01.T_ItemIcon_Consumables_T1_Fortitude_01",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Alchemy_Elixir_DamageResist_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Alchemy_Elixir_DamageResist_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [
+			{
+				"CurveTable": "/Game/Gameplay/ItemsLogic/Consumables/CT_Alchemy_GE_Values.CT_Alchemy_GE_Values",
+				"RowName": "Elixir_DamageResist_Default_Duration",
+				"CurveLevel": 1,
+				"DisplayType": "SecondsAsMinutes",
+				"bInverseValue": false
+			},
+			{
+				"CurveTable": "/Game/Gameplay/ItemsLogic/Consumables/CT_Alchemy_GE_Values.CT_Alchemy_GE_Values",
+				"RowName": "Elixir_DamageResist_Default_EffectValue",
+				"CurveLevel": 1,
+				"DisplayType": "RatioToPercent",
+				"bInverseValue": false
+			}
+		],
+		"EffectsDescriptions": [
+			{
+				"TableId": "InventoryItems",
+				"Key": "CID_Alchemy_Elixir_DamageResist_Effect1"
+			},
+			{
+				"TableId": "InventoryItems",
+				"Key": "CID_Alchemy_Elixir_DamageResist_Effect2"
+			}
+		],
+		"SetEffectsDescriptions": [],
+		"Category": "Alchemy",
+		"VanityText": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Alchemy_Elixir_DamageResist_VanityText"
+		},
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

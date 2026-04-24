@@ -1,0 +1,55 @@
+{
+	"InventoryItemGppData": {
+		"Weight": 0.200000002980232,
+		"bKeepInInventoryOnDeath": true,
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/Potion/DA_ConsumableAbilityData_Potion_Recall_T01.DA_ConsumableAbilityData_Potion_Recall_T01",
+		"AmmoBaseParams": "",
+		"LootTableData": "",
+		"ItemClass": "Consumable",
+		"ItemTag": {
+			"TagName": "ConsData.Alchemy.Potion.Recall.T01"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.Elixir.Recall"
+		},
+		"MaxCountInSlot": 1000,
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Potions/SM_PotionT03_Heal_01.SM_PotionT03_Heal_01",
+		"Rarity": "Rare",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Elixir"
+		}
+	},
+	"InventoryItemUIData": {
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Alchemy_Potion_Recall_T01_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Alchemy_Potion_Recall_T01_ItemDescription"
+		},
+		"VanityText": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Alchemy_Potion_Recall_T01_VanityText"
+		},
+		"EffectsDescriptions": [
+			{
+				"TableId": "InventoryItems",
+				"Key": "CID_Alchemy_Potion_Recall_T01_Effect1"
+			}
+		],
+		"ItemDescriptionData": [],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"Category": "Alchemy",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Consumables_T1_Recall_01.T_ItemIcon_Consumables_T1_Recall_01"
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

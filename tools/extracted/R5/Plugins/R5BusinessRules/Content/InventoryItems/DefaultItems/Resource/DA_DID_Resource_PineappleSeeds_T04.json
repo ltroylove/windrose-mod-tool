@@ -1,0 +1,62 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 10000,
+		"Weight": 0.10000000149011612,
+		"ItemTag": {
+			"TagName": "ItemData.Resource.PineappleSeeds.T04"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Resource"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "None"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Resources/SM_Resources_T02_FlaxSeeds_01.SM_Resources_T02_FlaxSeeds_01",
+		"ItemClass": "Default",
+		"Rarity": "Common",
+		"bKeepInInventoryOnDeath": false,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "None",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Resources_T02_AloeSeeds_01.T_ItemIcon_Resources_T02_AloeSeeds_01",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_PineappleSeeds_T04_ItemName"
+		},
+		"ItemDescription": "",
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [],
+		"EffectsDescriptions": [],
+		"SetEffectsDescriptions": [],
+		"Category": "Resource",
+		"VanityText": "",
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

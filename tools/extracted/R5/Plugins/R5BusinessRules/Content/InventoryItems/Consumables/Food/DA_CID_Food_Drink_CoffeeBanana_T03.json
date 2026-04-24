@@ -1,0 +1,83 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 1000,
+		"Weight": 0.1,
+		"ItemTag": {
+			"TagName": "ConsData.Food.Drink.CoffeeBanana.T03"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Food"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.Food"
+		},
+		"Attributes": [],
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Food/SM_Consumables_Drink_CoffeeBanana.SM_Consumables_Drink_CoffeeBanana",
+		"ItemClass": "Consumable",
+		"Rarity": "Common",
+		"bKeepInInventoryOnDeath": true,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/Food/ConsumeAbilityData/DA_ConsumableAbilityData_Food_Drink_CoffeeBanana_T03.DA_ConsumableAbilityData_Food_Drink_CoffeeBanana_T03",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/Consumables/Food/T_ItemIcon_Consumables_Drink_CoffeeBanana.T_ItemIcon_Consumables_Drink_CoffeeBanana",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Food_Drink_CoffeeBanana_T03_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Food_Drink_CoffeeBanana_T03_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [
+			{
+				"CurveTable": "/Game/Gameplay/ItemsLogic/Consumables/CT_Food_GE_Values.CT_Food_GE_Values",
+				"RowName": "Food_Drink_CoffeeBanana_T03_Endurance",
+				"CurveLevel": 1,
+				"Stat": "Endurance"
+			}
+		],
+		"ItemDescriptionData": [
+			{
+				"CurveTable": "/Game/Gameplay/ItemsLogic/Consumables/CT_Food_GE_Values.CT_Food_GE_Values",
+				"RowName": "Food_Drink_CoffeeBanana_T03_Duration",
+				"CurveLevel": 0,
+				"DisplayType": "SecondsAsMinutes",
+				"bInverseValue": false
+			}
+		],
+		"EffectsDescriptions": [],
+		"SetEffectsDescriptions": [],
+		"Category": "Food",
+		"VanityText": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Food_Drink_CoffeeBanana_T03_VanityText"
+		},
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

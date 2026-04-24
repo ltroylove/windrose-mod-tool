@@ -1,0 +1,47 @@
+{
+	"InventoryItemGppData": {
+		"Weight": 0.300000011920928,
+		"bKeepInInventoryOnDeath": false,
+		"ConsumableData": "",
+		"AmmoBaseParams": "",
+		"LootTableData": "",
+		"ItemClass": "Default",
+		"ItemTag": {
+			"TagName": "ItemData.Resource.TritonsTrumpet.T01"
+		},
+		"ActivationAbilityTag": {
+			"TagName": ""
+		},
+		"MaxCountInSlot": 2000,
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Loot/SM_Loot_T01_TritonsTrumpet_01.SM_Loot_T01_TritonsTrumpet_01",
+		"Rarity": "Common",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Resource"
+		}
+	},
+	"InventoryItemUIData": {
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_TritonsTrumpet_T01_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_TritonsTrumpet_T01_ItemDescription"
+		},
+		"VanityText": "",
+		"EffectsDescriptions": [],
+		"ItemDescriptionData": [],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"Category": "Resource",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Loot_T01_TritonsTrumpet_01.T_ItemIcon_Loot_T01_TritonsTrumpet_01"
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

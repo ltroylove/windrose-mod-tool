@@ -1,0 +1,47 @@
+{
+	"InventoryItemGppData": {
+		"Weight": 5.0,
+		"bKeepInInventoryOnDeath": false,
+		"ConsumableData": "",
+		"AmmoBaseParams": "",
+		"LootTableData": "",
+		"ItemClass": "Default",
+		"ItemTag": {
+			"TagName": "ItemData.Resource.MillstoneParts.T02"
+		},
+		"ActivationAbilityTag": {
+			"TagName": ""
+		},
+		"MaxCountInSlot": 100,
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Craft/SM_Craft_T02_MillstoneParts_01.SM_Craft_T02_MillstoneParts_01",
+		"Rarity": "Uncommon",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Resource"
+		}
+	},
+	"InventoryItemUIData": {
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_MillstoneParts_T02_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Resource_MillstoneParts_T02_ItemDescription"
+		},
+		"VanityText": "",
+		"EffectsDescriptions": [],
+		"ItemDescriptionData": [],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"Category": "Resource",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Craft_T02_MillstoneParts_01.T_ItemIcon_Craft_T02_MillstoneParts_01"
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

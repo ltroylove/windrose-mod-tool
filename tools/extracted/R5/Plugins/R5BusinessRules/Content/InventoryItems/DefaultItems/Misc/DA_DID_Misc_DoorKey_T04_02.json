@@ -1,0 +1,46 @@
+{
+	"InventoryItemGppData": {
+		"ItemClass": "Default",
+		"ItemTag": {
+			"TagName": "ItemData.Misc.DoorKey.T04.02"
+		},
+		"ActivationAbilityTag": {
+			"TagName": ""
+		},
+		"MaxCountInSlot": 9900,
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Loot/SM_Loot_T02_KeyBossArena_01.SM_Loot_T02_KeyBossArena_01",
+		"Rarity": "Epic",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Resource"
+		},
+		"Weight": 0.0,
+		"bKeepInInventoryOnDeath": false,
+		"ConsumableData": "",
+		"AmmoBaseParams": "",
+		"LootTableData": ""
+	},
+	"InventoryItemUIData": {
+		"ItemDescriptionData": [],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"Category": "Misc",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Loot_T02_KeyBossArena_01.T_ItemIcon_Loot_T02_KeyBossArena_01",
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "DID_Misc_DoorKey_T04_02_ItemName"
+		},
+		"ItemDescription": "",
+		"VanityText": "",
+		"EffectsDescriptions": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

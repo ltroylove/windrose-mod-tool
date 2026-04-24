@@ -1,0 +1,63 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 1000,
+		"Weight": 0.20000000298023224,
+		"ItemTag": {
+			"TagName": "ConsData.Misc.Fish.Small.PinkWrasse"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Fish"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.LootContainer"
+		},
+		"ItemMesh": "/Game/FX/Meshes/Environment/Fish/SM_FishSmall_06.SM_FishSmall_06",
+		"ItemClass": "Consumable",
+		"Rarity": "Uncommon",
+		"bKeepInInventoryOnDeath": false,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None"
+		},
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/LootContainer/ConsumeAbilityData/DA_ConsumableAbilityData_LootContainer.DA_ConsumableAbilityData_LootContainer",
+		"LootTableData": "/R5BusinessRules/LootTables/Fishing/Butchering/DA_LT_Butchering_SmallFish.DA_LT_Butchering_SmallFish"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Loot_Fish_Small_PinkWrasse_T01.T_ItemIcon_Loot_Fish_Small_PinkWrasse_T01",
+		"AdditionalIcons": [],
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_Fish_Small_PinkWrasse_T01_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_Fish_Small_PinkWrasse_T01_ItemDescription"
+		},
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [],
+		"EffectsDescriptions": [],
+		"Category": "Misc",
+		"VanityText": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_Fish_Small_PinkWrasse_T01_VanityText"
+		},
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

@@ -1,0 +1,47 @@
+{
+	"InventoryItemGppData": {
+		"Weight": 0.100000001490116,
+		"bKeepInInventoryOnDeath": false,
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/LootContainer/ConsumeAbilityData/DA_ConsumableAbilityData_LootContainer.DA_ConsumableAbilityData_LootContainer",
+		"AmmoBaseParams": "",
+		"LootTableData": "/R5BusinessRules/LootTables/ConsumableContainer/DA_LT_LootContainer_PouchCoin_Final.DA_LT_LootContainer_PouchCoin_Final",
+		"ItemClass": "Consumable",
+		"ItemTag": {
+			"TagName": "ConsData.Misc.PouchCoin.T01"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.LootContainer"
+		},
+		"MaxCountInSlot": 2000,
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Consumables/SM_Consumables_T01_PouchCoin_01.SM_Consumables_T01_PouchCoin_01",
+		"Rarity": "Common",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Lootable"
+		}
+	},
+	"InventoryItemUIData": {
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_PouchCoin_T01_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_PouchCoin_T01_ItemDescription"
+		},
+		"VanityText": "",
+		"EffectsDescriptions": [],
+		"ItemDescriptionData": [],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"Category": "Misc",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Consumables_T01_PouchCoin_01.T_ItemIcon_Consumables_T01_PouchCoin_01"
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

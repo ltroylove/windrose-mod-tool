@@ -1,0 +1,47 @@
+{
+	"InventoryItemGppData": {
+		"Weight": 0.0,
+		"bKeepInInventoryOnDeath": true,
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/Spawner/DA_ConsumableAbilityData_SpawnerBoar.DA_ConsumableAbilityData_SpawnerBoar",
+		"AmmoBaseParams": "",
+		"LootTableData": "/R5BusinessRules/LootTables/TMP/DA_LT_SpawnerCroco_L1.DA_LT_SpawnerCroco_L1",
+		"ItemClass": "Consumable",
+		"ItemTag": {
+			"TagName": "ConsData.Misc.SpawnerCroc.L1.T03"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.Spawner"
+		},
+		"MaxCountInSlot": 100,
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Loot/SM_LootT03_GoldAmulet_01.SM_LootT03_GoldAmulet_01",
+		"Rarity": "Legendary",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Lootable"
+		}
+	},
+	"InventoryItemUIData": {
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_SpawnerCroc_L1_T03_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_SpawnerCroc_L1_T03_ItemDescription"
+		},
+		"VanityText": "",
+		"EffectsDescriptions": [],
+		"ItemDescriptionData": [],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"Category": "Misc",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Consumables_T03_SpawnerCroc.T_ItemIcon_Consumables_T03_SpawnerCroc"
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

@@ -1,0 +1,57 @@
+{
+	"$type": "R5NPCParams",
+	"NPCItem": "/R5BusinessRules/InventoryItems/NPC/EquipmentStation/DA_EID_NPC_EquipmentStation_JasperCrowe.DA_EID_NPC_EquipmentStation_JasperCrowe",
+	"NPCData": {
+		"NPCPawn": "/Game/Gameplay/Character/AI/NPC/Employee/WeaponStation/BP_NPC_Employee_WeaponStation_JasperCrowe.BP_NPC_Employee_WeaponStation_JasperCrowe_C",
+		"Cost": [
+			{
+				"Item": {
+					"ItemParams": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+					"Attributes": [],
+					"ItemId": "",
+					"Effects": []
+				},
+				"Count": 500
+			}
+		],
+		"NPCDescription": {
+			"Icon": "/Game/UI/META/NPC/Assets/Portraits/T_PortraitNPC_JasperCrowe.T_PortraitNPC_JasperCrowe",
+			"Level": 0,
+			"Name": {
+				"TableId": "ScenarioOther",
+				"Key": "NPC_Params_EquipmentStation_NPCName_JasperCrowe"
+			},
+			"Description": ""
+		},
+		"NPCProfessionsDescription": [
+			{
+				"Icon": "/Game/UI/META/Crafting/Production/Assets/Icons/T_Production_EquipmentIcon.T_Production_EquipmentIcon",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_EquipmentStation_Professions_Tailor"
+				},
+				"Description": ""
+			}
+		],
+		"NPCBonusesDescription": [
+			{
+				"Icon": "/Game/UI/META/Crafting/Assets/T_Icon_Rarity_Uncommon.T_Icon_Rarity_Uncommon",
+				"Level": 0,
+				"Name": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_EquipmentStation_BonusesName_ThriftyTailor_Common"
+				},
+				"Description": {
+					"TableId": "ScenarioOther",
+					"Key": "NPC_Params_EquipmentStation_ThriftyTailor_Common_Description"
+				}
+			}
+		],
+		"Phrase": {
+			"TableId": "ScenarioOther",
+			"Key": "NPC_Params_EquipmentStation_NPCPhrase_JasperCrowe"
+		}
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5NPCParams'"
+}

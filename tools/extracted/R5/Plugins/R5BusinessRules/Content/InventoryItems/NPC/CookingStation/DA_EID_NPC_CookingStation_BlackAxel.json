@@ -1,0 +1,59 @@
+{
+	"$type": "R5BLInventoryItem",
+	"InventoryItemGppData": {
+		"MaxCountInSlot": 1,
+		"Weight": 1,
+		"ItemTag": {
+			"TagName": "EquipData.NPC.CookingStation.NPC.BlackAxel"
+		},
+		"ItemType": {
+			"TagName": "Inventory.ItemType.NPC.Bonfire.Cook"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "None"
+		},
+		"Attributes": [],
+		"ItemMesh": "None",
+		"ItemClass": "Default",
+		"Rarity": "Legendary",
+		"bKeepInInventoryOnDeath": true,
+		"AmmoBaseParams": "None",
+		"InventoryEquipment": {
+			"ItemClass": "None",
+			"ItemConfig": "None",
+			"ItemLevel": 0,
+			"SlotCountModifierParams": "None",
+			"ShipItemParams": "None"
+		},
+		"ConsumableData": "None",
+		"LootTableData": "None"
+	},
+	"InventoryItemUIData": {
+		"ItemTexture": "/Game/UI/HUD/Navigation/PointsOfInterest/Icons/T_MapIcon_Vendor_Workers.T_MapIcon_Vendor_Workers",
+		"AdditionalIcons": [],
+		"ItemName": "NPC Black Axel",
+		"ItemDescription": "NPC Black Axel",
+		"StatCurveMainStatsData": {
+			"CurveTable": "/Game/Gameplay/ItemsLogic/CT_CombatPower_StaticData.CT_CombatPower_StaticData",
+			"RowName": "power_T03",
+			"CurveLevel": 1,
+			"Stat": "Defence"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"ItemDescriptionData": [],
+		"EffectsDescriptions": [],
+		"SetEffectsDescriptions": [],
+		"Category": "Default",
+		"VanityText": "",
+		"QualityLevel": 0,
+		"MaxQualityLevel": 6,
+		"SubDataId": {
+			"TagName": "None"
+		}
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'"
+}

@@ -1,0 +1,42 @@
+{
+	"$type": "R5GameplaySpawnerParams",
+	"Variants": [
+		{
+			"DebugName": "C",
+			"Weight": 15,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/MinaralNodes/AltarStatues/BP_Mineral_RootedMetal_Rich_C_01.BP_Mineral_RootedMetal_Rich_C_01_C"
+					],
+					"Amount": {
+						"Min": 2,
+						"Max": 2
+					},
+					"Mutators": [],
+					"CustomData": "None"
+				}
+			]
+		}
+	],
+	"GlobalMutators": [],
+	"SpawnRadius": 0,
+	"MinDistanceBetweenEntities": 100,
+	"RandomRotation": 0,
+	"HeightModifier": 0,
+	"RespawnInterval": {
+		"Min": 21600,
+		"Max": 21600
+	},
+	"SpawnCondition": "None",
+	"bSuspendOnSpawnConditionFail": true,
+	"bAllowToSpawnInBuildingArea": false,
+	"DebugColor": {
+		"B": 255,
+		"G": 140,
+		"R": 80,
+		"A": 255
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerParams'"
+}

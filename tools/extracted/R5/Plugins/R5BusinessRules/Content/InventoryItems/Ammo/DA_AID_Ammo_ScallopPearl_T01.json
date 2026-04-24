@@ -1,0 +1,47 @@
+{
+	"InventoryItemGppData": {
+		"Weight": 0.100000001490116,
+		"bKeepInInventoryOnDeath": false,
+		"ConsumableData": "",
+		"AmmoBaseParams": "/R5BusinessRules/ItemsLogic/Ammo/DA_WeaponAmmo_FirearmProjectile_PearlBullet.DA_WeaponAmmo_FirearmProjectile_PearlBullet",
+		"LootTableData": "",
+		"ItemClass": "Ammo",
+		"ItemTag": {
+			"TagName": "AmmoData.Ammo.ScallopPearl.T01"
+		},
+		"ActivationAbilityTag": {
+			"TagName": ""
+		},
+		"MaxCountInSlot": 4000,
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Loot/SM_Loot_T01_ScallopPearl_01.SM_Loot_T01_ScallopPearl_01",
+		"Rarity": "Common",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Ammo.GunFireProjectile"
+		}
+	},
+	"InventoryItemUIData": {
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_ScallopPearl_T01_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "AID_Ammo_ScallopPearl_T01_ItemDescription"
+		},
+		"VanityText": "",
+		"EffectsDescriptions": [],
+		"ItemDescriptionData": [],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"Category": "Ammo",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Loot_T01_ScallopPearl_01.T_ItemIcon_Loot_T01_ScallopPearl_01"
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

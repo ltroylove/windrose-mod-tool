@@ -1,0 +1,64 @@
+{
+	"InventoryItemGppData": {
+		"ItemClass": "Consumable",
+		"ItemTag": {
+			"TagName": "ConsData.Food.Sweet.PineapplePie.T04"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.Food"
+		},
+		"MaxCountInSlot": 1000,
+		"ItemMesh": "/Game/TMP/ResourcesTEMP/Consumables/SM_Consumables_T02_ChocolateCake_01.SM_Consumables_T02_ChocolateCake_01",
+		"Rarity": "Legendary",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Food"
+		},
+		"Weight": 0.200000002980232,
+		"bKeepInInventoryOnDeath": true,
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/Food/ConsumeAbilityData/DA_ConsumableAbilityData_Food_Sweet_CakeIcaco_T03.DA_ConsumableAbilityData_Food_Sweet_CakeIcaco_T03",
+		"AmmoBaseParams": "",
+		"LootTableData": ""
+	},
+	"InventoryItemUIData": {
+		"ItemDescriptionData": [
+			{
+				"CurveTable": "/Game/Gameplay/ItemsLogic/Consumables/CT_Food_GE_Values.CT_Food_GE_Values",
+				"RowName": "Food_Sweet_CakeIcaco_T03_Duration",
+				"CurveLevel": 0,
+				"DisplayType": "SecondsAsMinutes",
+				"bInverseValue": false
+			}
+		],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [
+			{
+				"CurveTable": "/Game/Gameplay/ItemsLogic/Consumables/CT_Food_GE_Values.CT_Food_GE_Values",
+				"RowName": "Food_Sweet_CakeIcaco_T03_Precision",
+				"CurveLevel": 1,
+				"Stat": "Precision"
+			}
+		],
+		"QualityLevel": 0,
+		"MaxQualityLevel": 0,
+		"Category": "Food",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Consumables_T02_WarmingPie_01.T_ItemIcon_Consumables_T02_WarmingPie_01",
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Food_Sweet_PineapplePie_T04_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Food_Sweet_PineapplePie_T04_ItemDescription"
+		},
+		"VanityText": "",
+		"EffectsDescriptions": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

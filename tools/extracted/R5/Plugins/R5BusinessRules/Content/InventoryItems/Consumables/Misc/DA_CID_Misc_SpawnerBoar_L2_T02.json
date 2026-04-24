@@ -1,0 +1,47 @@
+{
+	"InventoryItemGppData": {
+		"Weight": 0.0,
+		"bKeepInInventoryOnDeath": true,
+		"ConsumableData": "/Game/Gameplay/ItemsLogic/Consumables/Spawner/DA_ConsumableAbilityData_SpawnerBoar.DA_ConsumableAbilityData_SpawnerBoar",
+		"AmmoBaseParams": "",
+		"LootTableData": "/R5BusinessRules/LootTables/TMP/DA_LT_SpawnerBoar_L2.DA_LT_SpawnerBoar_L2",
+		"ItemClass": "Consumable",
+		"ItemTag": {
+			"TagName": "ConsData.Misc.SpawnerBoar.L2.T02"
+		},
+		"ActivationAbilityTag": {
+			"TagName": "GAS.Consumable.Activate.Spawner"
+		},
+		"MaxCountInSlot": 100,
+		"ItemMesh": "/Game/Environment/Gameplay/Resources/Loot/SM_LootT03_GoldAmulet_01.SM_LootT03_GoldAmulet_01",
+		"Rarity": "Legendary",
+		"ItemType": {
+			"TagName": "Inventory.ItemType.Consumable.Lootable"
+		}
+	},
+	"InventoryItemUIData": {
+		"ItemName": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_SpawnerBoar_L2_T02_ItemName"
+		},
+		"ItemDescription": {
+			"TableId": "InventoryItems",
+			"Key": "CID_Misc_SpawnerBoar_L2_T02_ItemDescription"
+		},
+		"VanityText": "",
+		"EffectsDescriptions": [],
+		"ItemDescriptionData": [],
+		"StatCurveMainStatsData": {
+			"CurveTable": "None",
+			"RowName": "",
+			"CurveLevel": 0,
+			"Stat": "None"
+		},
+		"StatCurveSecondaryStatsData": [],
+		"StatCurveAdditionalStats": [],
+		"Category": "Misc",
+		"ItemTexture": "/Game/UI/Icons/Items/New/T_ItemIcon_Consumables_T02_SpawnerBoar.T_ItemIcon_Consumables_T02_SpawnerBoar"
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLInventoryItem'",
+	"$type": "R5BLInventoryItem"
+}

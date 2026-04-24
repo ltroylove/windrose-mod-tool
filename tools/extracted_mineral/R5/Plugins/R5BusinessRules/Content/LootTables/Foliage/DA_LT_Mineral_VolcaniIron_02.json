@@ -1,0 +1,19 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Amount": {
+				"Min": 2,
+				"Max": 6
+			},
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_VolcanicIron_T04.DA_DID_Resource_VolcanicIron_T04",
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}
