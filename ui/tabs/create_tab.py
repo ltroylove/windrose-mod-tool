@@ -6,11 +6,16 @@ from tkinter import messagebox
 from core import settings as cfg
 from core import pak_generator
 
-ACCENT   = "#0d9488"
-CARD_BG  = "#1e293b"
-NAV_BG   = "#0f172a"
-MUTED    = "#475569"
-NAV_W    = 168
+from ui.theme import ACCENT, CARD_BG, NAV_BG, MUTED
+
+NAV_W = 168
+
+# Keys with no backing mod data — sliders are shown but disabled with a notice
+_UNSUPPORTED = {
+    "loot_copper", "loot_animals",
+    "spawn_copper", "spawn_iron", "spawn_sulfur", "spawn_stone",
+    "spawn_softwood", "spawn_hardwood", "spawn_herbs",
+}
 
 # ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -300,29 +305,38 @@ class CreateTab(ctk.CTkFrame):
             self._entry_vars[key] = evar
 
             row = r + 3
-            # name + drops stacked in col 0
+            unsupported = key in _UNSUPPORTED
+            name_color  = "#374151" if unsupported else None
+
             lf = ctk.CTkFrame(parent, fg_color="transparent")
             lf.grid(row=row, column=0, padx=14, pady=4, sticky="w")
             ctk.CTkLabel(lf, text=label, anchor="w",
-                         font=ctk.CTkFont(size=12, weight="bold")).pack(anchor="w")
+                         font=ctk.CTkFont(size=12, weight="bold"),
+                         text_color=name_color or "white").pack(anchor="w")
             ctk.CTkLabel(lf, text=drops, anchor="w",
-                         text_color="#64748b", font=ctk.CTkFont(size=11),
-                         wraplength=200).pack(anchor="w")
+                         text_color="#374151" if unsupported else "#64748b",
+                         font=ctk.CTkFont(size=11), wraplength=200).pack(anchor="w")
 
-            ctk.CTkSlider(
-                parent, from_=0.1, to=100.0, variable=var,
-                button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
-                command=lambda v, k=key: self._slide_float(k, v),
-            ).grid(row=row, column=1, padx=(8, 8), pady=4, sticky="ew")
+            if unsupported:
+                ctk.CTkLabel(
+                    parent, text="No mod data available yet",
+                    text_color="#374151", font=ctk.CTkFont(size=11), anchor="w",
+                ).grid(row=row, column=1, columnspan=3, padx=8, pady=4, sticky="w")
+            else:
+                ctk.CTkSlider(
+                    parent, from_=0.1, to=100.0, variable=var,
+                    button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
+                    command=lambda v, k=key: self._slide_float(k, v),
+                ).grid(row=row, column=1, padx=(8, 8), pady=4, sticky="ew")
 
-            entry = ctk.CTkEntry(parent, textvariable=evar, width=72, height=28, justify="right")
-            entry.grid(row=row, column=2, padx=(0, 4), pady=4)
-            evar.trace_add("write", lambda *_, k=key, ev=evar: self._entry_float(k, ev, 0.1, 100.0))
+                entry = ctk.CTkEntry(parent, textvariable=evar, width=72, height=28, justify="right")
+                entry.grid(row=row, column=2, padx=(0, 4), pady=4)
+                evar.trace_add("write", lambda *_, k=key, ev=evar: self._entry_float(k, ev, 0.1, 100.0))
 
-            ctk.CTkLabel(
-                parent, text="×", text_color=MUTED,
-                font=ctk.CTkFont(size=12), width=24, anchor="w",
-            ).grid(row=row, column=3, padx=(0, 14), pady=4)
+                ctk.CTkLabel(
+                    parent, text="×", text_color=MUTED,
+                    font=ctk.CTkFont(size=12), width=24, anchor="w",
+                ).grid(row=row, column=3, padx=(0, 14), pady=4)
 
     def _build_spawners(self, parent: ctk.CTkScrollableFrame, subtitle: str):
         self._section_header(parent, subtitle)
@@ -354,11 +368,21 @@ class CreateTab(ctk.CTkFrame):
             self._vars[qty_key]       = qty_var
             self._entry_vars[qty_key] = qty_evar
 
+            unsupported  = prefix in _UNSUPPORTED
+            name_color   = "#374151" if unsupported else "white"
+
             row = r + 3
             ctk.CTkLabel(
                 parent, text=label, width=160, anchor="w",
-                font=ctk.CTkFont(size=12, weight="bold"),
+                font=ctk.CTkFont(size=12, weight="bold"), text_color=name_color,
             ).grid(row=row, column=0, padx=14, pady=6, sticky="w")
+
+            if unsupported:
+                ctk.CTkLabel(
+                    parent, text="No mod data available yet",
+                    text_color="#374151", font=ctk.CTkFont(size=11), anchor="w",
+                ).grid(row=row, column=1, columnspan=6, padx=4, pady=6, sticky="w")
+                continue
 
             ctk.CTkSlider(
                 parent, from_=0.25, to=48.0, variable=h_var, width=180,

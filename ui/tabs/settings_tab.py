@@ -3,8 +3,7 @@ from tkinter import filedialog, messagebox
 from pathlib import Path
 from core import settings as cfg
 from core.paths import GamePaths, find_game_path
-
-ACCENT = "#0d9488"
+from ui.theme import ACCENT
 
 
 class SettingsTab(ctk.CTkFrame):
@@ -107,5 +106,5 @@ class SettingsTab(ctk.CTkFrame):
                 return
 
         cfg.save(s)
+        messagebox.showinfo("Settings Saved", "Settings saved. The app will now reload.")
         self.app.reload()
-        self._status.configure(text="✓ Settings saved.", text_color="#6ee7b7")

@@ -1,10 +1,7 @@
 import os
 import customtkinter as ctk
 
-ACCENT      = "#0d9488"
-CARD_BG     = "#1e293b"
-MUTED       = "#475569"
-MUTED_LIGHT = "#64748b"
+from ui.theme import ACCENT, CARD_BG, MUTED, MUTED_LIGHT
 
 
 class HomeTab(ctk.CTkFrame):

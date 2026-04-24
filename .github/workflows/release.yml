@@ -28,6 +28,19 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
 
+      - name: Inject version
+        shell: powershell
+        run: |
+          $ref = "${{ github.ref }}"
+          if ($ref -like "refs/tags/v*") {
+            $ver = "${{ github.ref_name }}"
+          } else {
+            $sha = "${{ github.sha }}".Substring(0, 7)
+            $date = Get-Date -Format "yyyy-MM-dd"
+            $ver = "nightly-$date-$sha"
+          }
+          Set-Content version.py "__version__ = '$ver'"
+
       - name: Build executable
         run: |
           pyinstaller `

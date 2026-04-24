@@ -144,22 +144,23 @@ class ConfigManager:
             return f'{{"TagName": "{name}"}}'
 
         ws = d.setdefault("WorldSettings", {})
-        ws["BoolParameters"] = {
-            tag("WDS.Parameter.Coop.SharedQuests"): cfg.shared_quests,
-            tag("WDS.Parameter.EasyExplore"): cfg.easy_explore,
-        }
-        ws["FloatParameters"] = {
-            tag("WDS.Parameter.MobHealthMultiplier"): cfg.mob_health,
-            tag("WDS.Parameter.MobDamageMultiplier"): cfg.mob_damage,
-            tag("WDS.Parameter.ShipsHealthMultiplier"): cfg.ship_health,
-            tag("WDS.Parameter.ShipsDamageMultiplier"): cfg.ship_damage,
-            tag("WDS.Parameter.BoardingDifficultyMultiplier"): cfg.boarding_difficulty,
-            tag("WDS.Parameter.Coop.StatsCorrectionModifier"): cfg.coop_stats_correction,
-            tag("WDS.Parameter.Coop.ShipStatsCorrectionModifier"): cfg.coop_ship_stats_correction,
-        }
-        ws["TagParameters"] = {
-            tag("WDS.Parameter.CombatDifficulty"): {
-                "TagName": f"WDS.Parameter.CombatDifficulty.{cfg.combat_difficulty}"
-            }
+
+        # Merge into existing dicts to preserve unknown keys added by future game updates
+        bp = ws.setdefault("BoolParameters", {})
+        bp[tag("WDS.Parameter.Coop.SharedQuests")] = cfg.shared_quests
+        bp[tag("WDS.Parameter.EasyExplore")]        = cfg.easy_explore
+
+        fp = ws.setdefault("FloatParameters", {})
+        fp[tag("WDS.Parameter.MobHealthMultiplier")]              = cfg.mob_health
+        fp[tag("WDS.Parameter.MobDamageMultiplier")]              = cfg.mob_damage
+        fp[tag("WDS.Parameter.ShipsHealthMultiplier")]            = cfg.ship_health
+        fp[tag("WDS.Parameter.ShipsDamageMultiplier")]            = cfg.ship_damage
+        fp[tag("WDS.Parameter.BoardingDifficultyMultiplier")]     = cfg.boarding_difficulty
+        fp[tag("WDS.Parameter.Coop.StatsCorrectionModifier")]     = cfg.coop_stats_correction
+        fp[tag("WDS.Parameter.Coop.ShipStatsCorrectionModifier")] = cfg.coop_ship_stats_correction
+
+        tp = ws.setdefault("TagParameters", {})
+        tp[tag("WDS.Parameter.CombatDifficulty")] = {
+            "TagName": f"WDS.Parameter.CombatDifficulty.{cfg.combat_difficulty}"
         }
         cfg.source_path.write_text(json.dumps(raw, indent="\t"), encoding="utf-8")

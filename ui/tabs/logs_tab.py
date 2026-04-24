@@ -4,10 +4,7 @@ import tkinter as tk
 from pathlib import Path
 from datetime import datetime
 import customtkinter as ctk
-
-ACCENT   = "#0d9488"
-CARD_BG  = "#1e293b"
-MUTED    = "#475569"
+from ui.theme import ACCENT, CARD_BG, MUTED
 
 # Log directory — UE5 stores logs in LocalAppData for packaged games
 LOG_DIR = Path(os.environ.get("LOCALAPPDATA", "")) / "R5" / "Saved" / "Logs"
@@ -50,6 +47,7 @@ class LogsTab(ctk.CTkFrame):
         self._tail_job  = None     # after() handle
         self._all_lines: list[str] = []
         self._tailing = False
+        self._visible_count = 0
         self._build()
 
     # ─────────────────────────────────────────────────────────────────
@@ -196,7 +194,10 @@ class LogsTab(ctk.CTkFrame):
             self._file_var.set("No logs found")
 
     def _on_file_select(self, label: str):
-        idx = self._file_menu.cget("values").index(label)
+        try:
+            idx = list(self._file_menu.cget("values")).index(label)
+        except ValueError:
+            return
         if 0 <= idx < len(self._log_files):
             self._select_file(self._log_files[idx])
 
@@ -250,20 +251,15 @@ class LogsTab(ctk.CTkFrame):
             visible.append((line, tag))
 
         self._render(visible, search)
-        mtime = datetime.fromtimestamp(
-            self._selected_file.stat().st_mtime
-        ).strftime("%H:%M:%S") if self._selected_file and self._selected_file.exists() else "—"
-        self._set_status(
-            f"{len(self._all_lines):,} lines total  •  {len(visible):,} shown  •  {mtime}"
-        )
+        self._update_status()
 
     def _render(self, lines: list[tuple[str, str]], search: str):
+        self._visible_count = len(lines)
         tw = self._textbox._textbox
         tw.configure(state="normal")
         tw.delete("1.0", "end")
         for line, tag in lines:
             tw.insert("end", line + "\n", tag)
-        # highlight search matches
         if search:
             start = "1.0"
             while True:
@@ -275,6 +271,44 @@ class LogsTab(ctk.CTkFrame):
                 start = end
         tw.configure(state="disabled")
         tw.see("end")
+
+    def _tail_append(self, new_lines: list[str]):
+        """Append only new matching lines without re-rendering the full buffer."""
+        search = self._search
+        level  = self._filter
+        visible = []
+        for line in new_lines:
+            tag = _classify(line)
+            if level == "errors"   and tag != "error":
+                continue
+            if level == "warnings" and tag not in ("error", "warning"):
+                continue
+            if search and search not in line.lower():
+                continue
+            visible.append((line, tag))
+
+        self._visible_count += len(visible)
+
+        if visible:
+            tw = self._textbox._textbox
+            tw.configure(state="normal")
+            for line, tag in visible:
+                tw.insert("end", line + "\n", tag)
+            if search:
+                # highlight only within the newly appended lines
+                total_lines = int(tw.index("end-1c").split(".")[0])
+                start = f"{total_lines - len(visible)}.0"
+                while True:
+                    pos = tw.search(search, start, nocase=True, stopindex="end")
+                    if not pos:
+                        break
+                    end = f"{pos}+{len(search)}c"
+                    tw.tag_add("search", pos, end)
+                    start = end
+            tw.configure(state="disabled")
+            tw.see("end")
+
+        self._update_status()
 
     # ─────────────────────────────────────────────────────────────────
     # Live tail
@@ -319,7 +353,7 @@ class LogsTab(ctk.CTkFrame):
                 self._last_size = new_size
                 new_lines = new_text.splitlines()
                 self._all_lines.extend(new_lines)
-                self._apply_filter()
+                self._tail_append(new_lines)
         except Exception:
             pass
         self._tail_job = self.after(POLL_MS, self._tail_tick)
@@ -327,6 +361,15 @@ class LogsTab(ctk.CTkFrame):
     # ─────────────────────────────────────────────────────────────────
     # Helpers
     # ─────────────────────────────────────────────────────────────────
+
+    def _update_status(self):
+        mtime = (
+            datetime.fromtimestamp(self._selected_file.stat().st_mtime).strftime("%H:%M:%S")
+            if self._selected_file and self._selected_file.exists() else "—"
+        )
+        self._status_var.set(
+            f"{len(self._all_lines):,} lines total  •  {self._visible_count:,} shown  •  {mtime}"
+        )
 
     def _set_status(self, text: str):
         self._status_var.set(text)

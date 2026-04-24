@@ -16,6 +16,9 @@ data/settings.json
 # Downloaded mods — user's personal library, not source
 Mods/
 
+# User-created mod profiles — machine-specific output
+MyMods/
+
 # FModel — 44 MB binary, download separately (see Docs/DevNotes/tools-setup.md)
 tools/FModel/
 tools/FModel.zip

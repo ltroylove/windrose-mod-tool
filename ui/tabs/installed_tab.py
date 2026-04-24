@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from tkinter import messagebox
 
-ACCENT   = "#0d9488"
+from ui.theme import ACCENT
 COL_NAME = 320
 COL_STAT = 90
 COL_FILES = 70

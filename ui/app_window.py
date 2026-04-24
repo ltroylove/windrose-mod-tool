@@ -11,11 +11,11 @@ from ui.tabs.create_tab import CreateTab
 from ui.tabs.config_tab import ConfigTab
 from ui.tabs.settings_tab import SettingsTab
 from ui.tabs.logs_tab import LogsTab
+from version import __version__
 
-ACCENT       = "#0d9488"
-ACCENT_HOVER = "#0f766e"
-SIDEBAR_BG   = "#0f172a"
-SIDEBAR_W    = 190
+from ui.theme import ACCENT, ACCENT_HOVER, SIDEBAR_BG
+
+SIDEBAR_W = 190
 
 NAV = [
     ("Home",         "⌂"),
@@ -141,7 +141,7 @@ class AppWindow(ctk.CTk):
 
         # version watermark at bottom
         ctk.CTkLabel(
-            sb, text="v0.1.0",
+            sb, text=__version__,
             font=ctk.CTkFont(size=10), text_color="#1e293b",
         ).grid(row=99, column=0, sticky="s", pady=10)
         sb.grid_rowconfigure(99, weight=1)

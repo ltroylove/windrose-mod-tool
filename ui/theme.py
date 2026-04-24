@@ -1,0 +1,7 @@
+ACCENT       = "#0d9488"
+ACCENT_HOVER = "#0f766e"
+CARD_BG      = "#1e293b"
+NAV_BG       = "#0f172a"
+SIDEBAR_BG   = "#0f172a"
+MUTED        = "#475569"
+MUTED_LIGHT  = "#64748b"
