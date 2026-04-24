@@ -35,6 +35,9 @@ PRESETS = {
         spawn_softwood_h=4.0,       spawn_softwood_qty=1.0,
         spawn_hardwood_h=6.0,       spawn_hardwood_qty=1.0,
         spawn_herbs_h=2.0,          spawn_herbs_qty=1.0,
+        backpack_slots=1.0,
+        fasttravel_bells=5,
+        lantern_duration_min=15.0,
     ),
     "Relaxed": dict(
         stack_basic=500, stack_wood_products=200, stack_ore=500, stack_ingots=200,
@@ -51,6 +54,9 @@ PRESETS = {
         spawn_softwood_h=2.0,       spawn_softwood_qty=2.0,
         spawn_hardwood_h=3.0,       spawn_hardwood_qty=2.0,
         spawn_herbs_h=1.0,          spawn_herbs_qty=2.0,
+        backpack_slots=2.0,
+        fasttravel_bells=20,
+        lantern_duration_min=30.0,
     ),
     "Abundant": dict(
         stack_basic=999, stack_wood_products=999, stack_ore=999, stack_ingots=999,
@@ -67,6 +73,9 @@ PRESETS = {
         spawn_softwood_h=1.0,       spawn_softwood_qty=5.0,
         spawn_hardwood_h=1.0,       spawn_hardwood_qty=5.0,
         spawn_herbs_h=0.5,          spawn_herbs_qty=5.0,
+        backpack_slots=5.0,
+        fasttravel_bells=50,
+        lantern_duration_min=60.0,
     ),
 }
 
@@ -115,6 +124,9 @@ SECTIONS = [
     ("Stack Sizes",    "Max items per inventory slot, by category.",          "_build_stacks"),
     ("Loot Drops",     "Multiply drop quantities per resource type.",          "_build_loot"),
     ("Spawners",       "Respawn timing and quantity per node type.",           "_build_spawners"),
+    ("Backpack Slots", "Number of inventory slots per backpack tier.",         "_build_backpack"),
+    ("Building Limits","Maximum number of placeable buildings per type.",      "_build_building_limits"),
+    ("Consumables",    "Duration and charges for consumable items.",           "_build_consumables"),
 ]
 
 
@@ -410,6 +422,151 @@ class CreateTab(ctk.CTkFrame):
                 font=ctk.CTkFont(size=12), width=24,
             ).grid(row=row, column=6, padx=(0, 14), pady=6)
 
+    def _build_backpack(self, parent: ctk.CTkScrollableFrame, subtitle: str):
+        self._section_header(parent, subtitle)
+        parent.grid_columnconfigure(1, weight=1)
+
+        for col, (txt, anchor) in enumerate([("TIER", "w"), ("", "w"), ("MULTIPLIER", "e"), ("", "w")]):
+            ctk.CTkLabel(
+                parent, text=txt, anchor=anchor,
+                text_color=MUTED, font=ctk.CTkFont(size=10),
+            ).grid(row=2, column=col, padx=(14 if col == 0 else 4, 4), pady=(0, 4), sticky="ew")
+
+        rows = [
+            ("backpack_slots", "Backpack Slot Multiplier",
+             "Scales all tiers proportionally. Vanilla: 4 / 8 / 12 / 16 / 20 slots per tier."),
+        ]
+        for r, (key, label, desc) in enumerate(rows):
+            default = PRESETS["Relaxed"][key]
+            var  = ctk.DoubleVar(value=default)
+            evar = ctk.StringVar(value=f"{default:.1f}")
+            self._vars[key]       = var
+            self._entry_vars[key] = evar
+
+            row = r + 3
+            lf = ctk.CTkFrame(parent, fg_color="transparent")
+            lf.grid(row=row, column=0, padx=14, pady=4, sticky="w")
+            ctk.CTkLabel(lf, text=label, anchor="w",
+                         font=ctk.CTkFont(size=12, weight="bold")).pack(anchor="w")
+            ctk.CTkLabel(lf, text=desc, anchor="w",
+                         text_color="#64748b", font=ctk.CTkFont(size=11),
+                         wraplength=200).pack(anchor="w")
+
+            def _slide_backpack(v, k=key, ev=evar):
+                val = round(float(v), 1)
+                self._vars[k].set(val)
+                ev.set(f"{val:.1f}")
+
+            ctk.CTkSlider(
+                parent, from_=1.0, to=10.0, variable=var,
+                button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
+                command=_slide_backpack,
+            ).grid(row=row, column=1, padx=(8, 8), pady=4, sticky="ew")
+
+            entry = ctk.CTkEntry(parent, textvariable=evar, width=72, height=28, justify="right")
+            entry.grid(row=row, column=2, padx=(0, 4), pady=4)
+            evar.trace_add("write", lambda *_, k=key, ev=evar: self._entry_float(k, ev, 1.0, 10.0))
+
+            ctk.CTkLabel(
+                parent, text="×", text_color=MUTED,
+                font=ctk.CTkFont(size=12), width=24, anchor="w",
+            ).grid(row=row, column=3, padx=(0, 14), pady=4)
+
+    def _build_building_limits(self, parent: ctk.CTkScrollableFrame, subtitle: str):
+        self._section_header(parent, subtitle)
+        parent.grid_columnconfigure(1, weight=1)
+
+        for col, (txt, anchor) in enumerate([("BUILDING", "w"), ("", "w"), ("MAX COUNT", "e"), ("", "w")]):
+            ctk.CTkLabel(
+                parent, text=txt, anchor=anchor,
+                text_color=MUTED, font=ctk.CTkFont(size=10),
+            ).grid(row=2, column=col, padx=(14 if col == 0 else 4, 4), pady=(0, 4), sticky="ew")
+
+        rows = [
+            ("fasttravel_bells", "Fast Travel Bells",
+             "Max Fast Travel Bells placeable per world. Vanilla ≈ 5 (assumed)."),
+        ]
+        for r, (key, label, desc) in enumerate(rows):
+            default = PRESETS["Relaxed"][key]
+            var  = ctk.IntVar(value=default)
+            evar = ctk.StringVar(value=str(default))
+            self._vars[key]       = var
+            self._entry_vars[key] = evar
+
+            row = r + 3
+            lf = ctk.CTkFrame(parent, fg_color="transparent")
+            lf.grid(row=row, column=0, padx=14, pady=4, sticky="w")
+            ctk.CTkLabel(lf, text=label, anchor="w",
+                         font=ctk.CTkFont(size=12, weight="bold")).pack(anchor="w")
+            ctk.CTkLabel(lf, text=desc, anchor="w",
+                         text_color="#64748b", font=ctk.CTkFont(size=11),
+                         wraplength=200).pack(anchor="w")
+
+            ctk.CTkSlider(
+                parent, from_=1, to=100, variable=var,
+                button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
+                command=lambda v, k=key: self._slide_int(k, v),
+            ).grid(row=row, column=1, padx=(8, 8), pady=4, sticky="ew")
+
+            entry = ctk.CTkEntry(parent, textvariable=evar, width=72, height=28, justify="right")
+            entry.grid(row=row, column=2, padx=(0, 4), pady=4)
+            evar.trace_add("write", lambda *_, k=key, ev=evar: self._entry_int(k, ev, 1, 100))
+
+            ctk.CTkLabel(
+                parent, text="bells", text_color=MUTED,
+                font=ctk.CTkFont(size=11), width=40, anchor="w",
+            ).grid(row=row, column=3, padx=(0, 14), pady=4)
+
+    def _build_consumables(self, parent: ctk.CTkScrollableFrame, subtitle: str):
+        self._section_header(parent, subtitle)
+        parent.grid_columnconfigure(1, weight=1)
+
+        for col, (txt, anchor) in enumerate([("ITEM", "w"), ("", "w"), ("DURATION", "e"), ("", "w")]):
+            ctk.CTkLabel(
+                parent, text=txt, anchor=anchor,
+                text_color=MUTED, font=ctk.CTkFont(size=10),
+            ).grid(row=2, column=col, padx=(14 if col == 0 else 4, 4), pady=(0, 4), sticky="ew")
+
+        rows = [
+            ("lantern_duration_min", "Lantern Burn Duration",
+             "How long a lantern burns before needing refuel. Vanilla = 15 min."),
+        ]
+        for r, (key, label, desc) in enumerate(rows):
+            default = PRESETS["Relaxed"][key]
+            var  = ctk.DoubleVar(value=default)
+            evar = ctk.StringVar(value=f"{default:.0f}")
+            self._vars[key]       = var
+            self._entry_vars[key] = evar
+
+            row = r + 3
+            lf = ctk.CTkFrame(parent, fg_color="transparent")
+            lf.grid(row=row, column=0, padx=14, pady=4, sticky="w")
+            ctk.CTkLabel(lf, text=label, anchor="w",
+                         font=ctk.CTkFont(size=12, weight="bold")).pack(anchor="w")
+            ctk.CTkLabel(lf, text=desc, anchor="w",
+                         text_color="#64748b", font=ctk.CTkFont(size=11),
+                         wraplength=200).pack(anchor="w")
+
+            def _slide_lantern(v, k=key, ev=evar):
+                val = round(float(v))
+                self._vars[k].set(val)
+                ev.set(str(val))
+
+            ctk.CTkSlider(
+                parent, from_=15.0, to=120.0, variable=var,
+                button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
+                command=_slide_lantern,
+            ).grid(row=row, column=1, padx=(8, 8), pady=4, sticky="ew")
+
+            entry = ctk.CTkEntry(parent, textvariable=evar, width=72, height=28, justify="right")
+            entry.grid(row=row, column=2, padx=(0, 4), pady=4)
+            evar.trace_add("write", lambda *_, k=key, ev=evar: self._entry_float(k, ev, 15.0, 120.0))
+
+            ctk.CTkLabel(
+                parent, text="min", text_color=MUTED,
+                font=ctk.CTkFont(size=11), width=40, anchor="w",
+            ).grid(row=row, column=3, padx=(0, 14), pady=4)
+
     # ─────────────────────────────────────────────────────────────────
     # Shared helpers
     # ─────────────────────────────────────────────────────────────────
@@ -523,9 +680,12 @@ class CreateTab(ctk.CTkFrame):
         messagebox.showinfo(
             "Pak Generated",
             f"Mod pak created successfully!\n\n"
-            f"  Stack entries  : {counts['stacks']}\n"
-            f"  Loot entries   : {counts['loot']}\n"
-            f"  Spawner entries: {counts['spawners']}\n\n"
+            f"  Stack entries    : {counts['stacks']}\n"
+            f"  Loot entries     : {counts['loot']}\n"
+            f"  Spawner entries  : {counts['spawners']}\n"
+            f"  Backpack entries : {counts['backpack']}\n"
+            f"  Building limits  : {counts['build_limits']}\n"
+            f"  Lantern entries  : {counts['lantern_item'] + counts['lantern_recipe']}\n\n"
             f"File: {counts['path'].name}\n"
             f"Location: {counts['path'].parent}",
         )

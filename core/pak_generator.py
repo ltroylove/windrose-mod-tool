@@ -2,17 +2,23 @@
 Generates a custom game-tuning .pak mod from Game Tuning values.
 
 Data sources (pre-extracted mod paks used as templates):
-  tools/extracted/          MoreStacks 100x      → inventory item JSONs
-  tools/extracted_mineral/  MoreMineralResources 2x → mineral loot tables + spawner JSONs
-  tools/extracted_tree/     MoreTreeResources 2x → tree / herb loot table JSONs
+  tools/extracted/           MoreStacks 100x           → inventory item JSONs
+  tools/extracted_mineral/   MoreMineralResources 2x   → mineral loot tables + spawner JSONs
+  tools/extracted_tree/      MoreTreeResources 2x      → tree / herb loot table JSONs
+  tools/extracted_backpack/  MoreBackpackSlots 3x      → backpack slot JSONs
+  tools/extracted_fasttravel/ FastTravelPlus 50         → fast travel building limits JSON
+  tools/extracted_lantern/   BetterLanternLonger 2x    → lantern refuel recipe JSON
 
 Strategy:
   For each source JSON, determine its category, scale the relevant values so that
   vanilla × user_multiplier ≡ new_value, then pack everything with repak.
 
-  stack sizes  : user sets absolute max-per-slot (IntVar)
-  loot tables  : user sets a multiplier; vanilla = mod_value / ref_mult
-  spawners     : user sets respawn hours directly + quantity multiplier
+  stack sizes     : user sets absolute max-per-slot (IntVar)
+  loot tables     : user sets a multiplier; vanilla = mod_value / ref_mult
+  spawners        : user sets respawn hours directly + quantity multiplier
+  backpack slots  : user sets a multiplier; vanilla = mod_value / BACKPACK_REF_MULT
+  fast travel     : user sets absolute max bell count
+  lantern         : user sets duration in minutes; both item MaxValue and recipe modifier updated
 """
 
 from __future__ import annotations
@@ -26,13 +32,21 @@ from pathlib import Path
 TOOLS_DIR = Path(__file__).parent.parent / "tools"
 REPAK     = TOOLS_DIR / "repak" / "repak.exe"
 
-SRC_STACKS  = TOOLS_DIR / "extracted"           # MoreStacks 100x
-SRC_MINERAL = TOOLS_DIR / "extracted_mineral"   # MoreMineralResources 2x
-SRC_TREE    = TOOLS_DIR / "extracted_tree"      # MoreTreeResources 2x
+SRC_STACKS      = TOOLS_DIR / "extracted"            # MoreStacks 100x
+SRC_MINERAL     = TOOLS_DIR / "extracted_mineral"    # MoreMineralResources 2x
+SRC_TREE        = TOOLS_DIR / "extracted_tree"       # MoreTreeResources 2x
+SRC_BACKPACK    = TOOLS_DIR / "extracted_backpack"   # MoreBackpackSlots 3x
+SRC_FASTTRAVEL  = TOOLS_DIR / "extracted_fasttravel" # FastTravelPlus 50
+SRC_LANTERN     = TOOLS_DIR / "extracted_lantern"    # BetterLanternLonger 2x
 
-STACK_REF_MULT = 100.0   # MoreStacks mod multiplier
-LOOT_REF_MULT  = 2.0     # loot mods multiplier
-SPAWN_QTY_REF  = 2.0     # spawner quantity reference multiplier
+STACK_REF_MULT    = 100.0   # MoreStacks mod multiplier
+LOOT_REF_MULT     = 2.0     # loot mods multiplier
+SPAWN_QTY_REF     = 2.0     # spawner quantity reference multiplier
+BACKPACK_REF_MULT = 3.0     # MoreBackpackSlots mod multiplier
+
+LANTERN_VANILLA_SECONDS = 900   # confirmed from MoreStacks extraction (MaxValue untouched)
+# Lantern item is handled entirely by _process_lantern(); skip it in _process_stack()
+_STACK_SKIP_STEMS = {"DA_CID_Misc_Lantern_L1_T01"}
 
 
 # ─── Stack size category rules ────────────────────────────────────────────────
@@ -113,6 +127,9 @@ def _process_stack(
     src: Path, base: Path, staging: Path,
     values: dict, counts: dict,
 ) -> None:
+    if src.stem in _STACK_SKIP_STEMS:
+        return  # handled separately by _process_lantern()
+
     try:
         data = json.loads(src.read_bytes())
     except Exception:
@@ -211,6 +228,88 @@ def _process_spawner(
     counts["spawners"] += 1
 
 
+def _process_backpack(
+    src: Path, base: Path, staging: Path,
+    user_mult: float, counts: dict,
+) -> None:
+    try:
+        data = json.loads(src.read_bytes())
+    except Exception:
+        return
+
+    if data.get("$type") != "R5BLSlotCountModifierParams":
+        return
+
+    slots_data = data.get("InventorySlotsData", {})
+    ref_val = slots_data.get("CountSlots")
+    if not isinstance(ref_val, (int, float)):
+        return
+
+    vanilla = ref_val / BACKPACK_REF_MULT
+    slots_data["CountSlots"] = max(1, round(vanilla * user_mult))
+
+    rel = src.relative_to(base)
+    out = staging / "R5/Content/Gameplay/ItemsLogic/Backpack" / rel
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(data, indent="\t"), encoding="utf-8")
+    counts["backpack"] += 1
+
+
+def _process_build_limits(
+    src: Path, staging: Path,
+    values: dict, counts: dict,
+) -> None:
+    try:
+        data = json.loads(src.read_bytes())
+    except Exception:
+        return
+
+    if data.get("$type") != "R5BuildingLimits":
+        return
+
+    max_bells = int(values.get("fasttravel_bells", 10))
+    for entry in data.get("AmountLimits", []):
+        if isinstance(entry.get("MaxAmount"), (int, float)):
+            entry["MaxAmount"] = max_bells
+
+    out = staging / "R5/Content/Gameplay/BuildingLimits/DA_BuildLimits_FastTravel.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(data, indent="\t"), encoding="utf-8")
+    counts["build_limits"] = 1
+
+
+def _process_lantern(staging: Path, values: dict, counts: dict) -> None:
+    duration_sec = round(float(values.get("lantern_duration_min", 15.0)) * 60)
+
+    # Item definition — sourced from MoreStacks extraction (vanilla MaxValue=900 confirmed)
+    item_src = SRC_STACKS / "R5/Plugins/R5BusinessRules/Content/InventoryItems/Consumables/Misc/DA_CID_Misc_Lantern_L1_T01.json"
+    if item_src.exists():
+        try:
+            data = json.loads(item_src.read_bytes())
+            for attr in data.get("InventoryItemGppData", {}).get("Attributes", []):
+                if attr.get("Tag", {}).get("TagName") == "Inventory.Item.Attribute.Counter":
+                    attr["MaxValue"] = duration_sec
+            out = staging / "R5/Plugins/R5BusinessRules/Content/InventoryItems/Consumables/Misc/DA_CID_Misc_Lantern_L1_T01.json"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(json.dumps(data, indent="\t"), encoding="utf-8")
+            counts["lantern_item"] = 1
+        except Exception:
+            pass
+
+    # Refuel recipe — sourced from lantern mod extraction
+    recipe_src = SRC_LANTERN / "R5/Plugins/R5BusinessRules/Content/Recipes/Economy/Items/Consumables/Misc/DA_RD_CID_Misc_Lantern_L4_T01_fromL1.json"
+    if recipe_src.exists():
+        try:
+            data = json.loads(recipe_src.read_bytes())
+            data["ResultAttributeModifier"]["AttributeModifierData"]["AttributesModifier"] = duration_sec
+            out = staging / "R5/Plugins/R5BusinessRules/Content/Recipes/Economy/Items/Consumables/Misc/DA_RD_CID_Misc_Lantern_L4_T01_fromL1.json"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(json.dumps(data, indent="\t"), encoding="utf-8")
+            counts["lantern_recipe"] = 1
+        except Exception:
+            pass
+
+
 # ─── repak packing ────────────────────────────────────────────────────────────
 
 def _pack(pak_name: str, staging: Path, output_dir: Path) -> Path:
@@ -244,9 +343,12 @@ def check_sources() -> list[str]:
     """Return a list of missing source directories (empty = all good)."""
     missing = []
     for label, path in [
-        ("MoreStacks extraction",         SRC_STACKS),
+        ("MoreStacks extraction",          SRC_STACKS),
         ("MoreMineralResources extraction", SRC_MINERAL),
         ("MoreTreeResources extraction",    SRC_TREE),
+        ("Backpack slots extraction",       SRC_BACKPACK),
+        ("Fast travel limits extraction",   SRC_FASTTRAVEL),
+        ("Lantern recipe extraction",       SRC_LANTERN),
     ]:
         if not path.exists():
             missing.append(f"{label} ({path})")
@@ -271,7 +373,11 @@ def generate(values: dict, pak_name: str, output_dir: Path) -> dict:
             "Missing extracted mod data:\n" + "\n".join(f"  • {m}" for m in missing)
         )
 
-    counts: dict = {"stacks": 0, "loot": 0, "spawners": 0}
+    counts: dict = {
+        "stacks": 0, "loot": 0, "spawners": 0,
+        "backpack": 0, "build_limits": 0,
+        "lantern_item": 0, "lantern_recipe": 0,
+    }
 
     with tempfile.TemporaryDirectory() as tmp:
         staging = Path(tmp)
@@ -301,7 +407,22 @@ def generate(values: dict, pak_name: str, output_dir: Path) -> dict:
             for p in spawner_base.rglob("*.json"):
                 _process_spawner(p, spawner_base, root, values, counts)
 
-        total = counts["stacks"] + counts["loot"] + counts["spawners"]
+        # 5 ── Backpack slots
+        backpack_base = SRC_BACKPACK / "R5/Content/Gameplay/ItemsLogic/Backpack"
+        if backpack_base.exists():
+            user_mult = float(values.get("backpack_slots", 1.0))
+            for p in backpack_base.rglob("*.json"):
+                _process_backpack(p, backpack_base, root, user_mult, counts)
+
+        # 6 ── Fast travel bell limit
+        ft_src = SRC_FASTTRAVEL / "R5/Content/Gameplay/BuildingLimits/DA_BuildLimits_FastTravel.json"
+        if ft_src.exists():
+            _process_build_limits(ft_src, root, values, counts)
+
+        # 7 ── Lantern burn duration
+        _process_lantern(root, values, counts)
+
+        total = sum(v for k, v in counts.items() if k != "path")
         if total == 0:
             raise RuntimeError("No files were staged — check extraction directories.")
 

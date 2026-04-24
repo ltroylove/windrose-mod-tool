@@ -1,0 +1,14 @@
+{
+	"$type": "R5BLSlotCountModifierParams",
+	"InventorySlotsData": {
+		"SlotParams": "/R5BusinessRules/Inventory/SlotsParams/DA_BL_Slot_Default.DA_BL_Slot_Default",
+		"CountSlots": 60
+	},
+	"ModifiableModule": {
+		"TagName": "Inventory.Module.Default"
+	},
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLSlotCountModifierParams'"
+}

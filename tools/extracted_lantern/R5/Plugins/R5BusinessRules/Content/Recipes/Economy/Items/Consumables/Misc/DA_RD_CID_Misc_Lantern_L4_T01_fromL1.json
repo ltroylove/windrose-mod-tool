@@ -1,0 +1,52 @@
+{
+	"$type": "R5BLRecipeData",
+	"RecipeCost": [
+		{
+			"Item": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Fat_T01.DA_DID_Resource_Fat_T01",
+			"Count": 3
+		}
+	],
+	"RecipeResult": [],
+	"ResultLootTable": "None",
+	"ResultAttributeModifier": {
+		"ItemToWithAttribute": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Lantern_L1_T01.DA_CID_Misc_Lantern_L1_T01",
+		"AttributeModifierData": {
+			"AttributeTag": {
+				"TagName": "Inventory.Item.Attribute.Counter"
+			},
+			"AttributesModifier": 1800,
+			"ModifyItemAttributePolicy": "Override"
+		},
+		"bHasRequirements": false,
+		"AttributeRequirements": {
+			"MinRequiredAttribute": 0,
+			"MaxRequiredAttribute": 0
+		}
+	},
+	"CraftRequirement": "None",
+	"ComfortRequirements": [
+		{
+			"Tag": {
+				"TagName": "ComfortType.CraftstationCategory.Workbench"
+			},
+			"Level": 1
+		}
+	],
+	"CookingProcessDuration": 0,
+	"RecipeTag": {
+		"TagName": "RecipeData.Lantern.L4.T01.fromL1"
+	},
+	"UIData": {
+		"Name": {
+			"TableId": "InventoryItems",
+			"Key": "RD_CID_Misc_Lantern_L4_T01_fromL1_UIDataName"
+		},
+		"Image": "/Game/UI/Icons/Items/New/T_ItemIcon_Misc_OilLamp_L4_T01.T_ItemIcon_Misc_OilLamp_L4_T01",
+		"RecipeType": "Item"
+	},
+	"RecipeOverrides": [],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLRecipeData'"
+}
