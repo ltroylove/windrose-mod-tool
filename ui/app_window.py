@@ -4,11 +4,13 @@ from core import settings as cfg
 from core.paths import GamePaths, find_game_path
 from core.mod_manager import ModManager
 from core.config_manager import ConfigManager
+from ui.tabs.home_tab import HomeTab
 from ui.tabs.installed_tab import InstalledTab
 from ui.tabs.library_tab import LibraryTab
 from ui.tabs.create_tab import CreateTab
 from ui.tabs.config_tab import ConfigTab
 from ui.tabs.settings_tab import SettingsTab
+from ui.tabs.logs_tab import LogsTab
 
 ACCENT       = "#0d9488"
 ACCENT_HOVER = "#0f766e"
@@ -16,19 +18,23 @@ SIDEBAR_BG   = "#0f172a"
 SIDEBAR_W    = 190
 
 NAV = [
-    ("Installed",    "▣"),   # ▣
-    ("Library",      "≡"),   # ≡
-    ("Create",       "✚"),   # ✚
-    ("Server Config","⊞"),   # ⊞
-    ("Settings",     "⚙"),   # ⚙
+    ("Home",         "⌂"),
+    ("Game Tuning",  "⚙"),
+    ("Mods",         "▣"),
+    ("Library",      "≡"),
+    ("Server",       "⊞"),
+    ("Logs",         "▤"),
+    ("Settings",     "◈"),
 ]
 
 TAB_CLASSES = {
-    "Installed":    InstalledTab,
-    "Library":      LibraryTab,
-    "Create":       CreateTab,
-    "Server Config":ConfigTab,
-    "Settings":     SettingsTab,
+    "Home":        HomeTab,
+    "Game Tuning": CreateTab,
+    "Mods":        InstalledTab,
+    "Library":     LibraryTab,
+    "Server":      ConfigTab,
+    "Logs":        LogsTab,
+    "Settings":    SettingsTab,
 }
 
 
@@ -41,7 +47,7 @@ class AppWindow(ctk.CTk):
 
         self._nav_buttons: dict[str, ctk.CTkButton] = {}
         self._frames: dict[str, ctk.CTkFrame] = {}
-        self._active = "Installed"
+        self._active = "Home"
 
         self._init_services()
         self._build()
@@ -82,7 +88,7 @@ class AppWindow(ctk.CTk):
         self._build_sidebar()
         self._build_content()
         self._build_statusbar()
-        self._nav_to("Installed")
+        self._nav_to("Home")
 
     def _build_header(self):
         hdr = ctk.CTkFrame(self, height=46, corner_radius=0, fg_color=SIDEBAR_BG)
@@ -96,11 +102,10 @@ class AppWindow(ctk.CTk):
         ).pack(side="left", padx=18, pady=12)
 
         if self.game_paths and self.game_paths.is_valid():
-            game_name = self.game_paths.game_root.name
-            status_txt   = f"✓  {game_name}"
+            status_txt   = f"✓  {self.game_paths.game_root.name}"
             status_color = "#6ee7b7"
         else:
-            status_txt   = "⚠  Game not found — go to Settings"
+            status_txt   = "⚠  Game not configured"
             status_color = "#fbbf24"
 
         ctk.CTkLabel(

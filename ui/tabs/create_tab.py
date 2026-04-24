@@ -6,7 +6,11 @@ from tkinter import messagebox
 from core import settings as cfg
 from core import pak_generator
 
-ACCENT = "#0d9488"
+ACCENT   = "#0d9488"
+CARD_BG  = "#1e293b"
+NAV_BG   = "#0f172a"
+MUTED    = "#475569"
+NAV_W    = 168
 
 # ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -18,14 +22,14 @@ PRESETS = {
         loot_softwood=1.0, loot_hardwood=1.0, loot_plague_wood=1.0,
         loot_copper=1.0, loot_iron=1.0, loot_sulfur=1.0,
         loot_stone=1.0, loot_ancient_debris=1.0, loot_herbs=1.0, loot_animals=1.0,
-        spawn_copper_h=6.0,        spawn_copper_qty=1.0,
-        spawn_iron_h=6.0,          spawn_iron_qty=1.0,
-        spawn_sulfur_h=6.0,        spawn_sulfur_qty=1.0,
-        spawn_stone_h=4.0,         spawn_stone_qty=1.0,
-        spawn_ancient_debris_h=8.0,spawn_ancient_debris_qty=1.0,
-        spawn_softwood_h=4.0,      spawn_softwood_qty=1.0,
-        spawn_hardwood_h=6.0,      spawn_hardwood_qty=1.0,
-        spawn_herbs_h=2.0,         spawn_herbs_qty=1.0,
+        spawn_copper_h=6.0,         spawn_copper_qty=1.0,
+        spawn_iron_h=6.0,           spawn_iron_qty=1.0,
+        spawn_sulfur_h=6.0,         spawn_sulfur_qty=1.0,
+        spawn_stone_h=4.0,          spawn_stone_qty=1.0,
+        spawn_ancient_debris_h=8.0, spawn_ancient_debris_qty=1.0,
+        spawn_softwood_h=4.0,       spawn_softwood_qty=1.0,
+        spawn_hardwood_h=6.0,       spawn_hardwood_qty=1.0,
+        spawn_herbs_h=2.0,          spawn_herbs_qty=1.0,
     ),
     "Relaxed": dict(
         stack_basic=500, stack_wood_products=200, stack_ore=500, stack_ingots=200,
@@ -34,14 +38,14 @@ PRESETS = {
         loot_softwood=2.0, loot_hardwood=2.0, loot_plague_wood=2.0,
         loot_copper=2.0, loot_iron=2.0, loot_sulfur=2.0,
         loot_stone=2.0, loot_ancient_debris=2.0, loot_herbs=2.0, loot_animals=2.0,
-        spawn_copper_h=3.0,        spawn_copper_qty=2.0,
-        spawn_iron_h=3.0,          spawn_iron_qty=2.0,
-        spawn_sulfur_h=3.0,        spawn_sulfur_qty=2.0,
-        spawn_stone_h=2.0,         spawn_stone_qty=2.0,
-        spawn_ancient_debris_h=4.0,spawn_ancient_debris_qty=2.0,
-        spawn_softwood_h=2.0,      spawn_softwood_qty=2.0,
-        spawn_hardwood_h=3.0,      spawn_hardwood_qty=2.0,
-        spawn_herbs_h=1.0,         spawn_herbs_qty=2.0,
+        spawn_copper_h=3.0,         spawn_copper_qty=2.0,
+        spawn_iron_h=3.0,           spawn_iron_qty=2.0,
+        spawn_sulfur_h=3.0,         spawn_sulfur_qty=2.0,
+        spawn_stone_h=2.0,          spawn_stone_qty=2.0,
+        spawn_ancient_debris_h=4.0, spawn_ancient_debris_qty=2.0,
+        spawn_softwood_h=2.0,       spawn_softwood_qty=2.0,
+        spawn_hardwood_h=3.0,       spawn_hardwood_qty=2.0,
+        spawn_herbs_h=1.0,          spawn_herbs_qty=2.0,
     ),
     "Abundant": dict(
         stack_basic=999, stack_wood_products=999, stack_ore=999, stack_ingots=999,
@@ -50,48 +54,44 @@ PRESETS = {
         loot_softwood=5.0, loot_hardwood=5.0, loot_plague_wood=5.0,
         loot_copper=5.0, loot_iron=5.0, loot_sulfur=5.0,
         loot_stone=5.0, loot_ancient_debris=5.0, loot_herbs=5.0, loot_animals=5.0,
-        spawn_copper_h=1.0,        spawn_copper_qty=5.0,
-        spawn_iron_h=1.0,          spawn_iron_qty=5.0,
-        spawn_sulfur_h=1.0,        spawn_sulfur_qty=5.0,
-        spawn_stone_h=1.0,         spawn_stone_qty=5.0,
-        spawn_ancient_debris_h=2.0,spawn_ancient_debris_qty=5.0,
-        spawn_softwood_h=1.0,      spawn_softwood_qty=5.0,
-        spawn_hardwood_h=1.0,      spawn_hardwood_qty=5.0,
-        spawn_herbs_h=0.5,         spawn_herbs_qty=5.0,
+        spawn_copper_h=1.0,         spawn_copper_qty=5.0,
+        spawn_iron_h=1.0,           spawn_iron_qty=5.0,
+        spawn_sulfur_h=1.0,         spawn_sulfur_qty=5.0,
+        spawn_stone_h=1.0,          spawn_stone_qty=5.0,
+        spawn_ancient_debris_h=2.0, spawn_ancient_debris_qty=5.0,
+        spawn_softwood_h=1.0,       spawn_softwood_qty=5.0,
+        spawn_hardwood_h=1.0,       spawn_hardwood_qty=5.0,
+        spawn_herbs_h=0.5,          spawn_herbs_qty=5.0,
     ),
 }
 
-# ── Stack size rows: (key, label, example items) ──────────────────────────────
+# ── Category data ─────────────────────────────────────────────────────────────
 
 STACKS = [
     ("stack_basic",        "Basic Materials",       "Wood, Stone, Clay, Plant Fiber"),
     ("stack_wood_products","Wood Products",          "Hardwood, Plague Wood, Planks, Timber, Charcoal, Bark"),
-    ("stack_ore",          "Raw Ores",              "Copper Ore, Iron Ore, Gold Ore, Silver Ore, Sulfur"),
+    ("stack_ore",          "Raw Ores",              "Copper Ore, Iron Ore, Sulfur, Stone, Coal, Obsidian"),
     ("stack_ingots",       "Ingots & Refined",      "Copper Ingot, Iron Ingot, Gold Ingot, Mire Metal Ingot"),
     ("stack_textiles",     "Textiles & Fibers",     "Flax Fiber, Coarse Fabric, Linen Fabric, Tarred Fabric"),
     ("stack_animal",       "Animal Materials",      "Bones, Rough Hide, Tanned Leather, Animal Fat, Feather"),
     ("stack_food",         "Food & Crops",          "Banana, Corn, Beans, Meat, Crab Meat, Cocoplum"),
-    ("stack_alchemy",      "Alchemical Materials",  "Alchemical Base, Ash, Tar, Gunpowder, Tannin, Healing Herbs"),
-    ("stack_ammo",         "Ammunition",            "Cannonballs, Stone Bullets, Arrows, Spears"),
-    ("stack_consumables",  "Consumables & Potions", "Elixirs, Bandages, Cooked Meals"),
+    ("stack_alchemy",      "Alchemical Materials",  "Alchemical Base, Ash, Tar, Tannin, Healing Herbs"),
+    ("stack_ammo",         "Ammunition",            "Cannonballs, Stone Bullets, Firearm Projectiles"),
+    ("stack_consumables",  "Consumables & Potions", "Elixirs, Bandages, Healing Potions, Recall"),
 ]
-
-# ── Loot drop rows: (key, label, dropped from) ────────────────────────────────
 
 LOOT = [
-    ("loot_softwood",      "Softwood Trees",          "Wood, Tree Bark, Resin"),
-    ("loot_hardwood",      "Hardwood Trees",           "Hardwood, Tree Bark"),
-    ("loot_plague_wood",   "Plague Wood / Tar Trees",  "Plague Wood, Tar, Tree Bark"),
-    ("loot_copper",        "Copper Nodes",             "Copper Ore  (Coastal Jungle caves)"),
-    ("loot_iron",          "Iron Nodes",               "Iron Ore, Foothills Iron Ore  (Foothills & Volcanic)"),
-    ("loot_sulfur",        "Sulfur Deposits",          "Sulfur  (Foothills & Volcanic rocks)"),
-    ("loot_stone",         "Stone Nodes",              "Stone  (surface rocks, all biomes)"),
-    ("loot_ancient_debris","Ancient Debris",           "Ancient Scraps → Mire Metal Ingot  (Cursed Swamp ruins)"),
-    ("loot_herbs",         "Herb & Plant Patches",     "Healing Herbs, Flax Fiber, Aloe, Bromeliad"),
-    ("loot_animals",       "Animal Drops",             "Meat, Rough Hide, Bones, Animal Fat, Feather"),
+    ("loot_softwood",      "Softwood Trees",         "Wood, Tree Bark, Resin"),
+    ("loot_hardwood",      "Hardwood Trees",          "Hardwood, Tree Bark"),
+    ("loot_plague_wood",   "Plague Wood / Tar Trees", "Plague Wood, Tar, Tree Bark"),
+    ("loot_copper",        "Copper Nodes",            "Copper Ore  (Coastal Jungle caves)"),
+    ("loot_iron",          "Iron Nodes",              "Iron Ore, Volcanic Iron Ore  (Foothills & Volcanic)"),
+    ("loot_sulfur",        "Sulfur Deposits",         "Sulfur  (Foothills & Volcanic rocks)"),
+    ("loot_stone",         "Stone Nodes",             "Stone  (surface rocks, all biomes)"),
+    ("loot_ancient_debris","Ancient Debris",          "Ancient Scraps → Mire Metal Ingot  (Cursed Swamp ruins)"),
+    ("loot_herbs",         "Herb & Plant Patches",    "Healing Herbs, Flax Fiber, Aloe, Bromeliad"),
+    ("loot_animals",       "Animal Drops",            "Meat, Rough Hide, Bones, Animal Fat, Feather"),
 ]
-
-# ── Spawner rows: (key_prefix, label) ─────────────────────────────────────────
 
 SPAWNERS = [
     ("spawn_copper",        "Copper Nodes"),
@@ -104,211 +104,300 @@ SPAWNERS = [
     ("spawn_herbs",         "Herb Patches"),
 ]
 
+# ── Section registry — add new sections here ──────────────────────────────────
+# Each entry: (nav_label, subtitle, builder_method_name)
+SECTIONS = [
+    ("Stack Sizes",    "Max items per inventory slot, by category.",          "_build_stacks"),
+    ("Loot Drops",     "Multiply drop quantities per resource type.",          "_build_loot"),
+    ("Spawners",       "Respawn timing and quantity per node type.",           "_build_spawners"),
+]
+
 
 class CreateTab(ctk.CTkFrame):
     def __init__(self, parent, app):
         super().__init__(parent, fg_color="transparent")
         self.app = app
-        self._vars: dict[str, ctk.Variable] = {}
+        self._vars:       dict[str, ctk.Variable]  = {}
         self._entry_vars: dict[str, ctk.StringVar] = {}
+        self._active_section = SECTIONS[0][0]
+        self._nav_btns: dict[str, ctk.CTkButton]  = {}
         self._build()
 
     # ─────────────────────────────────────────────────────────────────
-    # Layout
+    # Top-level layout
     # ─────────────────────────────────────────────────────────────────
 
     def _build(self):
-        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(1, weight=1)
 
-        # top bar
+        # ── top bar (title + presets) ─────────────────────────────────
         top = ctk.CTkFrame(self, fg_color="transparent")
-        top.grid(row=0, column=0, sticky="ew", pady=(0, 10))
+        top.grid(row=0, column=0, columnspan=2, sticky="ew", pady=(0, 8))
         top.grid_columnconfigure(1, weight=1)
-        ctk.CTkLabel(top, text="Game Tuning", font=ctk.CTkFont(size=16, weight="bold")).grid(row=0, column=0, sticky="w")
+
+        ctk.CTkLabel(
+            top, text="Game Tuning",
+            font=ctk.CTkFont(size=16, weight="bold"),
+        ).grid(row=0, column=0, sticky="w")
 
         pf = ctk.CTkFrame(top, fg_color="transparent")
         pf.grid(row=0, column=2, sticky="e")
         ctk.CTkLabel(pf, text="Presets:", text_color="#6b7280").pack(side="left", padx=(0, 6))
         for name in PRESETS:
-            ctk.CTkButton(pf, text=name, width=82, height=30,
-                          fg_color="#1e293b", hover_color="#334155",
-                          font=ctk.CTkFont(size=12),
-                          command=lambda n=name: self._apply_preset(n)).pack(side="left", padx=3)
+            ctk.CTkButton(
+                pf, text=name, width=80, height=28,
+                fg_color=CARD_BG, hover_color="#334155",
+                font=ctk.CTkFont(size=12),
+                command=lambda n=name: self._apply_preset(n),
+            ).pack(side="left", padx=3)
 
-        # body
-        body = ctk.CTkScrollableFrame(self, fg_color="transparent")
-        body.grid(row=1, column=0, sticky="nsew")
-        body.grid_columnconfigure(0, weight=1)
+        # ── left section nav ──────────────────────────────────────────
+        nav = ctk.CTkFrame(self, width=NAV_W, fg_color=NAV_BG, corner_radius=8)
+        nav.grid(row=1, column=0, sticky="nsew", padx=(0, 10))
+        nav.grid_propagate(False)
+        nav.grid_columnconfigure(0, weight=1)
 
-        self._build_stacks(body, 0)
-        self._build_loot(body, 1)
-        self._build_spawning(body, 2)
+        ctk.CTkLabel(
+            nav, text="SECTIONS",
+            font=ctk.CTkFont(size=10), text_color="#334155",
+        ).grid(row=0, column=0, sticky="w", padx=12, pady=(12, 6))
 
-        # footer
-        footer = ctk.CTkFrame(self, fg_color="#1e293b", corner_radius=8)
-        footer.grid(row=2, column=0, sticky="ew", pady=(10, 0))
+        for i, (label, _, _) in enumerate(SECTIONS):
+            btn = ctk.CTkButton(
+                nav, text=label, anchor="w", height=36,
+                corner_radius=6, border_width=0,
+                fg_color="transparent", hover_color="#1e293b",
+                text_color="#64748b", font=ctk.CTkFont(size=13),
+                command=lambda l=label: self._show_section(l),
+            )
+            btn.grid(row=i + 1, column=0, sticky="ew", padx=8, pady=2)
+            self._nav_btns[label] = btn
+
+        nav.grid_rowconfigure(len(SECTIONS) + 1, weight=1)
+
+        # ── right content panel ───────────────────────────────────────
+        self._content_host = ctk.CTkFrame(self, fg_color="transparent")
+        self._content_host.grid(row=1, column=1, sticky="nsew")
+        self._content_host.grid_columnconfigure(0, weight=1)
+        self._content_host.grid_rowconfigure(0, weight=1)
+
+        # pre-build all section frames (hidden until selected)
+        self._section_frames: dict[str, ctk.CTkScrollableFrame] = {}
+        for label, subtitle, builder in SECTIONS:
+            sf = ctk.CTkScrollableFrame(self._content_host, fg_color="transparent")
+            sf.grid(row=0, column=0, sticky="nsew")
+            sf.grid_columnconfigure(0, weight=1)
+            sf.grid_remove()
+            self._section_frames[label] = sf
+            getattr(self, builder)(sf, subtitle)
+
+        # ── footer ────────────────────────────────────────────────────
+        footer = ctk.CTkFrame(self, fg_color=CARD_BG, corner_radius=8)
+        footer.grid(row=2, column=0, columnspan=2, sticky="ew", pady=(10, 0))
         footer.grid_columnconfigure(1, weight=1)
-        ctk.CTkLabel(footer, text="Pak Name:", text_color="#94a3b8").grid(row=0, column=0, padx=(14, 8), pady=10)
+
+        ctk.CTkLabel(
+            footer, text="Pak Name:", text_color="#94a3b8",
+        ).grid(row=0, column=0, padx=(14, 8), pady=10)
         self._name_var = ctk.StringVar(value="MyGameTuning")
-        ctk.CTkEntry(footer, textvariable=self._name_var, width=200, height=32).grid(row=0, column=1, sticky="w", pady=10)
-        ctk.CTkButton(footer, text="Save Profile", width=110, height=32,
-                      fg_color="#1e3a5f", hover_color="#1e4a7f",
-                      command=self._save_profile).grid(row=0, column=2, padx=8, pady=10)
-        self._gen_btn = ctk.CTkButton(footer, text="⚙  Generate Pak", width=140, height=32,
-                                       fg_color=ACCENT, hover_color="#0f766e",
-                                       command=self._generate)
+        ctk.CTkEntry(footer, textvariable=self._name_var, width=200, height=32).grid(
+            row=0, column=1, sticky="w", pady=10,
+        )
+        ctk.CTkButton(
+            footer, text="Save Profile", width=110, height=32,
+            fg_color="#1e3a5f", hover_color="#1e4a7f",
+            command=self._save_profile,
+        ).grid(row=0, column=2, padx=8, pady=10)
+        self._gen_btn = ctk.CTkButton(
+            footer, text="⚙  Generate Pak", width=140, height=32,
+            fg_color=ACCENT, hover_color="#0f766e",
+            command=self._generate,
+        )
         self._gen_btn.grid(row=0, column=3, padx=(0, 14), pady=10)
+
+        self._show_section(SECTIONS[0][0])
+
+    # ─────────────────────────────────────────────────────────────────
+    # Section navigation
+    # ─────────────────────────────────────────────────────────────────
+
+    def _show_section(self, label: str):
+        self._active_section = label
+        for name, btn in self._nav_btns.items():
+            if name == label:
+                btn.configure(fg_color=ACCENT, hover_color="#0f766e", text_color="white")
+            else:
+                btn.configure(fg_color="transparent", hover_color="#1e293b", text_color="#64748b")
+        for name, frame in self._section_frames.items():
+            if name == label:
+                frame.grid()
+            else:
+                frame.grid_remove()
 
     # ─────────────────────────────────────────────────────────────────
     # Section builders
     # ─────────────────────────────────────────────────────────────────
 
-    def _build_stacks(self, parent, idx):
-        card = self._card(parent, idx, "Stack Sizes",
-                          "Maximum items per inventory slot, by item category.")
-        card.grid_columnconfigure(2, weight=1)
+    def _build_stacks(self, parent: ctk.CTkScrollableFrame, subtitle: str):
+        self._section_header(parent, subtitle)
+        parent.grid_columnconfigure(1, weight=1)
 
         # column headers
-        for col, (txt, w) in enumerate([("CATEGORY", 170), ("EXAMPLES", 0), ("", 0), ("MAX ITEMS", 80)]):
-            ctk.CTkLabel(card, text=txt, width=w, anchor="w",
-                         text_color="#475569", font=ctk.CTkFont(size=10)).grid(
-                row=3, column=col, padx=(14 if col == 0 else 4, 4), pady=(0, 4), sticky="w")
+        for col, (txt, anchor) in enumerate([("CATEGORY", "w"), ("", "w"), ("MAX / SLOT", "e"), ("", "w")]):
+            ctk.CTkLabel(
+                parent, text=txt, anchor=anchor,
+                text_color=MUTED, font=ctk.CTkFont(size=10),
+            ).grid(row=2, column=col, padx=(14 if col == 0 else 4, 4), pady=(0, 4), sticky="ew")
 
-        for row_i, (key, label, examples) in enumerate(STACKS):
+        for r, (key, label, examples) in enumerate(STACKS):
             default = PRESETS["Relaxed"][key]
-            var = ctk.IntVar(value=default)
+            var  = ctk.IntVar(value=default)
             evar = ctk.StringVar(value=str(default))
-            self._vars[key] = var
+            self._vars[key]       = var
             self._entry_vars[key] = evar
 
-            r = row_i + 4
-            ctk.CTkLabel(card, text=label, width=170, anchor="w",
-                         font=ctk.CTkFont(size=12, weight="bold")).grid(row=r, column=0, padx=14, pady=5, sticky="w")
-            ctk.CTkLabel(card, text=examples, anchor="w", text_color="#475569",
-                         font=ctk.CTkFont(size=11)).grid(row=r, column=1, columnspan=2, padx=4, pady=5, sticky="w")
+            row = r + 3
+            # name + examples stacked in col 0
+            lf = ctk.CTkFrame(parent, fg_color="transparent")
+            lf.grid(row=row, column=0, padx=14, pady=4, sticky="w")
+            ctk.CTkLabel(lf, text=label, anchor="w",
+                         font=ctk.CTkFont(size=12, weight="bold")).pack(anchor="w")
+            ctk.CTkLabel(lf, text=examples, anchor="w",
+                         text_color="#64748b", font=ctk.CTkFont(size=11),
+                         wraplength=200).pack(anchor="w")
 
-            slider = ctk.CTkSlider(card, from_=1, to=99999, variable=var, width=260,
-                                   button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
-                                   command=lambda v, k=key: self._slide_int(k, v))
-            slider.grid(row=r, column=2, padx=8, pady=5, sticky="ew")
+            ctk.CTkSlider(
+                parent, from_=1, to=99999, variable=var,
+                button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
+                command=lambda v, k=key: self._slide_int(k, v),
+            ).grid(row=row, column=1, padx=(8, 8), pady=4, sticky="ew")
 
-            entry = ctk.CTkEntry(card, textvariable=evar, width=72, height=28, justify="right")
-            entry.grid(row=r, column=3, padx=(0, 4), pady=5)
+            entry = ctk.CTkEntry(parent, textvariable=evar, width=72, height=28, justify="right")
+            entry.grid(row=row, column=2, padx=(0, 4), pady=4)
             evar.trace_add("write", lambda *_, k=key, ev=evar: self._entry_int(k, ev, 1, 99999))
 
-            ctk.CTkLabel(card, text="items", text_color="#475569",
-                         font=ctk.CTkFont(size=11), width=40, anchor="w").grid(row=r, column=4, padx=(0, 14), pady=5)
+            ctk.CTkLabel(
+                parent, text="items", text_color=MUTED,
+                font=ctk.CTkFont(size=11), width=40, anchor="w",
+            ).grid(row=row, column=3, padx=(0, 14), pady=4)
 
-        ctk.CTkFrame(card, height=8, fg_color="transparent").grid(row=len(STACKS) + 4, column=0)
+    def _build_loot(self, parent: ctk.CTkScrollableFrame, subtitle: str):
+        self._section_header(parent, subtitle)
+        parent.grid_columnconfigure(1, weight=1)
 
-    def _build_loot(self, parent, idx):
-        card = self._card(parent, idx, "Loot Drop Multipliers",
-                          "Multiply how many items drop when harvesting each source type.")
-        card.grid_columnconfigure(2, weight=1)
+        for col, (txt, anchor) in enumerate([("SOURCE", "w"), ("", "w"), ("MULTIPLIER", "e"), ("", "w")]):
+            ctk.CTkLabel(
+                parent, text=txt, anchor=anchor,
+                text_color=MUTED, font=ctk.CTkFont(size=10),
+            ).grid(row=2, column=col, padx=(14 if col == 0 else 4, 4), pady=(0, 4), sticky="ew")
 
-        for col, txt in enumerate(["SOURCE", "DROPS", "", "MULTIPLIER"]):
-            ctk.CTkLabel(card, text=txt, anchor="w",
-                         text_color="#475569", font=ctk.CTkFont(size=10)).grid(
-                row=3, column=col, padx=(14 if col == 0 else 4, 4), pady=(0, 4), sticky="w")
-
-        for row_i, (key, label, drops) in enumerate(LOOT):
+        for r, (key, label, drops) in enumerate(LOOT):
             default = PRESETS["Relaxed"][key]
-            var = ctk.DoubleVar(value=default)
+            var  = ctk.DoubleVar(value=default)
             evar = ctk.StringVar(value=f"{default:.2f}")
-            self._vars[key] = var
+            self._vars[key]       = var
             self._entry_vars[key] = evar
 
-            r = row_i + 4
-            ctk.CTkLabel(card, text=label, width=170, anchor="w",
-                         font=ctk.CTkFont(size=12, weight="bold")).grid(row=r, column=0, padx=14, pady=5, sticky="w")
-            ctk.CTkLabel(card, text=drops, anchor="w", text_color="#475569",
-                         font=ctk.CTkFont(size=11)).grid(row=r, column=1, columnspan=2, padx=4, pady=5, sticky="w")
+            row = r + 3
+            # name + drops stacked in col 0
+            lf = ctk.CTkFrame(parent, fg_color="transparent")
+            lf.grid(row=row, column=0, padx=14, pady=4, sticky="w")
+            ctk.CTkLabel(lf, text=label, anchor="w",
+                         font=ctk.CTkFont(size=12, weight="bold")).pack(anchor="w")
+            ctk.CTkLabel(lf, text=drops, anchor="w",
+                         text_color="#64748b", font=ctk.CTkFont(size=11),
+                         wraplength=200).pack(anchor="w")
 
-            slider = ctk.CTkSlider(card, from_=0.1, to=100.0, variable=var, width=260,
-                                   button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
-                                   command=lambda v, k=key: self._slide_float(k, v))
-            slider.grid(row=r, column=2, padx=8, pady=5, sticky="ew")
+            ctk.CTkSlider(
+                parent, from_=0.1, to=100.0, variable=var,
+                button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
+                command=lambda v, k=key: self._slide_float(k, v),
+            ).grid(row=row, column=1, padx=(8, 8), pady=4, sticky="ew")
 
-            entry = ctk.CTkEntry(card, textvariable=evar, width=72, height=28, justify="right")
-            entry.grid(row=r, column=3, padx=(0, 4), pady=5)
+            entry = ctk.CTkEntry(parent, textvariable=evar, width=72, height=28, justify="right")
+            entry.grid(row=row, column=2, padx=(0, 4), pady=4)
             evar.trace_add("write", lambda *_, k=key, ev=evar: self._entry_float(k, ev, 0.1, 100.0))
 
-            ctk.CTkLabel(card, text="×", text_color="#475569",
-                         font=ctk.CTkFont(size=12), width=24, anchor="w").grid(row=r, column=4, padx=(0, 14), pady=5)
+            ctk.CTkLabel(
+                parent, text="×", text_color=MUTED,
+                font=ctk.CTkFont(size=12), width=24, anchor="w",
+            ).grid(row=row, column=3, padx=(0, 14), pady=4)
 
-        ctk.CTkFrame(card, height=8, fg_color="transparent").grid(row=len(LOOT) + 4, column=0)
+    def _build_spawners(self, parent: ctk.CTkScrollableFrame, subtitle: str):
+        self._section_header(parent, subtitle)
 
-    def _build_spawning(self, parent, idx):
-        card = self._card(parent, idx, "Resource Spawning",
-                          "How quickly each resource type respawns and in what quantity.")
+        # column headers
+        ctk.CTkLabel(parent, text="RESOURCE", width=160, anchor="w",
+                     text_color=MUTED, font=ctk.CTkFont(size=10),
+        ).grid(row=2, column=0, padx=14, pady=(0, 4))
+        ctk.CTkLabel(parent, text="RESPAWN TIME", anchor="w",
+                     text_color=MUTED, font=ctk.CTkFont(size=10),
+        ).grid(row=2, column=1, columnspan=3, padx=4, pady=(0, 4), sticky="w")
+        ctk.CTkLabel(parent, text="QUANTITY MULTIPLIER", anchor="w",
+                     text_color=MUTED, font=ctk.CTkFont(size=10),
+        ).grid(row=2, column=4, columnspan=3, padx=4, pady=(0, 4), sticky="w")
 
-        # sub-header columns
-        ctk.CTkLabel(card, text="RESOURCE", width=160, anchor="w",
-                     text_color="#475569", font=ctk.CTkFont(size=10)).grid(row=3, column=0, padx=14, pady=(0, 4))
-        ctk.CTkLabel(card, text="RESPAWN TIME", anchor="w",
-                     text_color="#475569", font=ctk.CTkFont(size=10)).grid(row=3, column=1, columnspan=3, padx=4, pady=(0, 4), sticky="w")
-        ctk.CTkLabel(card, text="QUANTITY MULTIPLIER", anchor="w",
-                     text_color="#475569", font=ctk.CTkFont(size=10)).grid(row=3, column=4, columnspan=3, padx=4, pady=(0, 4), sticky="w")
-
-        for row_i, (prefix, label) in enumerate(SPAWNERS):
+        for r, (prefix, label) in enumerate(SPAWNERS):
             h_key   = f"{prefix}_h"
             qty_key = f"{prefix}_qty"
             h_def   = PRESETS["Relaxed"][h_key]
             qty_def = PRESETS["Relaxed"][qty_key]
 
-            h_var   = ctk.DoubleVar(value=h_def)
-            h_evar  = ctk.StringVar(value=f"{h_def:.2f}")
+            h_var    = ctk.DoubleVar(value=h_def)
+            h_evar   = ctk.StringVar(value=f"{h_def:.2f}")
             qty_var  = ctk.DoubleVar(value=qty_def)
             qty_evar = ctk.StringVar(value=f"{qty_def:.2f}")
 
-            self._vars[h_key]    = h_var
-            self._entry_vars[h_key] = h_evar
-            self._vars[qty_key]  = qty_var
+            self._vars[h_key]         = h_var
+            self._entry_vars[h_key]   = h_evar
+            self._vars[qty_key]       = qty_var
             self._entry_vars[qty_key] = qty_evar
 
-            r = row_i + 4
-            ctk.CTkLabel(card, text=label, width=160, anchor="w",
-                         font=ctk.CTkFont(size=12, weight="bold")).grid(row=r, column=0, padx=14, pady=6, sticky="w")
+            row = r + 3
+            ctk.CTkLabel(
+                parent, text=label, width=160, anchor="w",
+                font=ctk.CTkFont(size=12, weight="bold"),
+            ).grid(row=row, column=0, padx=14, pady=6, sticky="w")
 
-            # respawn slider + entry
-            h_slider = ctk.CTkSlider(card, from_=0.25, to=48.0, variable=h_var, width=200,
-                                     button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
-                                     command=lambda v, k=h_key: self._slide_float(k, v))
-            h_slider.grid(row=r, column=1, padx=(4, 6), pady=6)
-            h_entry = ctk.CTkEntry(card, textvariable=h_evar, width=60, height=28, justify="right")
-            h_entry.grid(row=r, column=2, padx=(0, 2), pady=6)
+            ctk.CTkSlider(
+                parent, from_=0.25, to=48.0, variable=h_var, width=180,
+                button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
+                command=lambda v, k=h_key: self._slide_float(k, v),
+            ).grid(row=row, column=1, padx=(4, 6), pady=6)
+            h_entry = ctk.CTkEntry(parent, textvariable=h_evar, width=60, height=28, justify="right")
+            h_entry.grid(row=row, column=2, padx=(0, 2), pady=6)
             h_evar.trace_add("write", lambda *_, k=h_key, ev=h_evar: self._entry_float(k, ev, 0.25, 48.0))
-            ctk.CTkLabel(card, text="hrs", text_color="#475569",
-                         font=ctk.CTkFont(size=11), width=30).grid(row=r, column=3, padx=(0, 16), pady=6)
+            ctk.CTkLabel(
+                parent, text="hrs", text_color=MUTED,
+                font=ctk.CTkFont(size=11), width=30,
+            ).grid(row=row, column=3, padx=(0, 16), pady=6)
 
-            # quantity slider + entry
-            qty_slider = ctk.CTkSlider(card, from_=0.1, to=20.0, variable=qty_var, width=200,
-                                       button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
-                                       command=lambda v, k=qty_key: self._slide_float(k, v))
-            qty_slider.grid(row=r, column=4, padx=(4, 6), pady=6)
-            qty_entry = ctk.CTkEntry(card, textvariable=qty_evar, width=60, height=28, justify="right")
-            qty_entry.grid(row=r, column=5, padx=(0, 2), pady=6)
+            ctk.CTkSlider(
+                parent, from_=0.1, to=20.0, variable=qty_var, width=180,
+                button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
+                command=lambda v, k=qty_key: self._slide_float(k, v),
+            ).grid(row=row, column=4, padx=(4, 6), pady=6)
+            qty_entry = ctk.CTkEntry(parent, textvariable=qty_evar, width=60, height=28, justify="right")
+            qty_entry.grid(row=row, column=5, padx=(0, 2), pady=6)
             qty_evar.trace_add("write", lambda *_, k=qty_key, ev=qty_evar: self._entry_float(k, ev, 0.1, 20.0))
-            ctk.CTkLabel(card, text="×", text_color="#475569",
-                         font=ctk.CTkFont(size=12), width=24).grid(row=r, column=6, padx=(0, 14), pady=6)
-
-        ctk.CTkFrame(card, height=8, fg_color="transparent").grid(row=len(SPAWNERS) + 4, column=0)
+            ctk.CTkLabel(
+                parent, text="×", text_color=MUTED,
+                font=ctk.CTkFont(size=12), width=24,
+            ).grid(row=row, column=6, padx=(0, 14), pady=6)
 
     # ─────────────────────────────────────────────────────────────────
-    # Helpers
+    # Shared helpers
     # ─────────────────────────────────────────────────────────────────
 
-    def _card(self, parent, idx, title, desc) -> ctk.CTkFrame:
-        card = ctk.CTkFrame(parent, corner_radius=8, fg_color="#1e293b")
-        card.grid(row=idx, column=0, sticky="ew", pady=(0, 12))
-        ctk.CTkLabel(card, text=title, font=ctk.CTkFont(size=13, weight="bold")).grid(
-            row=0, column=0, columnspan=8, sticky="w", padx=14, pady=(12, 2))
-        ctk.CTkLabel(card, text=desc, font=ctk.CTkFont(size=11), text_color="#6b7280").grid(
-            row=1, column=0, columnspan=8, sticky="w", padx=14, pady=(0, 6))
-        ctk.CTkFrame(card, height=1, fg_color="#334155").grid(
-            row=2, column=0, columnspan=8, sticky="ew", padx=14, pady=(0, 4))
-        return card
+    def _section_header(self, parent: ctk.CTkScrollableFrame, subtitle: str):
+        ctk.CTkLabel(
+            parent, text=subtitle,
+            font=ctk.CTkFont(size=11), text_color="#64748b", anchor="w",
+        ).grid(row=0, column=0, columnspan=8, sticky="w", padx=2, pady=(0, 2))
+        ctk.CTkFrame(parent, height=1, fg_color="#1e293b").grid(
+            row=1, column=0, columnspan=8, sticky="ew", pady=(0, 8),
+        )
 
     def _slide_int(self, key, value):
         v = int(round(value))
@@ -349,6 +438,10 @@ class CreateTab(ctk.CTkFrame):
     def _collect(self) -> dict:
         return {k: v.get() for k, v in self._vars.items()}
 
+    # ─────────────────────────────────────────────────────────────────
+    # Save / Generate
+    # ─────────────────────────────────────────────────────────────────
+
     def _save_profile(self):
         s = cfg.load()
         out_dir = Path(s.get("my_mods_path", "MyMods"))
@@ -366,7 +459,7 @@ class CreateTab(ctk.CTkFrame):
                 "Missing Data",
                 "Extracted mod data is missing:\n\n"
                 + "\n".join(f"• {m}" for m in missing)
-                + "\n\nRun the extraction step from the project README.",
+                + "\n\nRe-extract using the commands in Docs/DevNotes/tools-setup.md.",
             )
             return
 
@@ -389,7 +482,6 @@ class CreateTab(ctk.CTkFrame):
         output_dir = gp.client_mods
         output_dir.mkdir(parents=True, exist_ok=True)
 
-        # Disable button during generation
         self._gen_btn.configure(state="disabled", text="Generating…")
         self.update_idletasks()
 
@@ -407,8 +499,8 @@ class CreateTab(ctk.CTkFrame):
         messagebox.showinfo(
             "Pak Generated",
             f"Mod pak created successfully!\n\n"
-            f"  Stack entries : {counts['stacks']}\n"
-            f"  Loot entries  : {counts['loot']}\n"
+            f"  Stack entries  : {counts['stacks']}\n"
+            f"  Loot entries   : {counts['loot']}\n"
             f"  Spawner entries: {counts['spawners']}\n\n"
             f"File: {counts['path'].name}\n"
             f"Location: {counts['path'].parent}",
