@@ -53,9 +53,11 @@ jobs:
           $title = "Latest Build ($date · $sha)"
           $notes = "Automated build from master branch.``n``nCommit: ${{ github.sha }}``n${{ github.event.head_commit.message }}"
 
-          # Delete old nightly tag/release if present
-          gh release delete $tag --yes 2>$null; $true
-          git push origin --delete $tag 2>$null; $true
+          # Delete old nightly release/tag if present (ignore errors — may not exist yet)
+          gh release delete $tag --yes
+          $LASTEXITCODE = 0
+          git push origin --delete $tag
+          $LASTEXITCODE = 0
 
           gh release create $tag dist/WindroseModTool.exe `
             --title $title `
