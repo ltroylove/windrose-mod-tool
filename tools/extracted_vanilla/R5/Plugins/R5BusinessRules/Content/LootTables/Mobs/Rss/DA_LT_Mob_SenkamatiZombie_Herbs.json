@@ -1,0 +1,29 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "Weight",
+	"LootData": [
+		{
+			"Min": 2,
+			"Max": 3,
+			"Weight": 10,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_HealingHerbs_T01.DA_DID_Resource_HealingHerbs_T01",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 0,
+			"Max": 0,
+			"Weight": 90,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

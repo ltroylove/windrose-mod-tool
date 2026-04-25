@@ -1,0 +1,17 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_PouchCoin_T01.DA_CID_Misc_PouchCoin_T01",
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

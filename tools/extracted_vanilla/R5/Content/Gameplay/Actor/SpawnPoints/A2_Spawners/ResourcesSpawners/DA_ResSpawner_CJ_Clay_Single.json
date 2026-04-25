@@ -1,0 +1,42 @@
+{
+	"$type": "R5GameplaySpawnerParams",
+	"Variants": [
+		{
+			"DebugName": "1",
+			"Weight": 100,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/DigNodes/BP_Mineral_Clay_T01.BP_Mineral_Clay_T01_C"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 1
+					},
+					"Mutators": [],
+					"CustomData": "None"
+				}
+			]
+		}
+	],
+	"GlobalMutators": [],
+	"SpawnRadius": 0,
+	"MinDistanceBetweenEntities": 100,
+	"RandomRotation": 2,
+	"HeightModifier": 1,
+	"RespawnInterval": {
+		"Min": 14400,
+		"Max": 14400
+	},
+	"SpawnCondition": "None",
+	"bSuspendOnSpawnConditionFail": true,
+	"bAllowToSpawnInBuildingArea": false,
+	"DebugColor": {
+		"B": 255,
+		"G": 255,
+		"R": 255,
+		"A": 255
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerParams'"
+}

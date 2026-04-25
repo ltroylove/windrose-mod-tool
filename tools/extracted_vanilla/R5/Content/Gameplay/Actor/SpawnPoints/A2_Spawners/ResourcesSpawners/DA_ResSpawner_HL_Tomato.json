@@ -1,0 +1,60 @@
+{
+	"$type": "R5GameplaySpawnerParams",
+	"Variants": [
+		{
+			"DebugName": "2-3",
+			"Weight": 90,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/PickupResources/BP_Highlands_PickupResource_Tomato_210cm.BP_Highlands_PickupResource_Tomato_210cm_C"
+					],
+					"Amount": {
+						"Min": 2,
+						"Max": 3
+					},
+					"Mutators": [],
+					"CustomData": "None"
+				}
+			]
+		},
+		{
+			"DebugName": "5-7",
+			"Weight": 10,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/PickupResources/BP_Highlands_PickupResource_Tomato_210cm.BP_Highlands_PickupResource_Tomato_210cm_C"
+					],
+					"Amount": {
+						"Min": 5,
+						"Max": 7
+					},
+					"Mutators": [],
+					"CustomData": "None"
+				}
+			]
+		}
+	],
+	"GlobalMutators": [],
+	"SpawnRadius": 300,
+	"MinDistanceBetweenEntities": 150,
+	"RandomRotation": 2,
+	"HeightModifier": 1,
+	"RespawnInterval": {
+		"Min": 7200,
+		"Max": 7200
+	},
+	"SpawnCondition": "None",
+	"bSuspendOnSpawnConditionFail": true,
+	"bAllowToSpawnInBuildingArea": false,
+	"DebugColor": {
+		"B": 35,
+		"G": 148,
+		"R": 0,
+		"A": 255
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerParams'"
+}

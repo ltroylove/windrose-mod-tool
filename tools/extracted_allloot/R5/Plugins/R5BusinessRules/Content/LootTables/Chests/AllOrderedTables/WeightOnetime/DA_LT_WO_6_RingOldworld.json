@@ -1,0 +1,61 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "Scenario.LootTable.WO.RingOldworld"
+	},
+	"LootTableType": "WeightedOnetime",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Jewelry/DA_EID_Ring_CritDamage_Minor.DA_EID_Ring_CritDamage_Minor",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Jewelry/DA_EID_Ring_SlashDmg_Minor.DA_EID_Ring_SlashDmg_Minor",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Jewelry/DA_EID_Ring_MeleeDmg_Minor.DA_EID_Ring_MeleeDmg_Minor",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Jewelry/DA_EID_Ring_RangeDmg_Minor.DA_EID_Ring_RangeDmg_Minor",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Jewelry/DA_EID_Ring_WpnStmnCons_Minor.DA_EID_Ring_WpnStmnCons_Minor",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Jewelry/DA_EID_Ring_Posture_Regular.DA_EID_Ring_Posture_Regular",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

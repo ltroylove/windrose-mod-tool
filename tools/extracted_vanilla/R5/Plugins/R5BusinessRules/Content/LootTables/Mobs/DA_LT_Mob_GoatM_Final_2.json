@@ -1,0 +1,45 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_GoatM_Leather_2.DA_LT_Mob_GoatM_Leather_2"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_GoatM_Bezoar_2.DA_LT_Mob_GoatM_Bezoar_2"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_GoatM_Horn_2.DA_LT_Mob_GoatM_Horn_2"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_GoatM_Head_2.DA_LT_Mob_GoatM_Head_2"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

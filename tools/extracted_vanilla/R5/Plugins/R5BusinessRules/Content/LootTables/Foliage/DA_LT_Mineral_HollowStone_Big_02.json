@@ -1,0 +1,27 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Min": 2,
+			"Max": 3,
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Quartz_T04.DA_DID_Resource_Quartz_T04",
+			"LootTable": "None"
+		},
+		{
+			"Min": 0,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Amethyst_T04.DA_DID_Resource_Amethyst_T04",
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

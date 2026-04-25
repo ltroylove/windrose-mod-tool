@@ -1,0 +1,48 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 100,
+      "Max": 140,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Mahogany_T04.DA_DID_Resource_Mahogany_T04",
+      "LootTable": "None"
+    },
+    {
+      "Min": 40,
+      "Max": 60,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Metal_Ingot_Iron_T02.DA_DID_Metal_Ingot_Iron_T02",
+      "LootTable": "None"
+    },
+    {
+      "Min": 20,
+      "Max": 40,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Rigging_T04.DA_DID_Resource_Rigging_T04",
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 20,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Diamond_T04.DA_DID_Resource_Diamond_T04",
+      "LootTable": "None"
+    },
+    {
+      "Min": 30,
+      "Max": 40,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_NavigationInstruments_T04.DA_DID_Resource_NavigationInstruments_T04",
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

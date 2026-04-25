@@ -1,0 +1,45 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 25,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/PickupResource/DA_LT_PickupChest_HL_Bale_01.DA_LT_PickupChest_HL_Bale_01"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 25,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/PickupResource/DA_LT_PickupChest_HL_Bale_02.DA_LT_PickupChest_HL_Bale_02"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 25,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/PickupResource/DA_LT_PickupChest_HL_Bale_03.DA_LT_PickupChest_HL_Bale_03"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 25,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/PickupResource/DA_LT_PickupChest_HL_Bale_04.DA_LT_PickupChest_HL_Bale_04"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

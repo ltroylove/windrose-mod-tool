@@ -1,0 +1,53 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "Scenario.LootTable.Ordered.JewelrySenka.NeckRing02"
+	},
+	"LootTableType": "WeightedOnetime",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_6_NeckSenka.DA_LT_WO_6_NeckSenka"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_6_NeckSenka.DA_LT_WO_6_NeckSenka"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_6_NeckSenka.DA_LT_WO_6_NeckSenka"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_4_RingSenka.DA_LT_WO_4_RingSenka"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_4_RingSenka.DA_LT_WO_4_RingSenka"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

@@ -1,0 +1,29 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "Weight",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 75,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_Drowned_Cheap.DA_LT_Mob_Drowned_Cheap"
+		},
+		{
+			"Min": 0,
+			"Max": 0,
+			"Weight": 25,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

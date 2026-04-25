@@ -1,0 +1,37 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_BlackBeard_Sergeant_BlackbeardSign.DA_LT_Mob_BlackBeard_Sergeant_BlackbeardSign"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_BlackBeard_Musketeer_Gunpowder_low1.DA_LT_Mob_BlackBeard_Musketeer_Gunpowder_low1"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_BlackBeard_Sergeant_Rum.DA_LT_Mob_BlackBeard_Sergeant_Rum"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

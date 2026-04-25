@@ -1,0 +1,53 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "Scenario.LootTable.WO.WeaponSenka"
+	},
+	"LootTableType": "WeightedOnetime",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_RangeWeapon_Blunderbuss_Dragonbreath_Base.DA_EID_RangeWeapon_Blunderbuss_Dragonbreath_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_MeleeWeapon_Halberd_Corrupted_Base.DA_EID_MeleeWeapon_Halberd_Corrupted_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_MeleeWeapon_Rapier_Eviscerate_Base.DA_EID_MeleeWeapon_Rapier_Eviscerate_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_MeleeWeapon_Saber_Corrupted_Base.DA_EID_MeleeWeapon_Saber_Corrupted_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_RangeWeapon_Pistol_Corrupted_Advanced.DA_EID_RangeWeapon_Pistol_Corrupted_Advanced",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

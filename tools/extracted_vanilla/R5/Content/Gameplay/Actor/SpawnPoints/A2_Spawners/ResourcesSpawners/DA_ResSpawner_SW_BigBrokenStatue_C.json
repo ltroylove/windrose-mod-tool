@@ -1,0 +1,40 @@
+{
+	"$type": "R5GameplaySpawnerParams",
+	"Variants": [
+		{
+			"DebugName": "",
+			"Weight": 1,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/MinaralNodes/AltarStatues/BP_Mineral_AltarStatue_Rich_12.BP_Mineral_AltarStatue_Rich_12_C"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 1
+					},
+					"CustomData": "None"
+				}
+			]
+		}
+	],
+	"SpawnRadius": 0,
+	"MinDistanceBetweenEntities": 100,
+	"RandomRotation": 0,
+	"HeightModifier": 4,
+	"RespawnInterval": {
+		"Min": 7200,
+		"Max": 7200
+	},
+	"SpawnCondition": "None",
+	"bSuspendOnSpawnConditionFail": true,
+	"bAllowToSpawnInBuildingArea": false,
+	"DebugColor": {
+		"B": 255,
+		"G": 140,
+		"R": 80,
+		"A": 255
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerParams'"
+}

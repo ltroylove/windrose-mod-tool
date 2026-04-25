@@ -1,0 +1,69 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "Scenario.LootTable.WO.WeaponBlank"
+	},
+	"LootTableType": "WeightedOnetime",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 3,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_MeleeWeapon_Rapier_Blank_Base.DA_EID_MeleeWeapon_Rapier_Blank_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 3,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_MeleeWeapon_Club_Blank_Base.DA_EID_MeleeWeapon_Club_Blank_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 3,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_MeleeWeapon_Greatsword_Blank_Base.DA_EID_MeleeWeapon_Greatsword_Blank_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 3,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_MeleeWeapon_Halberd_Blank_Base.DA_EID_MeleeWeapon_Halberd_Blank_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 2,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_RangeWeapon_Pistol_Blank_Base.DA_EID_RangeWeapon_Pistol_Blank_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 2,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_RangeWeapon_Musket_Blank_Base.DA_EID_RangeWeapon_Musket_Blank_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 2,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_RangeWeapon_Blunderbuss_Blank_Base.DA_EID_RangeWeapon_Blunderbuss_Blank_Base",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

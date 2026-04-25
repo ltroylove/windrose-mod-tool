@@ -1,0 +1,83 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Min": 6,
+			"Max": 10,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+			"LootTable": "None"
+		},
+		{
+			"Min": 8,
+			"Max": 10,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+			"LootTable": "None"
+		},
+		{
+			"Min": 5,
+			"Max": 10,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+			"LootTable": "None"
+		},
+		{
+			"Min": 9,
+			"Max": 10,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+			"LootTable": "None"
+		},
+		{
+			"Min": 4,
+			"Max": 10,
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Hardwood_T02.DA_DID_Resource_Hardwood_T02",
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Hardwood_T02.DA_DID_Resource_Hardwood_T02",
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Hardwood_T02.DA_DID_Resource_Hardwood_T02",
+			"LootTable": "None"
+		},
+		{
+			"Min": 4,
+			"Max": 6,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_AncientRelicFragment_T04.DA_DID_Resource_AncientRelicFragment_T04",
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Diamond_T04.DA_DID_Resource_Diamond_T04",
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

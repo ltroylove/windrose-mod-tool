@@ -1,0 +1,102 @@
+{
+	"$type": "R5GameplaySpawnerVariantPreset",
+	"Collection": [
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/SegmentTrees/BPDummyTrees/BP_Dummy_Segment_Swamp_TaxodiumBaldCorrupted_900cm.BP_Dummy_Segment_Swamp_TaxodiumBaldCorrupted_900cm_C"
+			],
+			"Amount": {
+				"Min": 2,
+				"Max": 4
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/SegmentTrees/BPDummyTrees/BP_Dummy_Segment_Swamp_TaxodiumDyingCorrupted_900cm.BP_Dummy_Segment_Swamp_TaxodiumDyingCorrupted_900cm_C"
+			],
+			"Amount": {
+				"Min": 0,
+				"Max": 2
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/SegmentTrees/BPDummyTrees/BP_Dummy_Segment_Swamp_TaxodiumDyingCorrupted_740cm.BP_Dummy_Segment_Swamp_TaxodiumDyingCorrupted_740cm_C"
+			],
+			"Amount": {
+				"Min": 0,
+				"Max": 2
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/SegmentTrees/BPDummyTrees/BP_Dummy_Segment_Swamp_TaxodiumDeadCorrupted_1200cm.BP_Dummy_Segment_Swamp_TaxodiumDeadCorrupted_1200cm_C"
+			],
+			"Amount": {
+				"Min": 1,
+				"Max": 3
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/FoliageActors/Biom_Swamp/BP_Swamp_Bush_GunneraCorrupted_150cm.BP_Swamp_Bush_GunneraCorrupted_150cm_C"
+			],
+			"Amount": {
+				"Min": 4,
+				"Max": 7
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/FoliageActors/Biom_Swamp/BP_Swamp_Bush_HostaCorrupted_80cm.BP_Swamp_Bush_HostaCorrupted_80cm_C"
+			],
+			"Amount": {
+				"Min": 2,
+				"Max": 5
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/FoliageActors/Biom_Swamp/BP_Swamp_Bush_MolineriaCorrupted_240cm.BP_Swamp_Bush_MolineriaCorrupted_240cm_C"
+			],
+			"Amount": {
+				"Min": 1,
+				"Max": 3
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/FoliageActors/Biom_Swamp/BP_Swamp_BushDepressumCorrupted_230cm.BP_Swamp_BushDepressumCorrupted_230cm_C"
+			],
+			"Amount": {
+				"Min": 3,
+				"Max": 5
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		}
+	],
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerVariantPreset'"
+}

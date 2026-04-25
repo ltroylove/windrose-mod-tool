@@ -1,0 +1,29 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "Weight",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 30,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Equipments/ArmorUpgrades_Overrides/LT_Resources_FromRecipe/DA_LT_Armor_Leather_Base_Head_Legs_Upgrade_T02_Resources.DA_LT_Armor_Leather_Base_Head_Legs_Upgrade_T02_Resources"
+		},
+		{
+			"Min": 0,
+			"Max": 0,
+			"Weight": 70,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

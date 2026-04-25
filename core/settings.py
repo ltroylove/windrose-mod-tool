@@ -9,7 +9,6 @@ _PROJECT_ROOT = Path(__file__).parent.parent
 DEFAULTS: dict = {
     "game_path": "",
     "library_path": str(_PROJECT_ROOT / "Mods"),
-    "my_mods_path": str(_PROJECT_ROOT / "MyMods"),
 }
 
 

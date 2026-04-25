@@ -1,0 +1,20 @@
+{
+	"$type": "R5BuildingLimits",
+	"AmountLimits": [
+		{
+			"Type": "Total",
+			"Collection": [
+				"/Game/Gameplay/Building/BuildingUtilities/DA_BI_Utilities_FastTravel_Bell.DA_BI_Utilities_FastTravel_Bell"
+			],
+			"MaxAmount": 50
+		},
+		{
+			"Type": "Total",
+			"Collection": [
+				"/Game/Gameplay/Building/BuildingUtilities/DA_BI_Utilities_FastTravelBell_02.DA_BI_Utilities_FastTravelBell_02"
+			],
+			"MaxAmount": 50
+		}
+	],
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5BuildingLimits'"
+}

@@ -1,0 +1,38 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Food/DA_CID_Food_Raw_Pepper_T01.DA_CID_Food_Raw_Pepper_T01",
+      "LootTable": "None",
+      "Min": 10,
+      "Max": 10
+    },
+    {
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Lobstershroom_T01.DA_DID_Resource_Lobstershroom_T01",
+      "LootTable": "None",
+      "Min": 0,
+      "Max": 10
+    },
+    {
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Food/DA_CID_Food_Second_Crab_T01.DA_CID_Food_Second_Crab_T01",
+      "LootTable": "None",
+      "Min": 0,
+      "Max": 10
+    },
+    {
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Fat_T01.DA_DID_Resource_Fat_T01",
+      "LootTable": "None",
+      "Min": 0,
+      "Max": 10
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

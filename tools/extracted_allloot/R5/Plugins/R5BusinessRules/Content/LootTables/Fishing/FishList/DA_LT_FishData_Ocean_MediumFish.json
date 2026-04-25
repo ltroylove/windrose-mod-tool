@@ -1,0 +1,29 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 5,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Fish_Medium_EmeraldBluefish_T01.DA_CID_Misc_Fish_Medium_EmeraldBluefish_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 5,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Fish_Medium_RedSnapper_T01.DA_CID_Misc_Fish_Medium_RedSnapper_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

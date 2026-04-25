@@ -1,0 +1,29 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Min": 2,
+			"Max": 4,
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/Consumables/Food/DA_CID_Food_Raw_Corn_T02.DA_CID_Food_Raw_Corn_T02",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Foliage/Sub_tables/DA_LT_Foliage_Bush_Corn_Seeds.DA_LT_Foliage_Bush_Corn_Seeds"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

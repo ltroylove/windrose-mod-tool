@@ -1,0 +1,61 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 1,
+      "Max": 1,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/RecipePaperUnlock/DA_DID_Misc_RecipePaperUnlock_RangeWeapon_Pistol_Blank_Base.DA_DID_Misc_RecipePaperUnlock_RangeWeapon_Pistol_Blank_Base",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 1,
+      "Max": 1,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/TreasureMapUnlock/DA_DID_Misc_TreasureMap_Blackbeard_01.DA_DID_Misc_TreasureMap_Blackbeard_01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 30,
+      "Max": 30,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Ammo/DA_AID_Ammo_Gunpowder_Homemade_T02.DA_AID_Ammo_Gunpowder_Homemade_T02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 15,
+      "Max": 15,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Alchemy/DA_CID_Alchemy_Bandages_T01.DA_CID_Alchemy_Bandages_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 9,
+      "Max": 9,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Alchemy/DA_CID_Alchemy_Elixir_MeleeDamage.DA_CID_Alchemy_Elixir_MeleeDamage",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 30,
+      "Max": 30,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

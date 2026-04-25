@@ -1,0 +1,28 @@
+{
+	"$type": "R5GameplaySpawnerVariantPreset",
+	"Collection": [
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/PickupResources/BP_Coast_Jungle_PickupResource_MistyOrchid_Single_01.BP_Coast_Jungle_PickupResource_MistyOrchid_Single_01_C"
+			],
+			"Amount": {
+				"Min": 1,
+				"Max": 3
+			},
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/PickupResources/BP_Coast_Jungle_PickupResource_MistyOrchid_Triple_01.BP_Coast_Jungle_PickupResource_MistyOrchid_Triple_01_C"
+			],
+			"Amount": {
+				"Min": 1,
+				"Max": 2
+			},
+			"CustomData": "None"
+		}
+	],
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerVariantPreset'"
+}

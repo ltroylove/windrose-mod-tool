@@ -1,0 +1,34 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_Dodo_MeatBird.DA_LT_Mob_Dodo_MeatBird"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_Dodo_Feather.DA_LT_Mob_Dodo_Feather"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_Dodo_DodoHead.DA_LT_Mob_Dodo_DodoHead"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

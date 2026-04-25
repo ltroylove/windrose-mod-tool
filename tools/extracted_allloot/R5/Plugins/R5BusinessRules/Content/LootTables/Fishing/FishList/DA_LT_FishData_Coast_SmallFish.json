@@ -1,0 +1,61 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 5,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Fish_Small_ReefSnapper_T01.DA_CID_Misc_Fish_Small_ReefSnapper_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 5,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Fish_Small_BlueTang_T01.DA_CID_Misc_Fish_Small_BlueTang_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 5,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Fish_Small_PinkWrasse_T01.DA_CID_Misc_Fish_Small_PinkWrasse_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 5,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Fish_Small_SapphireWrasse_T01.DA_CID_Misc_Fish_Small_SapphireWrasse_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 5,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Fish_Small_MoonAngelfish_T01.DA_CID_Misc_Fish_Small_MoonAngelfish_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 5,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Fish_Small_QueenAngelfish_T01.DA_CID_Misc_Fish_Small_QueenAngelfish_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

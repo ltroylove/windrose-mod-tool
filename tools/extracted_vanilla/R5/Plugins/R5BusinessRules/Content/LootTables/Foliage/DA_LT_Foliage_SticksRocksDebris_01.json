@@ -1,0 +1,24 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableType": "Weight",
+	"LootData": [
+		{
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_SticksWood_T01.DA_DID_Resource_SticksWood_T01",
+			"LootTable": "None",
+			"Min": 1,
+			"Max": 1
+		},
+		{
+			"Weight": 1,
+			"LootItem": "None",
+			"LootTable": "None",
+			"Min": 0,
+			"Max": 0
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

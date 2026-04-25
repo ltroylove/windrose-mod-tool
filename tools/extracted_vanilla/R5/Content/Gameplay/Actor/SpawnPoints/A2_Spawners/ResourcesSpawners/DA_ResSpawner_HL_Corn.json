@@ -1,0 +1,114 @@
+{
+	"$type": "R5GameplaySpawnerParams",
+	"Variants": [
+		{
+			"DebugName": "ResSpawner_HL_Corn_Poor",
+			"Weight": 60,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/PickupResources/BP_Highlands_PickupResource_Corn_Rich_01.BP_Highlands_PickupResource_Corn_Rich_01_C"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 1
+					},
+					"Mutators": [],
+					"CustomData": "None"
+				},
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/PickupResources/BP_Highlands_PickupResource_Corn_Poor_01.BP_Highlands_PickupResource_Corn_Poor_01_C"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 2
+					},
+					"Mutators": [],
+					"CustomData": "None"
+				}
+			]
+		},
+		{
+			"DebugName": "5-7",
+			"Weight": 30,
+			"Collection": [
+				{
+					"DebugName": "ResSpawner_HL_Corn_Mid",
+					"Assets": [
+						"/Game/Gameplay/Foliage/PickupResources/BP_Highlands_PickupResource_Corn_Rich_01.BP_Highlands_PickupResource_Corn_Rich_01_C"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 2
+					},
+					"Mutators": [],
+					"CustomData": "None"
+				},
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/PickupResources/BP_Highlands_PickupResource_Corn_Poor_01.BP_Highlands_PickupResource_Corn_Poor_01_C"
+					],
+					"Amount": {
+						"Min": 2,
+						"Max": 3
+					},
+					"Mutators": [],
+					"CustomData": "None"
+				}
+			]
+		},
+		{
+			"DebugName": "8-10",
+			"Weight": 10,
+			"Collection": [
+				{
+					"DebugName": "ResSpawner_HL_Corn_Rich",
+					"Assets": [
+						"/Game/Gameplay/Foliage/PickupResources/BP_Highlands_PickupResource_Corn_Rich_01.BP_Highlands_PickupResource_Corn_Rich_01_C"
+					],
+					"Amount": {
+						"Min": 2,
+						"Max": 3
+					},
+					"Mutators": [],
+					"CustomData": "None"
+				},
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/PickupResources/BP_Highlands_PickupResource_Corn_Poor_01.BP_Highlands_PickupResource_Corn_Poor_01_C"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 3
+					},
+					"Mutators": [],
+					"CustomData": "None"
+				}
+			]
+		}
+	],
+	"GlobalMutators": [],
+	"SpawnRadius": 400,
+	"MinDistanceBetweenEntities": 150,
+	"RandomRotation": 2,
+	"HeightModifier": 1,
+	"RespawnInterval": {
+		"Min": 14400,
+		"Max": 14400
+	},
+	"SpawnCondition": "None",
+	"bSuspendOnSpawnConditionFail": true,
+	"bAllowToSpawnInBuildingArea": true,
+	"DebugColor": {
+		"B": 255,
+		"G": 255,
+		"R": 255,
+		"A": 255
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerParams'"
+}

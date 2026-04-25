@@ -1,0 +1,93 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "Scenario.LootTable.Ordered.JewelrySenka"
+	},
+	"LootTableType": "Ordered",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/JewelrySenka/DA_LT_OW_5_JewelrySenka_NeckRing_01.DA_LT_OW_5_JewelrySenka_NeckRing_01"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/JewelrySenka/DA_LT_OW_5_JewelrySenka_NeckRing_01.DA_LT_OW_5_JewelrySenka_NeckRing_01"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/JewelrySenka/DA_LT_OW_5_JewelrySenka_NeckRing_01.DA_LT_OW_5_JewelrySenka_NeckRing_01"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/JewelrySenka/DA_LT_OW_5_JewelrySenka_NeckRing_01.DA_LT_OW_5_JewelrySenka_NeckRing_01"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/JewelrySenka/DA_LT_OW_5_JewelrySenka_NeckRing_01.DA_LT_OW_5_JewelrySenka_NeckRing_01"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/JewelrySenka/DA_LT_OW_5_JewelrySenka_NeckRing_02.DA_LT_OW_5_JewelrySenka_NeckRing_02"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/JewelrySenka/DA_LT_OW_5_JewelrySenka_NeckRing_02.DA_LT_OW_5_JewelrySenka_NeckRing_02"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/JewelrySenka/DA_LT_OW_5_JewelrySenka_NeckRing_02.DA_LT_OW_5_JewelrySenka_NeckRing_02"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/JewelrySenka/DA_LT_OW_5_JewelrySenka_NeckRing_02.DA_LT_OW_5_JewelrySenka_NeckRing_02"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/JewelrySenka/DA_LT_OW_5_JewelrySenka_NeckRing_02.DA_LT_OW_5_JewelrySenka_NeckRing_02"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}
