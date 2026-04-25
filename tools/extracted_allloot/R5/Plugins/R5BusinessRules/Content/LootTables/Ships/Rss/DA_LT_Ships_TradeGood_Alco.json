@@ -1,0 +1,45 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 20,
+      "Max": 20,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Food/DA_CID_Food_Rum_Bottle_T03.DA_CID_Food_Rum_Bottle_T03",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_TradeCraft_Alcohol_Lucky.DA_DID_TradeCraft_Alcohol_Lucky",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_TradeCraft_Alcohol_Officer.DA_DID_TradeCraft_Alcohol_Officer",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_TradeCraft_Alcohol_Sugarcane.DA_DID_TradeCraft_Alcohol_Sugarcane",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

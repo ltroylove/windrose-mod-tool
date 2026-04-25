@@ -1,0 +1,21 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 1,
+      "Max": 1,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/TreasureMapUnlock/DA_DID_Misc_TreasureMap_Blackbeard_09.DA_DID_Misc_TreasureMap_Blackbeard_09",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

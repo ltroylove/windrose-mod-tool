@@ -1,0 +1,45 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 30,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_Reputation_BlackbeardSign_02.DA_DID_Reputation_BlackbeardSign_02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_Reputation_BlackbeardSign_03.DA_DID_Reputation_BlackbeardSign_03",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Ship/DA_CID_ShipConsumable_RepairKit_Base.DA_CID_ShipConsumable_RepairKit_Base",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/Ships/Rss/DA_LT_Ships_TradeGood_Cheap.DA_LT_Ships_TradeGood_Cheap"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

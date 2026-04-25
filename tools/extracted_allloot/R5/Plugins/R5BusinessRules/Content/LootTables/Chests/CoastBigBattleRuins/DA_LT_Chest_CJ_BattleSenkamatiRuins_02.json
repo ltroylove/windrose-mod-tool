@@ -1,0 +1,29 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 1,
+      "Max": 1,
+      "Weight": 0,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/ArmorMain/DA_LT_Ord_17_ArmorMain.DA_LT_Ord_17_ArmorMain"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_TradeCraft_Alcohol_Sugarcane.DA_DID_TradeCraft_Alcohol_Sugarcane",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

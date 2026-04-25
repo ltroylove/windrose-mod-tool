@@ -1,0 +1,14 @@
+{
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_FiberPlant_T01.DA_DID_Resource_FiberPlant_T01",
+      "LootTable": "",
+      "Min": 10,
+      "Max": 10
+    }
+  ],
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'",
+  "$type": "R5BLLootParams"
+}

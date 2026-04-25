@@ -1,0 +1,21 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 50,
+      "Max": 90,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Ammo/DA_AID_Ammo_Gunpowder_Homemade_T02.DA_AID_Ammo_Gunpowder_Homemade_T02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

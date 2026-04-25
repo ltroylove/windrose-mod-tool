@@ -1,0 +1,29 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 40,
+      "Max": 40,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Alchemy/DA_CID_Alchemy_Potion_EnhancedHealing_T01.DA_CID_Alchemy_Potion_EnhancedHealing_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 150,
+      "Max": 150,
+      "Weight": 0,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_Senkamati_Cheap.DA_LT_Mob_Senkamati_Cheap"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

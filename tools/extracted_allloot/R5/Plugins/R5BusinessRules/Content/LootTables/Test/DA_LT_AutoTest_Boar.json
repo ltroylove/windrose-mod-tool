@@ -1,0 +1,17 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 100,
+      "LootItem": "/R5BusinessRules/Inventory/Tests/DA_TestItem_Default_1.DA_TestItem_Default_1",
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

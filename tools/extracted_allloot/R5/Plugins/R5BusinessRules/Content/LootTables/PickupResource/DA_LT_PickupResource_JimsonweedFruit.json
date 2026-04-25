@@ -1,0 +1,17 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Food/DA_CID_Food_Raw_UmbraFruit_T03.DA_CID_Food_Raw_UmbraFruit_T03",
+      "LootTable": "None",
+      "Min": 10,
+      "Max": 20
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

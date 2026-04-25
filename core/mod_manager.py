@@ -90,6 +90,24 @@ class ModManager:
     # Actions
     # ------------------------------------------------------------------
 
+    def list_generated(self) -> list[Path]:
+        """Return loose .pak files in the library root (generated tuning paks)."""
+        if not self.library_path.exists():
+            return []
+        return sorted(p for p in self.library_path.iterdir() if p.suffix == ".pak" and p.is_file())
+
+    def installed_stems(self) -> set[str]:
+        """Return the stems of every pak currently in ~mods (for conflict detection)."""
+        return {m.name for m in self.list_installed()}
+
+    def deploy(self, pak_file: Path, target_mods_dir: Path | None = None) -> Path:
+        """Copy a single .pak file into ~mods (or a given mods dir). Returns dest path."""
+        dest_dir = target_mods_dir if target_mods_dir is not None else self.mods_dir
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        dst = dest_dir / pak_file.name
+        shutil.copy2(pak_file, dst)
+        return dst
+
     def install(self, package: ModPackage) -> list[Path]:
         self.mods_dir.mkdir(parents=True, exist_ok=True)
         installed = []

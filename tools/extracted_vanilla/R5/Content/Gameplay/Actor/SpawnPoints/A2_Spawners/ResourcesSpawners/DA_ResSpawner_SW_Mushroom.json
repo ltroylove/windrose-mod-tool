@@ -1,0 +1,74 @@
+{
+	"$type": "R5GameplaySpawnerParams",
+	"Variants": [
+		{
+			"DebugName": "Mushroom 3-5",
+			"Weight": 6,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Actor/SpawnPoints/A2_Spawners/ResourcesSpawners/DA_ResSpawnerCollection_SW_Mushroom_Poor.DA_ResSpawnerCollection_SW_Mushroom_Poor"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 1
+					},
+					"CustomData": "None"
+				}
+			]
+		},
+		{
+			"DebugName": "Mushroom 6-9",
+			"Weight": 3,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Actor/SpawnPoints/A2_Spawners/ResourcesSpawners/DA_ResSpawnerCollection_SW_Mushroom.DA_ResSpawnerCollection_SW_Mushroom"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 1
+					},
+					"CustomData": "None"
+				}
+			]
+		},
+		{
+			"DebugName": "Mushroom 10-12",
+			"Weight": 1,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Actor/SpawnPoints/A2_Spawners/ResourcesSpawners/DA_ResSpawnerCollection_SW_Mushroom_Rich.DA_ResSpawnerCollection_SW_Mushroom_Rich"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 1
+					},
+					"CustomData": "None"
+				}
+			]
+		}
+	],
+	"SpawnRadius": 200,
+	"MinDistanceBetweenEntities": 40,
+	"RandomRotation": 2,
+	"HeightModifier": 1,
+	"RespawnInterval": {
+		"Min": 7200,
+		"Max": 7200
+	},
+	"SpawnCondition": "None",
+	"bSuspendOnSpawnConditionFail": true,
+	"bAllowToSpawnInBuildingArea": false,
+	"DebugColor": {
+		"B": 0,
+		"G": 202,
+		"R": 255,
+		"A": 255
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerParams'"
+}

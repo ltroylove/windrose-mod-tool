@@ -1,0 +1,34 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "Weight",
+	"LootData": [
+		{
+			"Min": 0,
+			"Max": 0,
+			"Weight": 35,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_FiberPlant_T01.DA_DID_Resource_FiberPlant_T01",
+			"LootTable": "None"
+		},
+		{
+			"Min": 0,
+			"Max": 0,
+			"Weight": 35,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_FiberPlant_T01.DA_DID_Resource_FiberPlant_T01",
+			"LootTable": "None"
+		},
+		{
+			"Min": 0,
+			"Max": 1,
+			"Weight": 30,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_FiberPlant_T01.DA_DID_Resource_FiberPlant_T01",
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

@@ -1,0 +1,29 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Armor/DA_EID_Armor_Bandit_Base_Feet.DA_EID_Armor_Bandit_Base_Feet",
+			"ItemAttributeModifiers": [
+				{
+					"AttributeTag": {
+						"TagName": "Inventory.Item.Attribute.Level"
+					},
+					"AttributesModifier": 6,
+					"ModifyItemAttributePolicy": "Override"
+				}
+			],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

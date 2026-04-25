@@ -1,0 +1,37 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 100,
+      "Max": 200,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Wood_T01.DA_DID_Resource_Wood_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 0,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Nails_T02.DA_DID_Resource_Nails_T02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 0,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Ship/DA_CID_ShipConsumable_RepairKit_Small.DA_CID_ShipConsumable_RepairKit_Small",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

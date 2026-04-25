@@ -1,0 +1,45 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/SeaTrade/DA_CID_TradeGoods_WoodT01.DA_CID_TradeGoods_WoodT01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/SeaTrade/DA_CID_TradeGoods_FabricT01.DA_CID_TradeGoods_FabricT01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/SeaTrade/DA_CID_TradeGoods_LeatherT01.DA_CID_TradeGoods_LeatherT01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/SeaTrade/DA_CID_TradeGoods_CoconutsT01.DA_CID_TradeGoods_CoconutsT01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

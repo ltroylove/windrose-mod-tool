@@ -1,0 +1,37 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 1,
+      "Max": 1,
+      "Weight": 0,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/ArmorMain/DA_LT_Ord_17_ArmorMain.DA_LT_Ord_17_ArmorMain"
+    },
+    {
+      "Min": 30,
+      "Max": 30,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Alchemy/DA_CID_Alchemy_Bandages_T01.DA_CID_Alchemy_Bandages_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 50,
+      "Max": 50,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Ammo/DA_AID_Ammo_FirearmProjectile_RoughMetal_T02.DA_AID_Ammo_FirearmProjectile_RoughMetal_T02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

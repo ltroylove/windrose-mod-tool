@@ -1,0 +1,27 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "Weight",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 70,
+			"LootItem": "None",
+			"LootTable": "/R5BusinessRules/LootTables/Foliage/DA_LT_Foliage_Swamp_StatueCorrupted_01.DA_LT_Foliage_Swamp_StatueCorrupted_01"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 15,
+			"LootItem": "None",
+			"LootTable": "/R5BusinessRules/LootTables/Foliage/DA_LT_Foliage_Swamp_StatueCorrupted_02.DA_LT_Foliage_Swamp_StatueCorrupted_02"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

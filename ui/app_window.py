@@ -86,8 +86,8 @@ class AppWindow(ctk.CTk):
 
         self._build_header()
         self._build_sidebar()
-        self._build_content()
         self._build_statusbar()
+        self._build_content()
         self._nav_to("Home")
 
     def _build_header(self):
@@ -168,6 +168,14 @@ class AppWindow(ctk.CTk):
         )
         self._status_lbl.pack(side="left", padx=14)
 
+        if self.game_paths and self.game_paths.client_exe:
+            ctk.CTkButton(
+                bar, text="▶  Launch Windrose", width=150, height=22,
+                fg_color=ACCENT, hover_color=ACCENT_HOVER,
+                font=ctk.CTkFont(size=10),
+                command=self._launch_game,
+            ).pack(side="right", padx=8, pady=2)
+
     # ------------------------------------------------------------------
     # Navigation
     # ------------------------------------------------------------------
@@ -204,6 +212,12 @@ class AppWindow(ctk.CTk):
     # ------------------------------------------------------------------
     # Called by SettingsTab after a save
     # ------------------------------------------------------------------
+
+    def _launch_game(self):
+        import subprocess
+        exe = self.game_paths.client_exe if self.game_paths else None
+        if exe:
+            subprocess.Popen([str(exe)], cwd=str(exe.parent))
 
     def reload(self):
         self._init_services()

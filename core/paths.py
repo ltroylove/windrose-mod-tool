@@ -60,6 +60,15 @@ class GamePaths:
     def server_description(self) -> Path:
         return self.game_root / "R5/ServerDescription.json"
 
+    @property
+    def client_exe(self) -> Path | None:
+        candidates = [
+            self.game_root / "R5.exe",
+            self.game_root / "Windrose.exe",
+            self.game_root / "R5" / "Binaries" / "Win64" / "R5-Win64-Shipping.exe",
+        ]
+        return next((p for p in candidates if p.exists()), None)
+
     def find_world_configs(self) -> list[Path]:
         saved = self.game_root / "R5/Saved/SaveProfiles/Default/RocksDB"
         if not saved.exists():

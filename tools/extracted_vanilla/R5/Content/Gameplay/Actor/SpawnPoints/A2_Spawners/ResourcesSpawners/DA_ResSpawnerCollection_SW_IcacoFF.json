@@ -1,0 +1,28 @@
+{
+	"$type": "R5GameplaySpawnerVariantPreset",
+	"Collection": [
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/PickupResources/BP_Swamp_PickupResource_Icaco_130cm.BP_Swamp_PickupResource_Icaco_130cm_C"
+			],
+			"Amount": {
+				"Min": 1,
+				"Max": 2
+			},
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/PickupResources/BP_Swamp_PickupResource_Firefly_01.BP_Swamp_PickupResource_Firefly_01_C"
+			],
+			"Amount": {
+				"Min": 1,
+				"Max": 3
+			},
+			"CustomData": "None"
+		}
+	],
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerVariantPreset'"
+}

@@ -1,0 +1,21 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "Weight",
+	"LootData": [
+		{
+			"Min": 4,
+			"Max": 4,
+			"Weight": 100,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_WolfFang_T02.DA_DID_Resource_WolfFang_T02",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

@@ -1,0 +1,45 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 80,
+      "Max": 80,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_Reputation_BlackbeardSign_02.DA_DID_Reputation_BlackbeardSign_02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 70,
+      "Max": 70,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_Reputation_BlackbeardSign_02.DA_DID_Reputation_BlackbeardSign_02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 50,
+      "Max": 50,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_Reputation_BlackbeardSign_02.DA_DID_Reputation_BlackbeardSign_02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 40,
+      "Max": 40,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_Reputation_BlackbeardSign_02.DA_DID_Reputation_BlackbeardSign_02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

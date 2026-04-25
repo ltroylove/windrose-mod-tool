@@ -1,0 +1,41 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 50,
+      "Max": 70,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Mahogany_T04.DA_DID_Resource_Mahogany_T04",
+      "LootTable": "None"
+    },
+    {
+      "Min": 40,
+      "Max": 60,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Food/DA_CID_Food_Rum_Bottle_T03.DA_CID_Food_Rum_Bottle_T03",
+      "LootTable": "None"
+    },
+    {
+      "Min": 50,
+      "Max": 80,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_TeaLeaf_T04.DA_DID_Resource_TeaLeaf_T04",
+      "LootTable": "None"
+    },
+    {
+      "Min": 20,
+      "Max": 30,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Alchemy/DA_CID_Alchemy_Potion_GreatHealing_T01.DA_CID_Alchemy_Potion_GreatHealing_T01",
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

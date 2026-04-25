@@ -1,0 +1,37 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 400,
+      "Max": 600,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 0,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_TradeGoods_Provisions.DA_DID_TradeGoods_Provisions",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 0,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_TradeGoods_Spirits.DA_DID_TradeGoods_Spirits",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

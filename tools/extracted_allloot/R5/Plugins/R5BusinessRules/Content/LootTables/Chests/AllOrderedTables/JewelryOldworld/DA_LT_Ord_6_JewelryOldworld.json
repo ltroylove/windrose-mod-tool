@@ -1,0 +1,61 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "Scenario.LootTable.Ordered.JewelryOldworld"
+	},
+	"LootTableType": "Ordered",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_6_RingOldworld.DA_LT_WO_6_RingOldworld"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_6_RingOldworld.DA_LT_WO_6_RingOldworld"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_6_RingOldworld.DA_LT_WO_6_RingOldworld"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_6_RingOldworld.DA_LT_WO_6_RingOldworld"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_6_RingOldworld.DA_LT_WO_6_RingOldworld"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_6_RingOldworld.DA_LT_WO_6_RingOldworld"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

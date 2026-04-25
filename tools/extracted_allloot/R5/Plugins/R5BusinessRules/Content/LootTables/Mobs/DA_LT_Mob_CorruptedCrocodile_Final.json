@@ -1,0 +1,45 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_CorruptedCrocodile_Enchwood.DA_LT_Mob_CorruptedCrocodile_Enchwood"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_CorruptedCrocodile_TaintedBile.DA_LT_Mob_CorruptedCrocodile_TaintedBile"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_Crocodile_Tail.DA_LT_Mob_Crocodile_Tail"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_CorruptedCrocodile_Head.DA_LT_Mob_CorruptedCrocodile_Head"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

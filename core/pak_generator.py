@@ -1,13 +1,14 @@
 """
 Generates a custom game-tuning .pak mod from Game Tuning values.
 
-Data sources (pre-extracted mod paks used as templates):
-  tools/extracted/           MoreStacks 100x           → inventory item JSONs
-  tools/extracted_mineral/   MoreMineralResources 2x   → mineral loot tables + spawner JSONs
-  tools/extracted_tree/      MoreTreeResources 2x      → tree / herb loot table JSONs
-  tools/extracted_backpack/  MoreBackpackSlots 3x      → backpack slot JSONs
+Data sources:
+  tools/extracted/            MoreStacks 100x           → inventory item JSONs
+  tools/extracted_mineral/    MoreMineralResources 2x   → mineral loot tables + spawner JSONs
+  tools/extracted_tree/       MoreTreeResources 2x      → tree / herb loot table JSONs
+  tools/extracted_backpack/   MoreBackpackSlots 3x      → backpack slot JSONs
   tools/extracted_fasttravel/ FastTravelPlus 50         → fast travel building limits JSON
-  tools/extracted_lantern/   BetterLanternLonger 2x    → lantern refuel recipe JSON
+  tools/extracted_lantern/    BetterLanternLonger 2x    → lantern refuel recipe JSON
+  tools/extracted_vanilla/    Direct from game paks     → copper loot + animal drop tables
 
 Strategy:
   For each source JSON, determine its category, scale the relevant values so that
@@ -15,6 +16,7 @@ Strategy:
 
   stack sizes     : user sets absolute max-per-slot (IntVar)
   loot tables     : user sets a multiplier; vanilla = mod_value / ref_mult
+  copper/animals  : user sets a multiplier; vanilla extracted directly, ref_mult = 1.0
   spawners        : user sets respawn hours directly + quantity multiplier
   backpack slots  : user sets a multiplier; vanilla = mod_value / BACKPACK_REF_MULT
   fast travel     : user sets absolute max bell count
@@ -38,9 +40,12 @@ SRC_TREE        = TOOLS_DIR / "extracted_tree"       # MoreTreeResources 2x
 SRC_BACKPACK    = TOOLS_DIR / "extracted_backpack"   # MoreBackpackSlots 3x
 SRC_FASTTRAVEL  = TOOLS_DIR / "extracted_fasttravel" # FastTravelPlus 50
 SRC_LANTERN     = TOOLS_DIR / "extracted_lantern"    # BetterLanternLonger 2x
+SRC_VANILLA     = TOOLS_DIR / "extracted_vanilla"    # Direct from game paks (copper + animals)
+SRC_ALLLOOT     = TOOLS_DIR / "extracted_allloot"    # 10x All Loot mod (food plants, crops, fishing, scrap)
 
 STACK_REF_MULT    = 100.0   # MoreStacks mod multiplier
-LOOT_REF_MULT     = 2.0     # loot mods multiplier
+LOOT_REF_MULT     = 2.0     # loot mods multiplier (mineral + tree)
+ALLLOOT_REF_MULT  = 10.0    # All Loot mod multiplier (food plants, crops, fishing, scrap)
 SPAWN_QTY_REF     = 2.0     # spawner quantity reference multiplier
 BACKPACK_REF_MULT = 3.0     # MoreBackpackSlots mod multiplier
 
@@ -87,18 +92,48 @@ def _stack_category(path_str: str) -> str:
 
 # ─── Loot table category rules ────────────────────────────────────────────────
 LOOT_RULES: list[tuple[str, list[str]]] = [
+    ("loot_copper",         ["Mineral_Copper"]),
     ("loot_iron",           ["Mineral_Iron", "VolcaniIron"]),
     ("loot_sulfur",         ["Mineral_Sulfur"]),
-    ("loot_stone",          ["HollowStone", "MiddleRock", "Mineral_Tuf"]),
+    ("loot_stone",          ["HollowStone", "MiddleRock", "Mineral_Tuf", "LavaTree"]),
+    ("loot_clay",           ["Mineral_Clay", "GreyClay", "MedicinalClay"]),
+    ("loot_soil",           ["Mineral_Soil", "CorruptedSoil"]),
+    ("loot_obsidian",       ["Mineral_Obsidian"]),
+    ("loot_salt",           ["Mineral_Salt"]),
     ("loot_ancient_debris", ["AncientMedalion", "AncientStatue", "BrokenStatue",
                               "RuinsDebris", "StatueCorrupted"]),
     ("loot_hardwood",       ["Mahogany", "BigTaxodium", "SmallTaxodium",
                               "DiviLog", "DiviStump"]),
     ("loot_plague_wood",    ["BurntTree", "Stump_Corrupted"]),
-    ("loot_herbs",          ["_Fiber_", "DefaultFiber", "LimeTree_Seeds"]),
+    ("loot_herbs",          ["_Fiber_", "DefaultFiber", "LimeTree_Seeds",
+                              "Bush_AloeFresh", "Bush_Flax", "Bush_Rosella", "Bush_Bromelia"]),
     ("loot_softwood",       ["DefaultWood", "DefaultStick", "Jungle_Log",
-                              "Foliage_Stump_0", "Ashlands_Log", "LimeTree"]),
+                              "Foliage_Stump_0", "Ashlands_Log", "LimeTree",
+                              "Frailejon", "Bush_Yucca"]),
+    ("loot_food_plants",    ["Bush_Banana", "Bush_Corn", "Bush_Tomato", "Bush_Pepper",
+                              "Bush_Icaco", "Bush_Cocoloba", "Foliage_Leek",
+                              "Foliage_Pineapple", "Foliage_Potato", "Foliage_BlackBean"]),
+    ("loot_crops",          ["Foliage_Crop_"]),
+    ("loot_fishing",        ["FishData_", "Butchering_"]),
+    ("loot_scrap",          ["ScrapsNode_", "Mineral_Shipwreck_"]),
 ]
+
+# Wildlife mob names whose Rss/ leaf tables make up animal drops.
+# Human enemies (BlackBeard, Brit, Skeleton, etc.) are excluded.
+_ANIMAL_MOB_NAMES = {
+    "Boar", "BoarF", "BoarMega",
+    "Dodo", "DodoF",
+    "Crab", "DrownedCrab",
+    "Wolf", "AlphaWolf",
+    "Crocodile", "CorruptedCrocodile",
+}
+
+
+def _is_animal_mob(stem: str) -> bool:
+    """Return True if this Mobs/Rss/ stem belongs to a wildlife animal."""
+    # stem format: DA_LT_Mob_<AnimalName>_<DropType>[_<variant>]
+    parts = stem.split("_")
+    return len(parts) >= 4 and parts[3] in _ANIMAL_MOB_NAMES
 
 
 def _loot_category(stem: str) -> str | None:
@@ -174,6 +209,42 @@ def _process_loot(
         if isinstance(entry.get("Min"), (int, float)) and isinstance(entry.get("Max"), (int, float)):
             entry["Min"] = max(1, round(entry["Min"] * scale))
             entry["Max"] = max(1, round(entry["Max"] * scale))
+            changed = True
+
+    if not changed:
+        return
+
+    rel = src.relative_to(base)
+    out = staging / "R5/Plugins/R5BusinessRules/Content/LootTables" / rel
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(data, indent="\t"), encoding="utf-8")
+    counts["loot"] += 1
+
+
+def _process_animal_loot(
+    src: Path, base: Path, staging: Path,
+    values: dict, counts: dict,
+) -> None:
+    """Scale a Mobs/Rss/ leaf table for a wildlife animal using vanilla values directly."""
+    if not _is_animal_mob(src.stem):
+        return
+
+    try:
+        data = json.loads(src.read_bytes())
+    except Exception:
+        return
+
+    native = str(data.get("NativeClass", "")) + str(data.get("$type", ""))
+    if "R5BLLootParams" not in native:
+        return
+
+    user_mult = float(values.get("loot_animals", 1.0))
+
+    changed = False
+    for entry in data.get("LootData", []):
+        if isinstance(entry.get("Min"), (int, float)) and isinstance(entry.get("Max"), (int, float)):
+            entry["Min"] = max(1, round(entry["Min"] * user_mult))
+            entry["Max"] = max(1, round(entry["Max"] * user_mult))
             changed = True
 
     if not changed:
@@ -349,6 +420,8 @@ def check_sources() -> list[str]:
         ("Backpack slots extraction",       SRC_BACKPACK),
         ("Fast travel limits extraction",   SRC_FASTTRAVEL),
         ("Lantern recipe extraction",       SRC_LANTERN),
+        ("Vanilla game extraction",        SRC_VANILLA),
+        ("All Loot mod extraction",        SRC_ALLLOOT),
     ]:
         if not path.exists():
             missing.append(f"{label} ({path})")
@@ -421,6 +494,43 @@ def generate(values: dict, pak_name: str, output_dir: Path) -> dict:
 
         # 7 ── Lantern burn duration
         _process_lantern(root, values, counts)
+
+        # 8 ── Vanilla-only mineral loot (copper + lava tree — not in any reference mod)
+        vanilla_loot_base = SRC_VANILLA / "R5/Plugins/R5BusinessRules/Content/LootTables"
+        vanilla_foliage = vanilla_loot_base / "Foliage"
+        if vanilla_foliage.exists():
+            for p in vanilla_foliage.glob("DA_LT_Mineral_Copper*.json"):
+                _process_loot(p, vanilla_loot_base, root, values, 1.0, counts)
+            for p in vanilla_foliage.glob("DA_LT_Mineral_LavaTree*.json"):
+                _process_loot(p, vanilla_loot_base, root, values, 1.0, counts)
+
+        # 9 ── Animal drop tables (vanilla source, ref_mult=1.0)
+        vanilla_mob_rss = vanilla_loot_base / "Mobs" / "Rss"
+        if vanilla_mob_rss.exists():
+            for p in vanilla_mob_rss.glob("*.json"):
+                _process_animal_loot(p, vanilla_loot_base, root, values, counts)
+
+        # 10 ── Food plants, crops, fishing, scrap (all-loot mod, ref_mult=10.0)
+        allloot_loot_base = SRC_ALLLOOT / "R5/Plugins/R5BusinessRules/Content/LootTables"
+        if allloot_loot_base.exists():
+            for p in allloot_loot_base.rglob("*.json"):
+                if _loot_category(p.stem) in {
+                    "loot_food_plants", "loot_crops", "loot_fishing", "loot_scrap",
+                    "loot_herbs", "loot_softwood",
+                }:
+                    _process_loot(p, allloot_loot_base, root, values, ALLLOOT_REF_MULT, counts)
+
+        # 11 ── Vanilla foliage tables not covered by reference mod (ref_mult=1.0)
+        # Catches any tree/shrub loot tables the MoreTreeResources mod packaged in
+        # I/O Store format (unreadable by repak) — e.g. coastal palms, yucca, etc.
+        ref_tree_stems = {
+            p.stem
+            for p in (SRC_TREE / "R5/Plugins/R5BusinessRules/Content/LootTables/Foliage").glob("*.json")
+        } if (SRC_TREE / "R5/Plugins/R5BusinessRules/Content/LootTables/Foliage").exists() else set()
+        if vanilla_foliage.exists():
+            for p in vanilla_foliage.glob("DA_LT_Foliage_*.json"):
+                if p.stem not in ref_tree_stems and _loot_category(p.stem) is not None:
+                    _process_loot(p, vanilla_loot_base, root, values, 1.0, counts)
 
         total = sum(v for k, v in counts.items() if k != "path")
         if total == 0:

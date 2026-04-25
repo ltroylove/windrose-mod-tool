@@ -1,0 +1,40 @@
+{
+	"$type": "R5GameplaySpawnerParams",
+	"Variants": [
+		{
+			"DebugName": "2-3",
+			"Weight": 1,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/PickupResources/BP_Highlands_Pickup_Resource_LimeTree_400cm.BP_Highlands_Pickup_Resource_LimeTree_400cm_C"
+					],
+					"Amount": {
+						"Min": 2,
+						"Max": 3
+					},
+					"CustomData": "None"
+				}
+			]
+		}
+	],
+	"SpawnRadius": 300,
+	"MinDistanceBetweenEntities": 150,
+	"RandomRotation": 2,
+	"HeightModifier": 1,
+	"RespawnInterval": {
+		"Min": 7200,
+		"Max": 7200
+	},
+	"SpawnCondition": "None",
+	"bSuspendOnSpawnConditionFail": true,
+	"bAllowToSpawnInBuildingArea": false,
+	"DebugColor": {
+		"B": 0,
+		"G": 226,
+		"R": 255,
+		"A": 255
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerParams'"
+}

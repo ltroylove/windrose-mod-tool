@@ -1,0 +1,37 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Trading/DA_DID_TradeCraft_Alcohol_Sugarcane.DA_DID_TradeCraft_Alcohol_Sugarcane",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Food/DA_CID_Food_Rum_Bottle_T03.DA_CID_Food_Rum_Bottle_T03",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CJ_RobinsonNote_2_T01.DA_DID_Misc_CJ_RobinsonNote_2_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

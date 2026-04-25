@@ -3,19 +3,12 @@ import threading
 import customtkinter as ctk
 from pathlib import Path
 from tkinter import messagebox
-from core import settings as cfg
+from core import activity_log, settings as cfg
 from core import pak_generator
 
 from ui.theme import ACCENT, CARD_BG, NAV_BG, MUTED
 
 NAV_W = 168
-
-# Keys with no backing mod data — sliders are shown but disabled with a notice
-_UNSUPPORTED = {
-    "loot_copper", "loot_animals",
-    "spawn_copper", "spawn_iron", "spawn_sulfur", "spawn_stone",
-    "spawn_softwood", "spawn_hardwood", "spawn_herbs",
-}
 
 # ── Presets ───────────────────────────────────────────────────────────────────
 
@@ -26,7 +19,10 @@ PRESETS = {
         stack_ammo=200, stack_consumables=10,
         loot_softwood=1.0, loot_hardwood=1.0, loot_plague_wood=1.0,
         loot_copper=1.0, loot_iron=1.0, loot_sulfur=1.0,
-        loot_stone=1.0, loot_ancient_debris=1.0, loot_herbs=1.0, loot_animals=1.0,
+        loot_stone=1.0, loot_clay=1.0, loot_soil=1.0, loot_obsidian=1.0, loot_salt=1.0,
+        loot_ancient_debris=1.0, loot_herbs=1.0,
+        loot_food_plants=1.0, loot_crops=1.0, loot_fishing=1.0, loot_scrap=1.0,
+        loot_animals=1.0,
         spawn_copper_h=6.0,         spawn_copper_qty=1.0,
         spawn_iron_h=6.0,           spawn_iron_qty=1.0,
         spawn_sulfur_h=6.0,         spawn_sulfur_qty=1.0,
@@ -45,7 +41,10 @@ PRESETS = {
         stack_ammo=1000, stack_consumables=50,
         loot_softwood=2.0, loot_hardwood=2.0, loot_plague_wood=2.0,
         loot_copper=2.0, loot_iron=2.0, loot_sulfur=2.0,
-        loot_stone=2.0, loot_ancient_debris=2.0, loot_herbs=2.0, loot_animals=2.0,
+        loot_stone=2.0, loot_clay=2.0, loot_soil=2.0, loot_obsidian=2.0, loot_salt=2.0,
+        loot_ancient_debris=2.0, loot_herbs=2.0,
+        loot_food_plants=2.0, loot_crops=2.0, loot_fishing=2.0, loot_scrap=2.0,
+        loot_animals=2.0,
         spawn_copper_h=3.0,         spawn_copper_qty=2.0,
         spawn_iron_h=3.0,           spawn_iron_qty=2.0,
         spawn_sulfur_h=3.0,         spawn_sulfur_qty=2.0,
@@ -64,7 +63,10 @@ PRESETS = {
         stack_ammo=9999, stack_consumables=200,
         loot_softwood=5.0, loot_hardwood=5.0, loot_plague_wood=5.0,
         loot_copper=5.0, loot_iron=5.0, loot_sulfur=5.0,
-        loot_stone=5.0, loot_ancient_debris=5.0, loot_herbs=5.0, loot_animals=5.0,
+        loot_stone=5.0, loot_clay=5.0, loot_soil=5.0, loot_obsidian=5.0, loot_salt=5.0,
+        loot_ancient_debris=5.0, loot_herbs=5.0,
+        loot_food_plants=5.0, loot_crops=5.0, loot_fishing=5.0, loot_scrap=5.0,
+        loot_animals=5.0,
         spawn_copper_h=1.0,         spawn_copper_qty=5.0,
         spawn_iron_h=1.0,           spawn_iron_qty=5.0,
         spawn_sulfur_h=1.0,         spawn_sulfur_qty=5.0,
@@ -95,15 +97,23 @@ STACKS = [
 ]
 
 LOOT = [
-    ("loot_softwood",      "Softwood Trees",         "Wood, Tree Bark, Resin"),
-    ("loot_hardwood",      "Hardwood Trees",          "Hardwood, Tree Bark"),
-    ("loot_plague_wood",   "Plague Wood / Tar Trees", "Plague Wood, Tar, Tree Bark"),
+    ("loot_softwood",      "Softwood Trees",         "Wood, Tree Bark, Resin  (Jungle, Ashlands, Swamp trees)"),
+    ("loot_hardwood",      "Hardwood Trees",          "Hardwood, Tree Bark  (Mahogany, Divi trees)"),
+    ("loot_plague_wood",   "Plague Wood / Tar Trees", "Plague Wood, Tar, Tree Bark  (Ashlands burnt trees)"),
     ("loot_copper",        "Copper Nodes",            "Copper Ore  (Coastal Jungle caves)"),
     ("loot_iron",          "Iron Nodes",              "Iron Ore, Volcanic Iron Ore  (Foothills & Volcanic)"),
     ("loot_sulfur",        "Sulfur Deposits",         "Sulfur  (Foothills & Volcanic rocks)"),
     ("loot_stone",         "Stone Nodes",             "Stone  (surface rocks, all biomes)"),
+    ("loot_clay",          "Clay Deposits",           "Clay, Grey Clay, Medicinal Clay  (rivers & coasts)"),
+    ("loot_soil",          "Soil & Compost",          "Rich Soil, Corrupted Soil / Compost  (farming nodes)"),
+    ("loot_obsidian",      "Obsidian Nodes",          "Obsidian  (Volcanic biome)"),
+    ("loot_salt",          "Salt Deposits",           "Salt  (Coastal & swamp nodes)"),
     ("loot_ancient_debris","Ancient Debris",          "Ancient Scraps → Mire Metal Ingot  (Cursed Swamp ruins)"),
-    ("loot_herbs",         "Herb & Plant Patches",    "Healing Herbs, Flax Fiber, Aloe, Bromeliad"),
+    ("loot_herbs",         "Herb & Plant Patches",    "Fiber patches, Aloe, Flax, Rosella, Bromeliad"),
+    ("loot_food_plants",   "Wild Food Plants",        "Banana, Corn, Tomato, Pepper, Icaco, Potato, Leek, Pineapple"),
+    ("loot_crops",         "Farming Crops",           "Harvests from planted crops  (Banana, Corn, Palm, etc.)"),
+    ("loot_fishing",       "Fishing",                 "Catch yield and butchering from coast & ocean fish"),
+    ("loot_scrap",         "Scrap & Shipwreck Nodes", "Scrap piles and shipwreck debris  (Wood, Nails, Scrap)"),
     ("loot_animals",       "Animal Drops",            "Meat, Rough Hide, Bones, Animal Fat, Feather"),
 ]
 
@@ -317,38 +327,28 @@ class CreateTab(ctk.CTkFrame):
             self._entry_vars[key] = evar
 
             row = r + 3
-            unsupported = key in _UNSUPPORTED
-            name_color  = "#374151" if unsupported else None
-
             lf = ctk.CTkFrame(parent, fg_color="transparent")
             lf.grid(row=row, column=0, padx=14, pady=4, sticky="w")
             ctk.CTkLabel(lf, text=label, anchor="w",
-                         font=ctk.CTkFont(size=12, weight="bold"),
-                         text_color=name_color or "white").pack(anchor="w")
+                         font=ctk.CTkFont(size=12, weight="bold")).pack(anchor="w")
             ctk.CTkLabel(lf, text=drops, anchor="w",
-                         text_color="#374151" if unsupported else "#64748b",
+                         text_color="#64748b",
                          font=ctk.CTkFont(size=11), wraplength=200).pack(anchor="w")
 
-            if unsupported:
-                ctk.CTkLabel(
-                    parent, text="No mod data available yet",
-                    text_color="#374151", font=ctk.CTkFont(size=11), anchor="w",
-                ).grid(row=row, column=1, columnspan=3, padx=8, pady=4, sticky="w")
-            else:
-                ctk.CTkSlider(
-                    parent, from_=0.1, to=100.0, variable=var,
-                    button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
-                    command=lambda v, k=key: self._slide_float(k, v),
-                ).grid(row=row, column=1, padx=(8, 8), pady=4, sticky="ew")
+            ctk.CTkSlider(
+                parent, from_=0.1, to=100.0, variable=var,
+                button_color=ACCENT, button_hover_color="#0f766e", progress_color=ACCENT,
+                command=lambda v, k=key: self._slide_float(k, v),
+            ).grid(row=row, column=1, padx=(8, 8), pady=4, sticky="ew")
 
-                entry = ctk.CTkEntry(parent, textvariable=evar, width=72, height=28, justify="right")
-                entry.grid(row=row, column=2, padx=(0, 4), pady=4)
-                evar.trace_add("write", lambda *_, k=key, ev=evar: self._entry_float(k, ev, 0.1, 100.0))
+            entry = ctk.CTkEntry(parent, textvariable=evar, width=72, height=28, justify="right")
+            entry.grid(row=row, column=2, padx=(0, 4), pady=4)
+            evar.trace_add("write", lambda *_, k=key, ev=evar: self._entry_float(k, ev, 0.1, 100.0))
 
-                ctk.CTkLabel(
-                    parent, text="×", text_color=MUTED,
-                    font=ctk.CTkFont(size=12), width=24, anchor="w",
-                ).grid(row=row, column=3, padx=(0, 14), pady=4)
+            ctk.CTkLabel(
+                parent, text="×", text_color=MUTED,
+                font=ctk.CTkFont(size=12), width=24, anchor="w",
+            ).grid(row=row, column=3, padx=(0, 14), pady=4)
 
     def _build_spawners(self, parent: ctk.CTkScrollableFrame, subtitle: str):
         self._section_header(parent, subtitle)
@@ -360,7 +360,7 @@ class CreateTab(ctk.CTkFrame):
         ctk.CTkLabel(parent, text="RESPAWN TIME", anchor="w",
                      text_color=MUTED, font=ctk.CTkFont(size=10),
         ).grid(row=2, column=1, columnspan=3, padx=4, pady=(0, 4), sticky="w")
-        ctk.CTkLabel(parent, text="QUANTITY MULTIPLIER", anchor="w",
+        ctk.CTkLabel(parent, text="NODES PER SPAWN ×", anchor="w",
                      text_color=MUTED, font=ctk.CTkFont(size=10),
         ).grid(row=2, column=4, columnspan=3, padx=4, pady=(0, 4), sticky="w")
 
@@ -380,21 +380,11 @@ class CreateTab(ctk.CTkFrame):
             self._vars[qty_key]       = qty_var
             self._entry_vars[qty_key] = qty_evar
 
-            unsupported  = prefix in _UNSUPPORTED
-            name_color   = "#374151" if unsupported else "white"
-
             row = r + 3
             ctk.CTkLabel(
                 parent, text=label, width=160, anchor="w",
-                font=ctk.CTkFont(size=12, weight="bold"), text_color=name_color,
+                font=ctk.CTkFont(size=12, weight="bold"),
             ).grid(row=row, column=0, padx=14, pady=6, sticky="w")
-
-            if unsupported:
-                ctk.CTkLabel(
-                    parent, text="No mod data available yet",
-                    text_color="#374151", font=ctk.CTkFont(size=11), anchor="w",
-                ).grid(row=row, column=1, columnspan=6, padx=4, pady=6, sticky="w")
-                continue
 
             ctk.CTkSlider(
                 parent, from_=0.25, to=48.0, variable=h_var, width=180,
@@ -645,23 +635,14 @@ class CreateTab(ctk.CTkFrame):
             return
 
         s = cfg.load()
-        game_path = s.get("game_path", "")
-        if not game_path:
-            messagebox.showerror("No Game Path", "Set your game path in Settings first.")
-            return
-
-        from core.paths import GamePaths
-        gp = GamePaths(Path(game_path))
-        if not gp.is_valid():
-            messagebox.showerror("Invalid Game Path", "Game path is not valid. Check Settings.")
-            return
+        library = Path(s.get("library_path", "Mods"))
+        library.mkdir(parents=True, exist_ok=True)
 
         pak_name = (self._name_var.get().strip() or "MyGameTuning").replace(" ", "_")
         if not pak_name.endswith("_P"):
             pak_name += "_P"
 
-        output_dir = gp.client_mods
-        output_dir.mkdir(parents=True, exist_ok=True)
+        output_dir = library
 
         self._gen_btn.configure(state="disabled", text="Generating…")
         self.update_idletasks()
@@ -669,25 +650,26 @@ class CreateTab(ctk.CTkFrame):
         def _run():
             try:
                 counts = pak_generator.generate(self._collect(), pak_name, output_dir)
-                self.after(0, lambda: self._on_generate_done(counts))
+                self.after(0, lambda: self._on_generate_done(counts, pak_name))
             except Exception as exc:
                 self.after(0, lambda: self._on_generate_error(str(exc)))
 
         threading.Thread(target=_run, daemon=True).start()
 
-    def _on_generate_done(self, counts: dict):
+    def _on_generate_done(self, counts: dict, pak_name: str = ""):
         self._gen_btn.configure(state="normal", text="⚙  Generate Pak")
+        if pak_name:
+            activity_log.log_action("tuning_generated", pak_name)
         messagebox.showinfo(
             "Pak Generated",
-            f"Mod pak created successfully!\n\n"
+            f"Mod pak saved to your MyMods folder.\n\n"
             f"  Stack entries    : {counts['stacks']}\n"
             f"  Loot entries     : {counts['loot']}\n"
             f"  Spawner entries  : {counts['spawners']}\n"
             f"  Backpack entries : {counts['backpack']}\n"
             f"  Building limits  : {counts['build_limits']}\n"
             f"  Lantern entries  : {counts['lantern_item'] + counts['lantern_recipe']}\n\n"
-            f"File: {counts['path'].name}\n"
-            f"Location: {counts['path'].parent}",
+            f"Go to Library to deploy it to your game.",
         )
 
     def _on_generate_error(self, msg: str):

@@ -1,0 +1,45 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "Scenario.LootTable.WO.RingSenka"
+	},
+	"LootTableType": "WeightedOnetime",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Jewelry/DA_EID_Ring_CritChance_Minor.DA_EID_Ring_CritChance_Minor",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Jewelry/DA_EID_Ring_PierceDmg_Minor.DA_EID_Ring_PierceDmg_Minor",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Jewelry/DA_EID_Ring_CrudeDmg_Minor.DA_EID_Ring_CrudeDmg_Minor",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Jewelry/DA_EID_Ring_ResStmnCons_Minor.DA_EID_Ring_ResStmnCons_Minor",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

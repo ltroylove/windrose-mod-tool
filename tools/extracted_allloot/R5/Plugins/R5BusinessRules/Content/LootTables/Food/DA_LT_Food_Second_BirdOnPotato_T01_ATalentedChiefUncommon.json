@@ -1,0 +1,29 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "Weight",
+	"LootData": [
+		{
+			"Min": 0,
+			"Max": 0,
+			"Weight": 70,
+			"LootItem": "/R5BusinessRules/InventoryItems/Consumables/Food/DA_CID_Food_Second_BirdOnPotato_T01.DA_CID_Food_Second_BirdOnPotato_T01",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 30,
+			"LootItem": "/R5BusinessRules/InventoryItems/Consumables/Food/DA_CID_Food_Second_BirdOnPotato_T01.DA_CID_Food_Second_BirdOnPotato_T01",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

@@ -1,0 +1,42 @@
+{
+	"$type": "R5GameplaySpawnerVariantPreset",
+	"Collection": [
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/SegmentTrees/BPDummyTrees/BP_Dummy_Segment_Highlands_Divi_1200cm.BP_Dummy_Segment_Highlands_Divi_1200cm_C"
+			],
+			"Amount": {
+				"Min": 3,
+				"Max": 3
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/SegmentTrees/BPDummyTrees/BP_Dummy_Segment_Highlands_Divi_1600cm.BP_Dummy_Segment_Highlands_Divi_1600cm_C"
+			],
+			"Amount": {
+				"Min": 1,
+				"Max": 1
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/SegmentTrees/BPDummyTrees/BP_Dummy_Segment_Highlands_Divi_1700cm.BP_Dummy_Segment_Highlands_Divi_1700cm_C"
+			],
+			"Amount": {
+				"Min": 0,
+				"Max": 1
+			},
+			"Mutators": [],
+			"CustomData": "None"
+		}
+	],
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerVariantPreset'"
+}

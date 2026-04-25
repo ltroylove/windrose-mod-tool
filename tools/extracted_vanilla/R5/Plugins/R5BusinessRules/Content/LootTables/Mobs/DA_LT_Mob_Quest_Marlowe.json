@@ -1,0 +1,29 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Min": 50,
+			"Max": 50,
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 5,
+			"Max": 5,
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/Consumables/Alchemy/DA_CID_Alchemy_Potion_EnhancedHealing_T01.DA_CID_Alchemy_Potion_EnhancedHealing_T01",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

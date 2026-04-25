@@ -1,0 +1,29 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 1,
+      "Max": 1,
+      "Weight": 0,
+      "LootItem": "None",
+      "ItemAttributeModifiers": [],
+      "LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeaponMain/DA_LT_Ord_22_WeaponMain.DA_LT_Ord_22_WeaponMain"
+    },
+    {
+      "Min": 100,
+      "Max": 100,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Ammo/DA_AID_Ammo_Gunpowder_Homemade_T02.DA_AID_Ammo_Gunpowder_Homemade_T02",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

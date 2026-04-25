@@ -1,0 +1,56 @@
+{
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Wood_T01.DA_DID_Resource_Wood_T01",
+			"LootTable": "",
+			"Min": 1,
+			"Max": 1
+		},
+		{
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Wood_T01.DA_DID_Resource_Wood_T01",
+			"LootTable": "",
+			"Min": 1,
+			"Max": 1
+		},
+		{
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Wood_T01.DA_DID_Resource_Wood_T01",
+			"LootTable": "",
+			"Min": 1,
+			"Max": 1
+		},
+		{
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Wood_T01.DA_DID_Resource_Wood_T01",
+			"LootTable": "",
+			"Min": 1,
+			"Max": 1
+		},
+		{
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Wood_T01.DA_DID_Resource_Wood_T01",
+			"LootTable": "",
+			"Min": 0,
+			"Max": 1
+		},
+		{
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Wood_T01.DA_DID_Resource_Wood_T01",
+			"LootTable": "",
+			"Min": 0,
+			"Max": 1
+		},
+		{
+			"Weight": 0,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_Fabric_T01.DA_DID_Resource_Fabric_T01",
+			"LootTable": "",
+			"Min": 1,
+			"Max": 1
+		}
+	],
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'",
+	"$type": "R5BLLootParams"
+}

@@ -1,0 +1,48 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 10,
+      "LootItem": "None",
+      "LootTable": "/R5BusinessRules/LootTables/Chests/PersonalChest/Ashlands/DA_LT_Chest_PersonalChest_BuriedRuin_Wardrobe_01.DA_LT_Chest_PersonalChest_BuriedRuin_Wardrobe_01"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 10,
+      "LootItem": "None",
+      "LootTable": "/R5BusinessRules/LootTables/Chests/PersonalChest/Ashlands/DA_LT_Chest_PersonalChest_BuriedRuin_Wardrobe_02.DA_LT_Chest_PersonalChest_BuriedRuin_Wardrobe_02"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 10,
+      "LootItem": "None",
+      "LootTable": "/R5BusinessRules/LootTables/Chests/PersonalChest/Ashlands/DA_LT_Chest_PersonalChest_BuriedRuin_Wardrobe_03.DA_LT_Chest_PersonalChest_BuriedRuin_Wardrobe_03"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 10,
+      "LootItem": "None",
+      "LootTable": "/R5BusinessRules/LootTables/Chests/PersonalChest/Ashlands/DA_LT_Chest_PersonalChest_BuriedRuin_Wardrobe_04.DA_LT_Chest_PersonalChest_BuriedRuin_Wardrobe_04"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 60,
+      "LootItem": "None",
+      "LootTable": "/R5BusinessRules/LootTables/Chests/PersonalChest/Ashlands/DA_LT_Chest_PersonalChest_BuriedRuin_Wardrobe_05.DA_LT_Chest_PersonalChest_BuriedRuin_Wardrobe_05"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

@@ -1,0 +1,197 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "Scenario.LootTable.Ordered.WeaponMain"
+	},
+	"LootTableType": "Ordered",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_7_WeaponBlank.DA_LT_WO_7_WeaponBlank"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_7_WeaponBlank.DA_LT_WO_7_WeaponBlank"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeaponMain/DA_LT_WO_3_WeaponMain_BlankBase_01.DA_LT_WO_3_WeaponMain_BlankBase_01"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeaponMain/DA_LT_WO_3_WeaponMain_BlankBase_01.DA_LT_WO_3_WeaponMain_BlankBase_01"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeaponMain/DA_LT_WO_3_WeaponMain_BlankBase_01.DA_LT_WO_3_WeaponMain_BlankBase_01"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_7_WeaponBlank.DA_LT_WO_7_WeaponBlank"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeaponMain/DA_LT_WO_3_WeaponMain_BlankBase_02.DA_LT_WO_3_WeaponMain_BlankBase_02"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeaponMain/DA_LT_WO_3_WeaponMain_BlankBase_02.DA_LT_WO_3_WeaponMain_BlankBase_02"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeaponMain/DA_LT_WO_3_WeaponMain_BlankBase_02.DA_LT_WO_3_WeaponMain_BlankBase_02"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

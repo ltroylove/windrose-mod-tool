@@ -1,0 +1,29 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 20,
+      "Weight": 50,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Ship/DA_CID_ShipConsumable_RepairKit_Base.DA_CID_ShipConsumable_RepairKit_Base",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 50,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Ship/DA_CID_ShipConsumable_RepairKit_Big.DA_CID_ShipConsumable_RepairKit_Big",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

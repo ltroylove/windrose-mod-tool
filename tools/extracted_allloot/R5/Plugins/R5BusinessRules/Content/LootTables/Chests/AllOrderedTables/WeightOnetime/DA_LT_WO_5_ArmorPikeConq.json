@@ -1,0 +1,53 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "Scenario.LootTable.WO.ArmorPikeConq"
+	},
+	"LootTableType": "WeightedOnetime",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Armor/DA_EID_Armor_Conquistador_Base_Feet.DA_EID_Armor_Conquistador_Base_Feet",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Armor/DA_EID_Armor_Conquistador_Base_Hands.DA_EID_Armor_Conquistador_Base_Hands",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Armor/DA_EID_Armor_Conquistador_Base_Head.DA_EID_Armor_Conquistador_Base_Head",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Armor/DA_EID_Armor_Pikeman_Base_Feet.DA_EID_Armor_Pikeman_Base_Feet",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "/R5BusinessRules/InventoryItems/Equipments/Armor/DA_EID_Armor_Pikeman_Base_Hands.DA_EID_Armor_Pikeman_Base_Hands",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

@@ -1,0 +1,45 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_BlackBeard_Sailor_BlackbeardSign_3.DA_LT_Mob_BlackBeard_Sailor_BlackbeardSign_3"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_BlackBeard_Grenadier_Gunpowder_3.DA_LT_Mob_BlackBeard_Grenadier_Gunpowder_3"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_BlackBeard_Sailor_Rum_3.DA_LT_Mob_BlackBeard_Sailor_Rum_3"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_BlackBeard_Sailor_Peanut_3.DA_LT_Mob_BlackBeard_Sailor_Peanut_3"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

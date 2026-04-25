@@ -1,0 +1,37 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "Scenario.LootTable.Ordered.WeaponMain.BlankBase01"
+	},
+	"LootTableType": "WeightedOnetime",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_7_WeaponBlank.DA_LT_WO_7_WeaponBlank"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_7_WeaponBlank.DA_LT_WO_7_WeaponBlank"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 1,
+			"LootItem": "None",
+			"ItemAttributeModifiers": [],
+			"LootTable": "/R5BusinessRules/LootTables/Chests/AllOrderedTables/WeightOnetime/DA_LT_WO_15_WeaponBase.DA_LT_WO_15_WeaponBase"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

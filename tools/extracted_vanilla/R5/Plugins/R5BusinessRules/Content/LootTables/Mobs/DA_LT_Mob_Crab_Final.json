@@ -1,0 +1,27 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "List",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_Crab_MeatCrab.DA_LT_Mob_Crab_MeatCrab"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 0,
+			"LootItem": "None",
+			"LootTable": "/R5BusinessRules/LootTables/Mobs/Rss/DA_LT_Mob_Crab_CrabShell.DA_LT_Mob_Crab_CrabShell"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

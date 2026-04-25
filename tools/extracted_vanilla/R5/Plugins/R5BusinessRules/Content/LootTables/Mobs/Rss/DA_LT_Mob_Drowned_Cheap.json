@@ -1,0 +1,29 @@
+{
+	"$type": "R5BLLootParams",
+	"LootTableId": {
+		"TagName": "None"
+	},
+	"LootTableType": "Weight",
+	"LootData": [
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 50,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CheapDrownedStuff_01_T01.DA_DID_Misc_CheapDrownedStuff_01_T01",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		},
+		{
+			"Min": 1,
+			"Max": 1,
+			"Weight": 50,
+			"LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CheapDrownedStuff_02_T01.DA_DID_Misc_CheapDrownedStuff_02_T01",
+			"ItemAttributeModifiers": [],
+			"LootTable": "None"
+		}
+	],
+	"AssetBundleData": {
+		"Bundles": []
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

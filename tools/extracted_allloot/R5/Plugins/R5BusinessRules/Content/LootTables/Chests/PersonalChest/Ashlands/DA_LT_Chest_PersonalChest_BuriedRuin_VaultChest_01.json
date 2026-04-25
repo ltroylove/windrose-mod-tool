@@ -1,0 +1,34 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 200,
+      "Max": 200,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_ToledoSteel_T04.DA_DID_Resource_ToledoSteel_T04",
+      "LootTable": "None"
+    },
+    {
+      "Min": 100,
+      "Max": 100,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_SilverIngot_T02.DA_DID_Resource_SilverIngot_T02",
+      "LootTable": "None"
+    },
+    {
+      "Min": 1000,
+      "Max": 1500,
+      "Weight": 1,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Misc/DA_DID_Misc_CoinPiastre_T02.DA_DID_Misc_CoinPiastre_T02",
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

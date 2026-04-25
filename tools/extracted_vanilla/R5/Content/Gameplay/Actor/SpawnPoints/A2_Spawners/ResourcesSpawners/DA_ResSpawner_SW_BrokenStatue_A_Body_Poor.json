@@ -1,0 +1,91 @@
+{
+	"$type": "R5GameplaySpawnerParams",
+	"Variants": [
+		{
+			"DebugName": "FaceDown",
+			"Weight": 30,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/MinaralNodes/BrokenStatues/BP_Mineral_BrokenStatue_A_FaceDown.BP_Mineral_BrokenStatue_A_FaceDown_C"
+					],
+					"Amount": {
+						"Min": 0,
+						"Max": 1
+					},
+					"CustomData": "None"
+				}
+			]
+		},
+		{
+			"DebugName": "FaceLeft",
+			"Weight": 30,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/MinaralNodes/BrokenStatues/BP_Mineral_BrokenStatue_A_FaceLeft.BP_Mineral_BrokenStatue_A_FaceLeft_C"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 1
+					},
+					"CustomData": "None"
+				}
+			]
+		},
+		{
+			"DebugName": "FaceRight",
+			"Weight": 30,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/MinaralNodes/BrokenStatues/BP_Mineral_BrokenStatue_A_FaceRight.BP_Mineral_BrokenStatue_A_FaceRight_C"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 1
+					},
+					"CustomData": "None"
+				}
+			]
+		},
+		{
+			"DebugName": "FaceUP",
+			"Weight": 10,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Foliage/MinaralNodes/BrokenStatues/BP_Mineral_BrokenStatue_A_FaceUP.BP_Mineral_BrokenStatue_A_FaceUP_C"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 1
+					},
+					"CustomData": "None"
+				}
+			]
+		}
+	],
+	"SpawnRadius": 0,
+	"MinDistanceBetweenEntities": 10,
+	"RandomRotation": 0,
+	"HeightModifier": 4,
+	"RespawnInterval": {
+		"Min": 7200,
+		"Max": 7200
+	},
+	"SpawnCondition": "None",
+	"bSuspendOnSpawnConditionFail": true,
+	"bAllowToSpawnInBuildingArea": false,
+	"DebugColor": {
+		"B": 255,
+		"G": 140,
+		"R": 80,
+		"A": 255
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerParams'"
+}

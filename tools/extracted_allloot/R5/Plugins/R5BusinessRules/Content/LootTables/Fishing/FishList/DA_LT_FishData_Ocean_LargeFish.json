@@ -1,0 +1,37 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 45,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Fish_Large_GiantMackerel_T01.DA_CID_Misc_Fish_Large_GiantMackerel_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 45,
+      "LootItem": "/R5BusinessRules/InventoryItems/Consumables/Misc/DA_CID_Misc_Fish_Large_GreatBarracuda_T01.DA_CID_Misc_Fish_Large_GreatBarracuda_T01",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 10,
+      "LootItem": "/R5BusinessRules/InventoryItems/Equipments/Weapon/DA_EID_MeleeWeapon_Club_Fish_Base.DA_EID_MeleeWeapon_Club_Fish_Base",
+      "ItemAttributeModifiers": [],
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

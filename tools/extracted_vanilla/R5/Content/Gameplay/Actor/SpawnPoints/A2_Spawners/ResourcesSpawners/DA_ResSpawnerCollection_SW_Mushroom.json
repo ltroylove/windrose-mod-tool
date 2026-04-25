@@ -1,0 +1,28 @@
+{
+	"$type": "R5GameplaySpawnerVariantPreset",
+	"Collection": [
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/PickupResources/BP_Coast_Jungle_PickupResource_Mushroom.BP_Coast_Jungle_PickupResource_Mushroom_C"
+			],
+			"Amount": {
+				"Min": 6,
+				"Max": 9
+			},
+			"CustomData": "None"
+		},
+		{
+			"DebugName": "",
+			"Assets": [
+				"/Game/Gameplay/Foliage/PickupResources/BP_Swamp_PickupResource_Firefly_01.BP_Swamp_PickupResource_Firefly_01_C"
+			],
+			"Amount": {
+				"Min": 2,
+				"Max": 3
+			},
+			"CustomData": "None"
+		}
+	],
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerVariantPreset'"
+}

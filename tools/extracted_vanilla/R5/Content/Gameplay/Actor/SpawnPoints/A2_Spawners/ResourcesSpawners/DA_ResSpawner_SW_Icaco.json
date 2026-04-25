@@ -1,0 +1,40 @@
+{
+	"$type": "R5GameplaySpawnerParams",
+	"Variants": [
+		{
+			"DebugName": "",
+			"Weight": 1,
+			"Collection": [
+				{
+					"DebugName": "",
+					"Assets": [
+						"/Game/Gameplay/Actor/SpawnPoints/A2_Spawners/ResourcesSpawners/DA_ResSpawnerCollection_SW_IcacoFF.DA_ResSpawnerCollection_SW_IcacoFF"
+					],
+					"Amount": {
+						"Min": 1,
+						"Max": 1
+					},
+					"CustomData": "None"
+				}
+			]
+		}
+	],
+	"SpawnRadius": 150,
+	"MinDistanceBetweenEntities": 50,
+	"RandomRotation": 2,
+	"HeightModifier": 4,
+	"RespawnInterval": {
+		"Min": 7200,
+		"Max": 7200
+	},
+	"SpawnCondition": "None",
+	"bSuspendOnSpawnConditionFail": true,
+	"bAllowToSpawnInBuildingArea": false,
+	"DebugColor": {
+		"B": 255,
+		"G": 32,
+		"R": 0,
+		"A": 255
+	},
+	"NativeClass": "/Script/CoreUObject.Class'/Script/R5.R5GameplaySpawnerParams'"
+}

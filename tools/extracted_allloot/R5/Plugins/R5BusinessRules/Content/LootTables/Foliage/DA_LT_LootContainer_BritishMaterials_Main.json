@@ -1,0 +1,41 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "Weight",
+  "LootData": [
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 25,
+      "LootItem": "None",
+      "LootTable": "/R5BusinessRules/LootTables/Foliage/DA_LT_LootContainer_BritishMaterials_04.DA_LT_LootContainer_BritishMaterials_04"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 25,
+      "LootItem": "None",
+      "LootTable": "/R5BusinessRules/LootTables/Foliage/DA_LT_LootContainer_BritishMaterials_04.DA_LT_LootContainer_BritishMaterials_04"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 25,
+      "LootItem": "None",
+      "LootTable": "/R5BusinessRules/LootTables/Foliage/DA_LT_LootContainer_BritishMaterials_02.DA_LT_LootContainer_BritishMaterials_02"
+    },
+    {
+      "Min": 10,
+      "Max": 10,
+      "Weight": 25,
+      "LootItem": "None",
+      "LootTable": "/R5BusinessRules/LootTables/Foliage/DA_LT_LootContainer_BritishMaterials_03.DA_LT_LootContainer_BritishMaterials_03"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

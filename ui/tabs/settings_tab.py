@@ -1,3 +1,4 @@
+import os
 import customtkinter as ctk
 from tkinter import filedialog, messagebox
 from pathlib import Path
@@ -29,15 +30,14 @@ class SettingsTab(ctk.CTkFrame):
         ctk.CTkLabel(
             card, text="Paths",
             font=ctk.CTkFont(size=13, weight="bold"), text_color="#94a3b8",
-        ).grid(row=0, column=0, columnspan=3, sticky="w", padx=16, pady=(14, 8))
+        ).grid(row=0, column=0, columnspan=4, sticky="w", padx=16, pady=(14, 8))
 
-        ctk.CTkFrame(card, height=1, fg_color="#334155").grid(row=1, column=0, columnspan=3, sticky="ew", padx=16)
+        ctk.CTkFrame(card, height=1, fg_color="#334155").grid(row=1, column=0, columnspan=4, sticky="ew", padx=16)
 
         s = cfg.load()
         fields = [
-            ("game_path",    "Game Folder",        self._browse_game),
-            ("library_path", "Mods Library",        self._browse("library_path")),
-            ("my_mods_path", "My Mods (specs)",     self._browse("my_mods_path")),
+            ("game_path",    "Game Folder",     self._browse_game),
+            ("library_path", "Mod Library",     self._browse("library_path")),
         ]
         for i, (key, label, cmd) in enumerate(fields):
             ctk.CTkLabel(card, text=label, anchor="e", width=130, text_color="#94a3b8").grid(
@@ -49,8 +49,13 @@ class SettingsTab(ctk.CTkFrame):
                 row=i + 2, column=1, sticky="ew", padx=(0, 8), pady=8
             )
             ctk.CTkButton(card, text="Browse", width=80, height=32, command=cmd).grid(
-                row=i + 2, column=2, padx=(0, 16), pady=8
+                row=i + 2, column=2, padx=(0, 8), pady=8
             )
+            ctk.CTkButton(
+                card, text="Open", width=60, height=32,
+                fg_color="#1e293b", hover_color="#334155",
+                command=lambda k=key: self._open_folder(k),
+            ).grid(row=i + 2, column=3, padx=(0, 16), pady=8)
 
         # ── actions ──────────────────────────────────────────────────
         act = ctk.CTkFrame(self, fg_color="transparent")
@@ -60,6 +65,11 @@ class SettingsTab(ctk.CTkFrame):
             act, text="Auto-detect Game", width=160, height=34,
             fg_color="#1e293b", hover_color="#334155",
             command=self._auto_detect,
+        ).pack(side="left", padx=(0, 8))
+        ctk.CTkButton(
+            act, text="Validate", width=100, height=34,
+            fg_color="#1e293b", hover_color="#334155",
+            command=self._validate,
         ).pack(side="left", padx=(0, 8))
         ctk.CTkButton(
             act, text="Save Settings", width=130, height=34,
@@ -84,6 +94,22 @@ class SettingsTab(ctk.CTkFrame):
             if path:
                 self._vars[key].set(path)
         return _go
+
+    def _open_folder(self, key: str):
+        path = self._vars[key].get()
+        if path and Path(path).exists():
+            os.startfile(path)
+        else:
+            self._status.configure(text="Path does not exist", text_color="#fbbf24")
+
+    def _validate(self):
+        labels = {"game_path": "Game Folder", "library_path": "Mod Library"}
+        parts = []
+        for key, lbl in labels.items():
+            p = self._vars[key].get()
+            ok = bool(p) and Path(p).exists()
+            parts.append(f"{'✓' if ok else '✗'} {lbl}")
+        self._status.configure(text="   ".join(parts), text_color="#6ee7b7")
 
     def _auto_detect(self):
         found = find_game_path()

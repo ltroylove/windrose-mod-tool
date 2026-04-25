@@ -1,0 +1,27 @@
+{
+  "$type": "R5BLLootParams",
+  "LootTableId": {
+    "TagName": "None"
+  },
+  "LootTableType": "List",
+  "LootData": [
+    {
+      "Min": 20,
+      "Max": 20,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/DefaultItems/Resource/DA_DID_Resource_SilverIngot_T02.DA_DID_Resource_SilverIngot_T02",
+      "LootTable": "None"
+    },
+    {
+      "Min": 20,
+      "Max": 20,
+      "Weight": 0,
+      "LootItem": "/R5BusinessRules/InventoryItems/Ammo/DA_AID_Ammo_Gunpowder_Homemade_T02.DA_AID_Ammo_Gunpowder_Homemade_T02",
+      "LootTable": "None"
+    }
+  ],
+  "AssetBundleData": {
+    "Bundles": []
+  },
+  "NativeClass": "/Script/CoreUObject.Class'/Script/R5BusinessRules.R5BLLootParams'"
+}

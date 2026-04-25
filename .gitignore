@@ -12,6 +12,15 @@ venv/
 
 # User data — machine-specific, never commit
 data/settings.json
+data/activity.json
+data/backups/
+
+# Temporary extraction working directories
+tools/extracted_backpack_tmp/
+tools/extracted_fasttravel_tmp/
+tools/extracted_lantern_tmp/
+tools/extracted_levels_tmp/
+tools/extracted_minimap_tmp/
 
 # Downloaded mods — user's personal library, not source
 Mods/
