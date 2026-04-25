@@ -3,7 +3,6 @@ name: Build & Release
 on:
   push:
     branches: [master]
-    tags:    ["v*.*.*"]
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -17,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -28,20 +29,21 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
 
+      - name: Determine version
+        id: version
+        shell: powershell
+        run: |
+          $count = (git tag -l "v*" | Measure-Object).Count
+          $ver = "v0.1.$count"
+          echo "VERSION=$ver" >> $env:GITHUB_OUTPUT
+
       - name: Inject version
         shell: powershell
         run: |
-          $ref = "${{ github.ref }}"
-          if ($ref -like "refs/tags/v*") {
-            $ver = "${{ github.ref_name }}"
-          } else {
-            $sha = "${{ github.sha }}".Substring(0, 7)
-            $date = Get-Date -Format "yyyy-MM-dd"
-            $ver = "nightly-$date-$sha"
-          }
-          Set-Content version.py "__version__ = '$ver'"
+          Set-Content version.py "__version__ = '${{ steps.version.outputs.VERSION }}'"
 
       - name: Build executable
+        shell: powershell
         run: |
           pyinstaller `
             --onefile `
@@ -53,43 +55,14 @@ jobs:
             --add-data "tools/extracted_tree;tools/extracted_tree" `
             --hidden-import customtkinter `
             main.py
-        shell: powershell
-        continue-on-error: false
 
-      # ── Nightly pre-release (every push to master) ──────────────────
-      - name: Update nightly pre-release
-        if: github.ref == 'refs/heads/master'
+      - name: Create release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          $sha = "${{ github.sha }}".Substring(0, 7)
-          $date = Get-Date -Format "yyyy-MM-dd"
-          $tag  = "nightly"
-          $title = "Latest Build ($date · $sha)"
-          $notes = "Automated build from master branch.``n``nCommit: ${{ github.sha }}``n${{ github.event.head_commit.message }}"
-
-          # Delete old nightly release/tag if present (ignore errors — may not exist yet)
-          gh release delete $tag --yes
-          $LASTEXITCODE = 0
-          git push origin --delete $tag
-          $LASTEXITCODE = 0
-
-          gh release create $tag dist/WindroseModTool.exe `
-            --title $title `
-            --notes $notes `
-            --prerelease `
-            --target master
         shell: powershell
-
-      # ── Versioned release (on v*.*.* tag) ───────────────────────────
-      - name: Create versioned release
-        if: startsWith(github.ref, 'refs/tags/v')
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          $tag = "${{ github.ref_name }}"
-          gh release create $tag dist/WindroseModTool.exe `
-            --title "Windrose Mod Tool $tag" `
+          $ver = "${{ steps.version.outputs.VERSION }}"
+          gh release create $ver dist/WindroseModTool.exe `
+            --title "Windrose Mod Tool $ver" `
             --generate-notes `
             --target master
-        shell: powershell
