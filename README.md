@@ -2,6 +2,8 @@
 
 A desktop GUI application for managing and creating mods for **Windrose** (Early Access, Steam).
 
+> **Note:** This is our first modding project, so not everything may work as expected. It is still actively being developed and improved.
+
 ## Features
 
 - **Mod Manager** — install, enable, and disable `.pak` mods for the client and dedicated server
@@ -39,7 +41,7 @@ Docs/           Developer notes and planning docs
 
 ## How It Works
 
-The Game Tuning Creator uses pre-extracted JSON files from reference mods as templates, derives vanilla values by dividing by the reference mod's known multiplier, applies your chosen multipliers, then repacks with [repak](https://github.com/trumank/repak).
+The Game Tuning Creator applies your chosen multipliers to vanilla game values and repacks them into a custom `.pak` mod using [repak](https://github.com/trumank/repak).
 
 Supported tuning categories: stack sizes, loot (wood, fiber, stone, ore, minerals, crops, food plants, herbs, scrap, fishing), and resource spawner respawn timing.
 
