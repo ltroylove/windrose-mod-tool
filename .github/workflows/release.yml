@@ -49,6 +49,8 @@ jobs:
             --onefile `
             --windowed `
             --name "BlackFlagModManager" `
+            --icon "assets/icon.ico" `
+            --add-data "assets;assets" `
             --add-data "tools/repak;tools/repak" `
             --add-data "tools/retoc;tools/retoc" `
             --add-data "tools/extracted;tools/extracted" `

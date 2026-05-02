@@ -83,7 +83,8 @@ class SettingsTab(ctk.CTkFrame):
                 row=i + 2, column=0, sticky="e", padx=(16, 10), pady=8
             )
             show = "*" if key == "ftp_password" else ""
-            var = ctk.StringVar(value=s.get(key, ""))
+            default = cfg.get_ftp_password() if key == "ftp_password" else s.get(key, "")
+            var = ctk.StringVar(value=default)
             self._vars[key] = var
             ctk.CTkEntry(ftp_card, textvariable=var, height=32, show=show).grid(
                 row=i + 2, column=1, sticky="ew", padx=(0, 8), pady=8
@@ -184,6 +185,16 @@ class SettingsTab(ctk.CTkFrame):
         for key, var in self._vars.items():
             s[key] = var.get()
 
+        # Validate port before saving
+        raw_port = s.get("ftp_port", "21").strip()
+        try:
+            port_int = int(raw_port)
+            if not (1 <= port_int <= 65535):
+                raise ValueError
+            s["ftp_port"] = str(port_int)
+        except ValueError:
+            s["ftp_port"] = "21"
+
         game_str = s.get("game_path", "")
         if game_str:
             gp = GamePaths(Path(game_str))
@@ -191,6 +202,8 @@ class SettingsTab(ctk.CTkFrame):
                 self._status.configure(text="⚠ Game path doesn't look right — check it and try again.", text_color="#fbbf24")
                 return
 
+        # Persist password to OS credential store, not to settings.json
+        cfg.set_ftp_password(s.pop("ftp_password", ""))
         cfg.save(s)
         messagebox.showinfo("Settings Saved", "Settings saved. The app will now reload.")
         self.app.reload()

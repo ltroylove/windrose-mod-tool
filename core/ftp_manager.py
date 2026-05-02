@@ -1,6 +1,6 @@
 import io
 import json
-from ftplib import FTP, error_perm, error_temp
+from ftplib import FTP, error_perm
 
 
 class FTPManager:

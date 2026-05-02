@@ -360,7 +360,7 @@ class LibraryTab(ctk.CTkFrame):
             host=host,
             port=int(s.get("ftp_port", 21)),
             user=s.get("ftp_user", ""),
-            password=s.get("ftp_password", ""),
+            password=cfg.get_ftp_password(),
             server_json_path=s.get("ftp_server_json_path", "R5/ServerDescription.json"),
         )
 

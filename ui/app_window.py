@@ -42,7 +42,7 @@ class AppWindow(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.title("BlackFlag Mod Manager")
-        icon = Path(__file__).parent.parent / "data" / "icon.ico"
+        icon = Path(__file__).parent.parent / "assets" / "icon.ico"
         if icon.exists():
             self.iconbitmap(str(icon))
         self.geometry("1080x700")
