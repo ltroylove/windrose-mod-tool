@@ -1,4 +1,4 @@
-# Windrose Mod Tool
+# BlackFlag Mod Manager
 
 A desktop GUI application for managing and creating mods for **Windrose** (Early Access, Steam).
 

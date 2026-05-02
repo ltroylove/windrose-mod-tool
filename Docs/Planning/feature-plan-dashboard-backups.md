@@ -1,4 +1,4 @@
-# Windrose Mod Tool — Feature Expansion Plan
+# BlackFlag Mod Manager — Feature Expansion Plan
 ## Dashboard, Backups, Activity Log, Launch Game, Open Folder Shortcuts
 
 ---

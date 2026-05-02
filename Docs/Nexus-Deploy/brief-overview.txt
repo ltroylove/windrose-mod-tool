@@ -1,0 +1,1 @@
+A desktop mod manager and Game Tuning creator for Windrose. Install, enable, and disable .pak mods for your client and dedicated server, or generate your own custom tuning mods that adjust stack sizes, loot drop rates, and resource respawn timers — no modding experience required.

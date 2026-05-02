@@ -1,1 +1,2 @@
 customtkinter==5.2.2
+keyring>=24.0.0

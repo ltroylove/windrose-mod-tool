@@ -660,6 +660,8 @@ class CreateTab(ctk.CTkFrame):
         self._gen_btn.configure(state="normal", text="⚙  Generate Pak")
         if pak_name:
             activity_log.log_action("tuning_generated", pak_name)
+        seg_count = counts.get("segments", 0)
+        seg_line = f"  Tree segments    : {seg_count} groups (I/O Store pak)\n" if seg_count else ""
         messagebox.showinfo(
             "Pak Generated",
             f"Mod pak saved to your MyMods folder.\n\n"
@@ -668,7 +670,8 @@ class CreateTab(ctk.CTkFrame):
             f"  Spawner entries  : {counts['spawners']}\n"
             f"  Backpack entries : {counts['backpack']}\n"
             f"  Building limits  : {counts['build_limits']}\n"
-            f"  Lantern entries  : {counts['lantern_item'] + counts['lantern_recipe']}\n\n"
+            f"  Lantern entries  : {counts['lantern_item'] + counts['lantern_recipe']}\n"
+            f"{seg_line}\n"
             f"Go to Library to deploy it to your game.",
         )
 
