@@ -4,6 +4,7 @@ from pathlib import Path
 
 PAK_EXTS = {".pak", ".ucas", ".utoc"}
 DISABLED = ".disabled"
+GENERATED_MARKER = ".blackflag_generated"
 
 
 @dataclass
@@ -54,6 +55,8 @@ class ModManager:
         for entry in sorted(self.library_path.iterdir()):
             if not entry.is_dir():
                 continue
+            if (entry / GENERATED_MARKER).exists():
+                continue  # generated pak — shown in list_generated() instead
             pak_files = [
                 f for f in entry.rglob("*")
                 if f.suffix in PAK_EXTS and f.is_file()
@@ -93,15 +96,15 @@ class ModManager:
     def list_generated(self) -> list[Path]:
         """Return the primary .pak for each generated tuning mod.
 
-        Generated mods are stored in their own subfolder (Mods/MyTuning_P/).
-        Loose .pak files at the library root are also included for backward compat.
-        _Segments companion paks are excluded — they are implicit companions.
+        Generated dirs are identified by a GENERATED_MARKER file written at
+        generation time.  Loose .pak files at the library root are also
+        included for backward compat.  _Segments companions are excluded.
         """
         if not self.library_path.exists():
             return []
         result = []
         for entry in sorted(self.library_path.iterdir()):
-            if entry.is_dir():
+            if entry.is_dir() and (entry / GENERATED_MARKER).exists():
                 paks = sorted(
                     p for p in entry.iterdir()
                     if p.suffix == ".pak" and "_Segments" not in p.stem

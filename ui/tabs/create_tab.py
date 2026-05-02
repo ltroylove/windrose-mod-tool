@@ -4,7 +4,7 @@ import customtkinter as ctk
 from pathlib import Path
 from tkinter import messagebox
 from core import activity_log, settings as cfg
-from core import pak_generator
+from core import mod_manager, pak_generator
 
 from ui.theme import ACCENT, CARD_BG, NAV_BG, MUTED
 
@@ -651,6 +651,7 @@ class CreateTab(ctk.CTkFrame):
         def _run():
             try:
                 counts = pak_generator.generate(self._collect(), pak_name, output_dir)
+                (output_dir / mod_manager.GENERATED_MARKER).touch()
                 self.after(0, lambda: self._on_generate_done(counts, pak_name))
             except Exception as exc:
                 self.after(0, lambda: self._on_generate_error(str(exc)))
