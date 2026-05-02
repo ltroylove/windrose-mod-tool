@@ -642,7 +642,8 @@ class CreateTab(ctk.CTkFrame):
         if not pak_name.endswith("_P"):
             pak_name += "_P"
 
-        output_dir = library
+        output_dir = library / pak_name
+        output_dir.mkdir(parents=True, exist_ok=True)
 
         self._gen_btn.configure(state="disabled", text="Generating…")
         self.update_idletasks()

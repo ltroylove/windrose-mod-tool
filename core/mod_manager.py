@@ -91,21 +91,47 @@ class ModManager:
     # ------------------------------------------------------------------
 
     def list_generated(self) -> list[Path]:
-        """Return loose .pak files in the library root (generated tuning paks)."""
+        """Return the primary .pak for each generated tuning mod.
+
+        Generated mods are stored in their own subfolder (Mods/MyTuning_P/).
+        Loose .pak files at the library root are also included for backward compat.
+        _Segments companion paks are excluded — they are implicit companions.
+        """
         if not self.library_path.exists():
             return []
-        return sorted(p for p in self.library_path.iterdir() if p.suffix == ".pak" and p.is_file())
+        result = []
+        for entry in sorted(self.library_path.iterdir()):
+            if entry.is_dir():
+                paks = sorted(
+                    p for p in entry.iterdir()
+                    if p.suffix == ".pak" and "_Segments" not in p.stem
+                )
+                result.extend(paks)
+            elif entry.is_file() and entry.suffix == ".pak" and "_Segments" not in entry.stem:
+                result.append(entry)
+        return result
 
     def installed_stems(self) -> set[str]:
         """Return the stems of every pak currently in ~mods (for conflict detection)."""
         return {m.name for m in self.list_installed()}
 
     def deploy(self, pak_file: Path, target_mods_dir: Path | None = None) -> Path:
-        """Copy a single .pak file into ~mods (or a given mods dir). Returns dest path."""
+        """Copy a .pak and any companion I/O Store files into ~mods. Returns dest path."""
         dest_dir = target_mods_dir if target_mods_dir is not None else self.mods_dir
         dest_dir.mkdir(parents=True, exist_ok=True)
         dst = dest_dir / pak_file.name
         shutil.copy2(pak_file, dst)
+        # Copy .ucas/.utoc with the same stem (e.g. MyMod_P.ucas, MyMod_P.utoc)
+        for ext in (".ucas", ".utoc"):
+            companion = pak_file.with_suffix(ext)
+            if companion.exists():
+                shutil.copy2(companion, dest_dir / companion.name)
+        # Copy _Segments triplet if present alongside this pak
+        seg_stem = pak_file.stem + "_Segments"
+        for ext in (".pak", ".ucas", ".utoc"):
+            seg = pak_file.parent / (seg_stem + ext)
+            if seg.exists():
+                shutil.copy2(seg, dest_dir / seg.name)
         return dst
 
     def install(self, package: ModPackage) -> list[Path]:
