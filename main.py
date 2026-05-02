@@ -21,7 +21,7 @@ if __name__ == "__main__":
             from tkinter import messagebox
             root = tk.Tk()
             root.withdraw()
-            messagebox.showerror("Windrose Mod Tool — Error", traceback.format_exc())
+            messagebox.showerror("BlackFlag Mod Manager — Error", traceback.format_exc())
         except Exception:
             print(traceback.format_exc(), file=sys.stderr)
         sys.exit(1)

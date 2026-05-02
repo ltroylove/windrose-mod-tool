@@ -48,11 +48,13 @@ jobs:
           pyinstaller `
             --onefile `
             --windowed `
-            --name "WindroseModTool" `
+            --name "BlackFlagModManager" `
             --add-data "tools/repak;tools/repak" `
+            --add-data "tools/retoc;tools/retoc" `
             --add-data "tools/extracted;tools/extracted" `
             --add-data "tools/extracted_mineral;tools/extracted_mineral" `
             --add-data "tools/extracted_tree;tools/extracted_tree" `
+            --add-data "tools/extracted_segments;tools/extracted_segments" `
             --hidden-import customtkinter `
             main.py
 
@@ -62,7 +64,7 @@ jobs:
         shell: powershell
         run: |
           $ver = "${{ steps.version.outputs.VERSION }}"
-          gh release create $ver dist/WindroseModTool.exe `
-            --title "Windrose Mod Tool $ver" `
+          gh release create $ver dist/BlackFlagModManager.exe `
+            --title "BlackFlag Mod Manager $ver" `
             --generate-notes `
             --target master

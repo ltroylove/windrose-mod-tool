@@ -1,6 +1,8 @@
 import customtkinter as ctk
 from tkinter import messagebox
 from core.config_manager import ConfigManager, ServerConfig, WorldConfig
+from core.ftp_manager import FTPManager
+from core import settings as cfg
 
 
 class ConfigTab(ctk.CTkFrame):
@@ -77,9 +79,22 @@ class ConfigTab(ctk.CTkFrame):
         ctk.CTkLabel(form, text="Server ID", anchor="e", width=140, text_color="gray").grid(row=row_i, column=0, sticky="e", padx=(4, 8), pady=3)
         ctk.CTkLabel(form, text=cfg.persistent_server_id or "—", text_color="gray", anchor="w").grid(row=row_i, column=1, sticky="w")
 
-        ctk.CTkButton(panel, text="Save Server Config", command=self._save_server).grid(
-            row=2, column=0, padx=12, pady=(0, 12), sticky="ew"
+        btn_row = ctk.CTkFrame(panel, fg_color="transparent")
+        btn_row.grid(row=2, column=0, padx=12, pady=(0, 6), sticky="ew")
+        btn_row.grid_columnconfigure(0, weight=1)
+        btn_row.grid_columnconfigure(1, weight=1)
+        btn_row.grid_columnconfigure(2, weight=1)
+
+        ctk.CTkButton(btn_row, text="Save Local", command=self._save_server).grid(
+            row=0, column=0, sticky="ew", padx=(0, 4)
         )
+        ctk.CTkButton(btn_row, text="Pull from Server", fg_color="#1e293b", hover_color="#334155",
+                      command=self._pull_from_ftp).grid(row=0, column=1, sticky="ew", padx=4)
+        ctk.CTkButton(btn_row, text="Push to Server", fg_color="#1e293b", hover_color="#334155",
+                      command=self._push_to_ftp).grid(row=0, column=2, sticky="ew", padx=(4, 0))
+
+        self._ftp_status = ctk.CTkLabel(panel, text="", font=ctk.CTkFont(size=11), text_color="#6b7280")
+        self._ftp_status.grid(row=3, column=0, padx=12, pady=(0, 10), sticky="w")
 
     def _save_server(self):
         if not self.app.config_manager:
@@ -100,6 +115,85 @@ class ConfigTab(ctk.CTkFrame):
             messagebox.showerror("Invalid Input", str(e))
         except Exception as e:
             messagebox.showerror("Save Failed", str(e))
+
+    def _make_ftp(self) -> FTPManager | None:
+        s = cfg.load()
+        host = s.get("ftp_host", "")
+        if not host:
+            messagebox.showwarning("FTP Not Configured", "Enter your FTP details in Settings first.")
+            return None
+        return FTPManager(
+            host=host,
+            port=int(s.get("ftp_port", 21)),
+            user=s.get("ftp_user", ""),
+            password=s.get("ftp_password", ""),
+            server_json_path=s.get("ftp_server_json_path", "R5/ServerDescription.json"),
+        )
+
+    def _pull_from_ftp(self):
+        ftp = self._make_ftp()
+        if not ftp:
+            return
+        self._ftp_status.configure(text="Downloading…", text_color="#94a3b8")
+        self.update()
+        try:
+            data = ftp.download_server_config()
+            inner = data.get("ServerDescription_Persistent", {})
+            mapping = {
+                "server_name":           "ServerName",
+                "invite_code":           "InviteCode",
+                "max_player_count":      "MaxPlayerCount",
+                "password":              "Password",
+                "is_password_protected": "IsPasswordProtected",
+                "user_selected_region":  "UserSelectedRegion",
+                "use_direct_connection": "UseDirectConnection",
+                "direct_connection_port":"DirectConnectionServerPort",
+                "p2p_proxy_address":     "P2pProxyAddress",
+            }
+            for key, json_key in mapping.items():
+                if json_key in inner and key in self._server_vars:
+                    var, ftype = self._server_vars[key]
+                    var.set(str(inner[json_key]) if ftype != "bool" else bool(inner[json_key]))
+            self._ftp_status.configure(text="✓ Pulled from server.", text_color="#6ee7b7")
+        except Exception as e:
+            self._ftp_status.configure(text=f"✗ {e}", text_color="#f87171")
+
+    def _push_to_ftp(self):
+        ftp = self._make_ftp()
+        if not ftp:
+            return
+        if not self.app.config_manager:
+            return
+        self._ftp_status.configure(text="Uploading…", text_color="#94a3b8")
+        self.update()
+        try:
+            # Build updated config from current fields
+            existing = self.app.config_manager.load_server()
+            for key, (var, ftype) in self._server_vars.items():
+                raw = var.get()
+                if ftype == "int":
+                    setattr(existing, key, int(raw))
+                elif ftype == "bool":
+                    setattr(existing, key, bool(raw))
+                else:
+                    setattr(existing, key, raw)
+            # Download current remote file to preserve read-only fields
+            remote_data = ftp.download_server_config()
+            inner = remote_data.get("ServerDescription_Persistent", {})
+            inner["ServerName"]                = existing.server_name
+            inner["InviteCode"]                = existing.invite_code
+            inner["MaxPlayerCount"]            = existing.max_player_count
+            inner["Password"]                  = existing.password
+            inner["IsPasswordProtected"]       = existing.is_password_protected
+            inner["UserSelectedRegion"]        = existing.user_selected_region
+            inner["UseDirectConnection"]       = existing.use_direct_connection
+            inner["DirectConnectionServerPort"]= existing.direct_connection_port
+            inner["P2pProxyAddress"]           = existing.p2p_proxy_address
+            remote_data["ServerDescription_Persistent"] = inner
+            ftp.upload_server_config(remote_data)
+            self._ftp_status.configure(text="✓ Pushed to server. Restart it for changes to take effect.", text_color="#6ee7b7")
+        except Exception as e:
+            self._ftp_status.configure(text=f"✗ {e}", text_color="#f87171")
 
     # ------------------------------------------------------------------
     # World config

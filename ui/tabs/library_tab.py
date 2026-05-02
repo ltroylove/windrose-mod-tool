@@ -5,6 +5,7 @@ from tkinter import messagebox
 
 from core import activity_log, settings as cfg
 from core.backup_manager import BackupManager
+from core.ftp_manager import FTPManager
 from ui.theme import ACCENT, CARD_BG, MUTED
 
 COL_NAME  = 280
@@ -44,6 +45,9 @@ class LibraryTab(ctk.CTkFrame):
         ctk.CTkButton(btn_frame, text="Open Mod Library", width=130, height=30,
                       fg_color="#1e293b", hover_color="#334155",
                       command=self._open_library).pack(side="left", padx=4)
+        ctk.CTkButton(btn_frame, text="Check Remote", width=110, height=30,
+                      fg_color="#1e293b", hover_color="#334155",
+                      command=self._check_remote).pack(side="left", padx=4)
         ctk.CTkButton(btn_frame, text="Refresh", width=80, height=30,
                       fg_color="#1e293b", hover_color="#334155",
                       command=self.refresh).pack(side="left", padx=4)
@@ -54,12 +58,14 @@ class LibraryTab(ctk.CTkFrame):
         hdr.grid_propagate(False)
         hdr.grid_columnconfigure(2, weight=1)
 
-        COL_DEPLOY = 200
+        COL_DEPLOYED = 80
+        COL_DEPLOY   = 300
         for col, (txt, w, anchor) in enumerate([
-            ("NAME",     COL_NAME,   "w"),
-            ("TYPE",     COL_TYPE,   "w"),
-            ("CONTENTS", COL_FILES,  "w"),
-            ("DEPLOY",   COL_DEPLOY, "e"),
+            ("NAME",      COL_NAME,     "w"),
+            ("TYPE",      COL_TYPE,     "w"),
+            ("CONTENTS",  COL_FILES,    "w"),
+            ("DEPLOYED",  COL_DEPLOYED, "w"),
+            ("DEPLOY",    COL_DEPLOY,   "e"),
         ]):
             ctk.CTkLabel(
                 hdr, text=txt, width=w, anchor=anchor,
@@ -80,6 +86,11 @@ class LibraryTab(ctk.CTkFrame):
     # Refresh
     # ─────────────────────────────────────────────────────────────────
 
+    def _deployed_stems(self, directory: Path) -> set[str]:
+        if not directory or not directory.exists():
+            return set()
+        return {p.stem.removesuffix(".disabled") for p in directory.iterdir() if p.is_file()}
+
     def refresh(self):
         for w in self.scroll.winfo_children():
             w.destroy()
@@ -87,6 +98,13 @@ class LibraryTab(ctk.CTkFrame):
         s = cfg.load()
         lib_path = Path(s.get("library_path", "Mods"))
         self._lib_path_label.configure(text=f"Downloads: {lib_path.resolve()}")
+
+        # Build deployed-stem sets for local targets
+        gp = self.app.game_paths
+        self._client_stems: set[str] = self._deployed_stems(gp.client_mods if gp else None)
+        self._server_stems: set[str] = self._deployed_stems(gp.server_mods if gp else None)
+        if not hasattr(self, "_remote_stems"):
+            self._remote_stems: set[str] = set()
 
         if not self.app.mod_manager:
             self._empty("Configure your game path in Settings to get started.")
@@ -141,6 +159,7 @@ class LibraryTab(ctk.CTkFrame):
         fr.grid(row=row, column=0, sticky="ew", pady=1)
         fr.grid_propagate(False)
         fr.grid_columnconfigure(2, weight=1)
+        fr.grid_columnconfigure(3, minsize=80)
 
         ctk.CTkLabel(fr, text=pak.stem, width=COL_NAME, anchor="w",
                      font=ctk.CTkFont(size=13),
@@ -157,8 +176,10 @@ class LibraryTab(ctk.CTkFrame):
                      text_color="#6b7280", font=ctk.CTkFont(size=12),
         ).grid(row=0, column=2, padx=4, pady=10, sticky="w")
 
+        self._deployed_badges(fr, self._pak_stems(pak))
         self._deploy_buttons(fr, on_client=lambda p=pak: self._deploy_pak(p, server=False),
-                             on_server=lambda p=pak: self._deploy_pak(p, server=True))
+                             on_server=lambda p=pak: self._deploy_pak(p, server=True),
+                             on_remote=lambda p=pak: self._deploy_pak_remote(p))
 
     def _downloaded_row(self, pkg, row: int):
         bg = "#1a1a2e" if row % 2 == 0 else "transparent"
@@ -166,6 +187,7 @@ class LibraryTab(ctk.CTkFrame):
         fr.grid(row=row, column=0, sticky="ew", pady=1)
         fr.grid_propagate(False)
         fr.grid_columnconfigure(2, weight=1)
+        fr.grid_columnconfigure(3, minsize=80)
 
         ctk.CTkLabel(fr, text=pkg.name, width=COL_NAME, anchor="w",
                      font=ctk.CTkFont(size=13),
@@ -181,12 +203,36 @@ class LibraryTab(ctk.CTkFrame):
                      text_color="#6b7280", font=ctk.CTkFont(size=12),
         ).grid(row=0, column=2, padx=4, pady=10, sticky="w")
 
+        self._deployed_badges(fr, self._pak_stems(pkg))
         self._deploy_buttons(fr, on_client=lambda p=pkg: self._deploy_package(p, server=False),
-                             on_server=lambda p=pkg: self._deploy_package(p, server=True))
+                             on_server=lambda p=pkg: self._deploy_package(p, server=True),
+                             on_remote=lambda p=pkg: self._deploy_package_remote(p))
 
-    def _deploy_buttons(self, parent, on_client, on_server):
+    def _pak_stems(self, mod) -> set[str]:
+        if isinstance(mod, Path):
+            return {mod.stem}
+        return {f.stem for f in mod.pak_files}
+
+    def _deployed_badges(self, parent, pak_stems: set[str]):
         bf = ctk.CTkFrame(parent, fg_color="transparent")
-        bf.grid(row=0, column=3, padx=8, pady=6, sticky="e")
+        bf.grid(row=0, column=3, padx=(4, 0), pady=6, sticky="w")
+        for letter, stems_set, active_color in [
+            ("C", self._client_stems, "#0d9488"),
+            ("S", self._server_stems, "#2563eb"),
+            ("R", self._remote_stems, "#d97706"),
+        ]:
+            deployed = bool(pak_stems & stems_set)
+            ctk.CTkLabel(
+                bf, text=letter, width=20, height=20,
+                corner_radius=4,
+                fg_color=active_color if deployed else "#1e293b",
+                text_color="white" if deployed else "#374151",
+                font=ctk.CTkFont(size=10, weight="bold"),
+            ).pack(side="left", padx=2)
+
+    def _deploy_buttons(self, parent, on_client, on_server, on_remote):
+        bf = ctk.CTkFrame(parent, fg_color="transparent")
+        bf.grid(row=0, column=4, padx=8, pady=6, sticky="e")
 
         ctk.CTkButton(bf, text="▶ Client", width=90, height=28,
                       fg_color=ACCENT, hover_color="#0f766e",
@@ -203,6 +249,17 @@ class LibraryTab(ctk.CTkFrame):
                       state="normal" if has_server else "disabled",
                       font=ctk.CTkFont(size=12),
                       command=on_server,
+        ).pack(side="left", padx=3)
+
+        s = cfg.load()
+        has_ftp = bool(s.get("ftp_host", ""))
+        ctk.CTkButton(bf, text="▶ Remote", width=90, height=28,
+                      fg_color="#1e293b",
+                      hover_color="#334155" if has_ftp else "#1e293b",
+                      text_color="white" if has_ftp else "#374151",
+                      state="normal" if has_ftp else "disabled",
+                      font=ctk.CTkFont(size=12),
+                      command=on_remote,
         ).pack(side="left", padx=3)
 
     # ─────────────────────────────────────────────────────────────────
@@ -288,6 +345,68 @@ class LibraryTab(ctk.CTkFrame):
             shutil.copy2(src, dst)
             installed.append(dst)
         return installed
+
+    # ─────────────────────────────────────────────────────────────────
+    # Remote (FTP) deploy
+    # ─────────────────────────────────────────────────────────────────
+
+    def _make_ftp(self) -> FTPManager | None:
+        s = cfg.load()
+        host = s.get("ftp_host", "")
+        if not host:
+            messagebox.showwarning("FTP Not Configured", "Enter your FTP details in Settings first.")
+            return None
+        return FTPManager(
+            host=host,
+            port=int(s.get("ftp_port", 21)),
+            user=s.get("ftp_user", ""),
+            password=s.get("ftp_password", ""),
+            server_json_path=s.get("ftp_server_json_path", "R5/ServerDescription.json"),
+        )
+
+    def _check_remote(self):
+        ftp = self._make_ftp()
+        if not ftp:
+            return
+        try:
+            entries = ftp.list_remote_mods(self._remote_mods_dir())
+            self._remote_stems = {Path(e).stem for e in entries}
+            self.refresh()
+        except Exception as e:
+            messagebox.showerror("Remote Check Failed", str(e))
+
+    def _remote_mods_dir(self) -> str:
+        return cfg.load().get("ftp_mods_path", "R5/Content/Paks/~mods")
+
+    def _deploy_pak_remote(self, pak_file: Path):
+        ftp = self._make_ftp()
+        if not ftp:
+            return
+        try:
+            ftp.upload_pak(pak_file, self._remote_mods_dir())
+            self._remote_stems.add(pak_file.stem)
+            messagebox.showinfo("Deployed", f"'{pak_file.name}' uploaded to remote server.")
+            activity_log.log_action("mod_installed", pak_file.stem + " (remote)")
+            self.refresh()
+        except Exception as e:
+            messagebox.showerror("Remote Deploy Failed", str(e))
+
+    def _deploy_package_remote(self, pkg):
+        ftp = self._make_ftp()
+        if not ftp:
+            return
+        remote_dir = self._remote_mods_dir()
+        try:
+            count = 0
+            for pak_file in pkg.pak_files:
+                ftp.upload_pak(pak_file, remote_dir)
+                self._remote_stems.add(pak_file.stem)
+                count += 1
+            messagebox.showinfo("Deployed", f"'{pkg.name}' — {count} file(s) uploaded to remote server.")
+            activity_log.log_action("mod_installed", pkg.name + " (remote)")
+            self.refresh()
+        except Exception as e:
+            messagebox.showerror("Remote Deploy Failed", str(e))
 
     # ─────────────────────────────────────────────────────────────────
     # Folder shortcuts

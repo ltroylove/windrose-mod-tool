@@ -9,6 +9,7 @@ Data sources:
   tools/extracted_fasttravel/ FastTravelPlus 50         → fast travel building limits JSON
   tools/extracted_lantern/    BetterLanternLonger 2x    → lantern refuel recipe JSON
   tools/extracted_vanilla/    Direct from game paks     → copper loot + animal drop tables
+  tools/extracted_segments/   Direct from game paks     → DA_Segment_*.uasset/.uexp (tree chop amounts)
 
 Strategy:
   For each source JSON, determine its category, scale the relevant values so that
@@ -21,18 +22,22 @@ Strategy:
   backpack slots  : user sets a multiplier; vanilla = mod_value / BACKPACK_REF_MULT
   fast travel     : user sets absolute max bell count
   lantern         : user sets duration in minutes; both item MaxValue and recipe modifier updated
+  tree segments   : user sets a multiplier; vanilla DA_Segment_*.uexp modified in-place,
+                    repacked to I/O Store (.pak+.ucas+.utoc) via retoc
 """
 
 from __future__ import annotations
 
 import json
 import shutil
+import struct
 import subprocess
 import tempfile
 from pathlib import Path
 
 TOOLS_DIR = Path(__file__).parent.parent / "tools"
 REPAK     = TOOLS_DIR / "repak" / "repak.exe"
+RETOC     = TOOLS_DIR / "retoc" / "retoc.exe"
 
 SRC_STACKS      = TOOLS_DIR / "extracted"            # MoreStacks 100x
 SRC_MINERAL     = TOOLS_DIR / "extracted_mineral"    # MoreMineralResources 2x
@@ -42,6 +47,14 @@ SRC_FASTTRAVEL  = TOOLS_DIR / "extracted_fasttravel" # FastTravelPlus 50
 SRC_LANTERN     = TOOLS_DIR / "extracted_lantern"    # BetterLanternLonger 2x
 SRC_VANILLA     = TOOLS_DIR / "extracted_vanilla"    # Direct from game paks (copper + animals)
 SRC_ALLLOOT     = TOOLS_DIR / "extracted_allloot"    # 10x All Loot mod (food plants, crops, fishing, scrap)
+SRC_SEGMENTS    = TOOLS_DIR / "extracted_segments"   # DA_Segment_*.uasset/.uexp (tree chop amounts)
+
+# Vanilla amount per chop-group as extracted from the current game pak.
+# All 41 DA_Segment_* files use this same value for min and max.
+SEGMENT_VANILLA_AMOUNT = 1.65
+# The 0.75 double that immediately follows each min/max pair in the uexp —
+# used as a reliable anchor to locate the amount fields.
+_SEGMENT_PROB_BYTES = struct.pack("<d", 0.75)
 
 STACK_REF_MULT    = 100.0   # MoreStacks mod multiplier
 LOOT_REF_MULT     = 2.0     # loot mods multiplier (mineral + tree)
@@ -381,6 +394,63 @@ def _process_lantern(staging: Path, values: dict, counts: dict) -> None:
             pass
 
 
+# ─── Tree segment binary modifier ────────────────────────────────────────────
+
+def _process_segment_uexp(src: Path, dest: Path, user_mult: float) -> int:
+    """
+    Copy src .uexp to dest with all spawn-group Amount min/max values scaled by
+    user_mult.  Returns number of groups modified (0 = nothing changed, file not written).
+    """
+    data = bytearray(src.read_bytes())
+    new_val = SEGMENT_VANILLA_AMOUNT * user_mult
+    modified = 0
+    pos = 0
+    while True:
+        idx = data.find(_SEGMENT_PROB_BYTES, pos)
+        if idx < 0:
+            break
+        if idx >= 16:
+            mn = struct.unpack_from("<d", data, idx - 16)[0]
+            mx = struct.unpack_from("<d", data, idx - 8)[0]
+            if 0 < mn <= 1000 and 0 < mx <= 1000:
+                struct.pack_into("<d", data, idx - 16, new_val)
+                struct.pack_into("<d", data, idx - 8,  new_val)
+                modified += 1
+        pos = idx + 1
+
+    if modified:
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(data)
+    return modified
+
+
+def _pack_iostore(staging_legacy: Path, output_base: Path) -> tuple[Path, Path, Path]:
+    """
+    Convert a legacy (.uasset/.uexp) staging tree to an I/O Store container
+    (.pak + .ucas + .utoc) using retoc.  output_base is the full path stem
+    (e.g. /some/dir/MyMod_Segments_P).  Returns (pak, ucas, utoc) paths.
+    """
+    utoc_out = output_base.with_suffix(".utoc")
+    cmd = [
+        str(RETOC), "to-zen",
+        "--version", "UE5_6",
+        str(staging_legacy),
+        str(utoc_out),
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+
+    pak  = output_base.with_suffix(".pak")
+    ucas = output_base.with_suffix(".ucas")
+    utoc = output_base.with_suffix(".utoc")
+
+    if not ucas.exists():
+        raise RuntimeError(
+            f"retoc to-zen failed (exit {result.returncode}):\n"
+            f"stdout: {result.stdout}\nstderr: {result.stderr}"
+        )
+    return pak, ucas, utoc
+
+
 # ─── repak packing ────────────────────────────────────────────────────────────
 
 def _pack(pak_name: str, staging: Path, output_dir: Path) -> Path:
@@ -422,6 +492,7 @@ def check_sources() -> list[str]:
         ("Lantern recipe extraction",       SRC_LANTERN),
         ("Vanilla game extraction",        SRC_VANILLA),
         ("All Loot mod extraction",        SRC_ALLLOOT),
+        ("Tree segment extraction",        SRC_SEGMENTS),
     ]:
         if not path.exists():
             missing.append(f"{label} ({path})")
@@ -435,10 +506,12 @@ def generate(values: dict, pak_name: str, output_dir: Path) -> dict:
     pak_name   – filename stem, e.g. "MyGameTuning_P"
     output_dir – directory to write the final .pak
 
-    Returns a summary dict: {"stacks": N, "loot": N, "spawners": N, "path": Path}
+    Returns a summary dict: {"stacks": N, "loot": N, "spawners": N, "segments": N, "path": Path}
     """
     if not REPAK.exists():
         raise FileNotFoundError(f"repak.exe not found at {REPAK}")
+    if not RETOC.exists():
+        raise FileNotFoundError(f"retoc.exe not found at {RETOC}")
 
     missing = check_sources()
     if missing:
@@ -450,6 +523,7 @@ def generate(values: dict, pak_name: str, output_dir: Path) -> dict:
         "stacks": 0, "loot": 0, "spawners": 0,
         "backpack": 0, "build_limits": 0,
         "lantern_item": 0, "lantern_recipe": 0,
+        "segments": 0,
     }
 
     with tempfile.TemporaryDirectory() as tmp:
@@ -532,11 +606,42 @@ def generate(values: dict, pak_name: str, output_dir: Path) -> dict:
                 if p.stem not in ref_tree_stems and _loot_category(p.stem) is not None:
                     _process_loot(p, vanilla_loot_base, root, values, 1.0, counts)
 
-        total = sum(v for k, v in counts.items() if k != "path")
+        # 12 ── Tree segment binary params (I/O Store .ucas/.utoc output)
+        # Controls how much wood each tree segment drops when chopped.
+        # Uses vanilla .uasset/.uexp as source; modifies Amount min/max in .uexp;
+        # converts back to Zen format via retoc.
+        seg_mult = float(values.get("loot_softwood", 1.0))
+        if SRC_SEGMENTS.exists() and seg_mult != 1.0:
+            seg_src_base = SRC_SEGMENTS / "Content/Gameplay/Foliage/SegmentTrees/ParamsSegmentTrees"
+            seg_staging  = staging / "segments_legacy"
+            for uasset in seg_src_base.glob("*.uasset"):
+                uexp = uasset.with_suffix(".uexp")
+                if not uexp.exists():
+                    continue
+                rel = uasset.relative_to(SRC_SEGMENTS)
+                dest_uexp   = seg_staging / rel.parent / uexp.name
+                dest_uasset = seg_staging / rel.parent / uasset.name
+                dest_uasset.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(uasset, dest_uasset)
+                n = _process_segment_uexp(uexp, dest_uexp, seg_mult)
+                counts["segments"] += n
+
+            if counts["segments"] > 0:
+                seg_pak_base = staging / f"{pak_name}_Segments"
+                _pack_iostore(seg_staging, seg_pak_base)
+
+        total = sum(v for k, v in counts.items() if k not in ("path",))
         if total == 0:
             raise RuntimeError("No files were staged — check extraction directories.")
 
         pak_path = _pack(pak_name, staging, output_dir)
+
+        # Move I/O Store segment files to output_dir alongside the main pak
+        if counts["segments"] > 0:
+            for ext in (".pak", ".ucas", ".utoc"):
+                src_file = staging / f"{pak_name}_Segments{ext}"
+                if src_file.exists():
+                    shutil.move(str(src_file), str(output_dir / src_file.name))
 
     counts["path"] = pak_path
     return counts

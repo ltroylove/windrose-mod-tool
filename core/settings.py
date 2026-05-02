@@ -9,6 +9,12 @@ _PROJECT_ROOT = Path(__file__).parent.parent
 DEFAULTS: dict = {
     "game_path": "",
     "library_path": str(_PROJECT_ROOT / "Mods"),
+    "ftp_host": "",
+    "ftp_port": "21",
+    "ftp_user": "",
+    "ftp_password": "",
+    "ftp_server_json_path": "R5/ServerDescription.json",
+    "ftp_mods_path": "R5/Content/Paks/~mods",
 }
 
 

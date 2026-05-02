@@ -41,7 +41,10 @@ TAB_CLASSES = {
 class AppWindow(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Windrose Mod Tool")
+        self.title("BlackFlag Mod Manager")
+        icon = Path(__file__).parent.parent / "data" / "icon.ico"
+        if icon.exists():
+            self.iconbitmap(str(icon))
         self.geometry("1080x700")
         self.minsize(920, 580)
 
@@ -96,7 +99,7 @@ class AppWindow(ctk.CTk):
         hdr.grid_propagate(False)
 
         ctk.CTkLabel(
-            hdr, text="⚓  WINDROSE MOD TOOL",
+            hdr, text="⚓  BLACKFLAG MOD MANAGER",
             font=ctk.CTkFont(size=14, weight="bold"),
             text_color=ACCENT,
         ).pack(side="left", padx=18, pady=12)

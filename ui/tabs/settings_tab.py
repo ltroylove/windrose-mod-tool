@@ -4,6 +4,7 @@ from tkinter import filedialog, messagebox
 from pathlib import Path
 from core import settings as cfg
 from core.paths import GamePaths, find_game_path
+from core.ftp_manager import FTPManager
 from ui.theme import ACCENT
 
 
@@ -57,9 +58,49 @@ class SettingsTab(ctk.CTkFrame):
                 command=lambda k=key: self._open_folder(k),
             ).grid(row=i + 2, column=3, padx=(0, 16), pady=8)
 
+        # ── FTP card ─────────────────────────────────────────────────
+        ftp_card = ctk.CTkFrame(self, corner_radius=8, fg_color="#1e293b")
+        ftp_card.grid(row=2, column=0, sticky="ew", pady=(0, 16))
+        ftp_card.grid_columnconfigure(1, weight=1)
+
+        ctk.CTkLabel(
+            ftp_card, text="Dedicated Server FTP",
+            font=ctk.CTkFont(size=13, weight="bold"), text_color="#94a3b8",
+        ).grid(row=0, column=0, columnspan=3, sticky="w", padx=16, pady=(14, 8))
+
+        ctk.CTkFrame(ftp_card, height=1, fg_color="#334155").grid(row=1, column=0, columnspan=3, sticky="ew", padx=16)
+
+        ftp_fields = [
+            ("ftp_host",            "FTP Host"),
+            ("ftp_port",            "FTP Port"),
+            ("ftp_user",            "Username"),
+            ("ftp_password",        "Password"),
+            ("ftp_server_json_path","Server JSON Path"),
+            ("ftp_mods_path",       "Mods Folder Path"),
+        ]
+        for i, (key, label) in enumerate(ftp_fields):
+            ctk.CTkLabel(ftp_card, text=label, anchor="e", width=130, text_color="#94a3b8").grid(
+                row=i + 2, column=0, sticky="e", padx=(16, 10), pady=8
+            )
+            show = "*" if key == "ftp_password" else ""
+            var = ctk.StringVar(value=s.get(key, ""))
+            self._vars[key] = var
+            ctk.CTkEntry(ftp_card, textvariable=var, height=32, show=show).grid(
+                row=i + 2, column=1, sticky="ew", padx=(0, 8), pady=8
+            )
+
+        self._ftp_status = ctk.CTkLabel(ftp_card, text="", font=ctk.CTkFont(size=11), text_color="#6b7280")
+        self._ftp_status.grid(row=len(ftp_fields) + 2, column=0, columnspan=2, sticky="w", padx=16, pady=(0, 4))
+
+        ctk.CTkButton(
+            ftp_card, text="Test Connection", width=140, height=32,
+            fg_color="#1e293b", hover_color="#334155",
+            command=self._test_ftp,
+        ).grid(row=len(ftp_fields) + 3, column=0, columnspan=2, sticky="w", padx=16, pady=(0, 12))
+
         # ── actions ──────────────────────────────────────────────────
         act = ctk.CTkFrame(self, fg_color="transparent")
-        act.grid(row=2, column=0, sticky="w", pady=(0, 12))
+        act.grid(row=3, column=0, sticky="w", pady=(0, 12))
 
         ctk.CTkButton(
             act, text="Auto-detect Game", width=160, height=34,
@@ -81,7 +122,7 @@ class SettingsTab(ctk.CTkFrame):
             self, text="",
             font=ctk.CTkFont(size=11), text_color="#6b7280",
         )
-        self._status.grid(row=3, column=0, sticky="w")
+        self._status.grid(row=4, column=0, sticky="w")
 
     def _browse_game(self):
         path = filedialog.askdirectory(title="Select Windrose Game Folder")
@@ -118,6 +159,25 @@ class SettingsTab(ctk.CTkFrame):
             self._status.configure(text=f"✓ Found: {found}", text_color="#6ee7b7")
         else:
             self._status.configure(text="Could not auto-detect. Set the path manually.", text_color="#fbbf24")
+
+    def _test_ftp(self):
+        self._ftp_status.configure(text="Connecting…", text_color="#94a3b8")
+        self.update()
+        try:
+            ftp = FTPManager(
+                host=self._vars["ftp_host"].get(),
+                port=int(self._vars["ftp_port"].get() or 21),
+                user=self._vars["ftp_user"].get(),
+                password=self._vars["ftp_password"].get(),
+                server_json_path=self._vars["ftp_server_json_path"].get(),
+            )
+            ok, msg = ftp.test_connection()
+            self._ftp_status.configure(
+                text=f"{'✓' if ok else '✗'} {msg}",
+                text_color="#6ee7b7" if ok else "#f87171",
+            )
+        except Exception as e:
+            self._ftp_status.configure(text=f"✗ {e}", text_color="#f87171")
 
     def _save(self):
         s = cfg.load()

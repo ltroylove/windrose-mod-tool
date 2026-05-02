@@ -1,4 +1,4 @@
-# Windrose Mod Tool — Claude Code Guide
+# BlackFlag Mod Manager — Claude Code Guide
 
 ## What this project is
 A desktop GUI application (customtkinter) for managing and creating mods for the game **Windrose** (UE 5.6.1, Early Access April 2026, Steam). Two goals:
