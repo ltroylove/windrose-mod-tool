@@ -1,4 +1,5 @@
 import json
+import sys
 from pathlib import Path
 
 try:
@@ -7,12 +8,18 @@ try:
 except Exception:
     _KEYRING_AVAILABLE = False
 
-_DATA_DIR = Path(__file__).parent.parent / "data"
-_SETTINGS_PATH = _DATA_DIR / "settings.json"
+# When frozen by PyInstaller, __file__ lives inside a temp _MEI* folder that
+# is deleted on exit.  User data (settings) must live next to the .exe instead.
+if getattr(sys, "frozen", False):
+    _DATA_DIR    = Path(sys.executable).parent / "data"
+    _PROJECT_ROOT = Path(sys.executable).parent
+else:
+    _DATA_DIR    = Path(__file__).parent.parent / "data"
+    _PROJECT_ROOT = Path(__file__).parent.parent
+
+_SETTINGS_PATH  = _DATA_DIR / "settings.json"
 _KEYRING_SERVICE = "BlackFlagModManager"
 _KEYRING_ACCOUNT = "ftp_password"
-
-_PROJECT_ROOT = Path(__file__).parent.parent
 
 DEFAULTS: dict = {
     "game_path": "",

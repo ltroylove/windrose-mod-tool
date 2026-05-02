@@ -32,10 +32,14 @@ import json
 import shutil
 import struct
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
-TOOLS_DIR = Path(__file__).parent.parent / "tools"
+# When packaged with PyInstaller the source files live inside a temp _MEI* dir
+# (sys._MEIPASS).  At runtime the tools/ bundle is extracted there, so we
+# resolve against _MEIPASS when frozen and against the repo root otherwise.
+TOOLS_DIR = (Path(sys._MEIPASS) / "tools") if getattr(sys, "frozen", False) else Path(__file__).parent.parent / "tools"
 REPAK     = TOOLS_DIR / "repak" / "repak.exe"
 RETOC     = TOOLS_DIR / "retoc" / "retoc.exe"
 

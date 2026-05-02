@@ -278,7 +278,7 @@ class CreateTab(ctk.CTkFrame):
             ).grid(row=2, column=col, padx=(14 if col == 0 else 4, 4), pady=(0, 4), sticky="ew")
 
         for r, (key, label, examples) in enumerate(STACKS):
-            default = PRESETS["Relaxed"][key]
+            default = PRESETS["Vanilla"][key]
             var  = ctk.IntVar(value=default)
             evar = ctk.StringVar(value=str(default))
             self._vars[key]       = var
@@ -320,7 +320,7 @@ class CreateTab(ctk.CTkFrame):
             ).grid(row=2, column=col, padx=(14 if col == 0 else 4, 4), pady=(0, 4), sticky="ew")
 
         for r, (key, label, drops) in enumerate(LOOT):
-            default = PRESETS["Relaxed"][key]
+            default = PRESETS["Vanilla"][key]
             var  = ctk.DoubleVar(value=default)
             evar = ctk.StringVar(value=f"{default:.2f}")
             self._vars[key]       = var
@@ -427,7 +427,7 @@ class CreateTab(ctk.CTkFrame):
              "Scales all tiers proportionally. Vanilla: 4 / 8 / 12 / 16 / 20 slots per tier."),
         ]
         for r, (key, label, desc) in enumerate(rows):
-            default = PRESETS["Relaxed"][key]
+            default = PRESETS["Vanilla"][key]
             var  = ctk.DoubleVar(value=default)
             evar = ctk.StringVar(value=f"{default:.1f}")
             self._vars[key]       = var
@@ -477,7 +477,7 @@ class CreateTab(ctk.CTkFrame):
              "Max Fast Travel Bells placeable per world. Vanilla ≈ 5 (assumed)."),
         ]
         for r, (key, label, desc) in enumerate(rows):
-            default = PRESETS["Relaxed"][key]
+            default = PRESETS["Vanilla"][key]
             var  = ctk.IntVar(value=default)
             evar = ctk.StringVar(value=str(default))
             self._vars[key]       = var
@@ -522,7 +522,7 @@ class CreateTab(ctk.CTkFrame):
              "How long a lantern burns before needing refuel. Vanilla = 15 min."),
         ]
         for r, (key, label, desc) in enumerate(rows):
-            default = PRESETS["Relaxed"][key]
+            default = PRESETS["Vanilla"][key]
             var  = ctk.DoubleVar(value=default)
             evar = ctk.StringVar(value=f"{default:.0f}")
             self._vars[key]       = var
