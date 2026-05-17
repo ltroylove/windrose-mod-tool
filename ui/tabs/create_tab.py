@@ -29,6 +29,18 @@ DEFAULTS = dict(
     lantern_duration_min=15.0,
 )
 
+def _assert_preset_keys_match(defaults: dict, presets: dict) -> None:
+    """Catch a stale-preset bug at startup: every preset must cover the same
+    keys as DEFAULTS so switching presets always sets every slider."""
+    default_keys = set(defaults)
+    for name, preset in presets.items():
+        diff = default_keys.symmetric_difference(preset)
+        if diff:
+            raise AssertionError(
+                f"Preset {name!r} doesn't match DEFAULTS keys: {sorted(diff)}"
+            )
+
+
 PRESETS = {
     "Relaxed": dict(
         stack_basic=500, stack_wood_products=200, stack_ore=500, stack_ingots=200,
@@ -55,6 +67,8 @@ PRESETS = {
         lantern_duration_min=60.0,
     ),
 }
+
+_assert_preset_keys_match(DEFAULTS, PRESETS)
 
 # ── Category data ─────────────────────────────────────────────────────────────
 
@@ -528,9 +542,13 @@ class CreateTab(ctk.CTkFrame):
             pass
 
     def _apply_preset(self, name: str):
+        # Fall back to DEFAULTS for any key not present in the chosen preset, so
+        # switching between presets always sets every slider — otherwise a key
+        # that's only in one preset would silently keep its previous value.
         preset = PRESETS[name]
-        for key, val in preset.items():
-            if key not in self._vars:
+        for key in self._vars:
+            val = preset.get(key, DEFAULTS.get(key))
+            if val is None:
                 continue
             self._vars[key].set(val)
             if key in self._entry_vars:
@@ -598,15 +616,27 @@ class CreateTab(ctk.CTkFrame):
         if pak_name:
             activity_log.log_action("tuning_generated", pak_name)
         base = pak_name[:-2] if pak_name.endswith("_P") else pak_name
+
+        # Only list lines for categories that actually produced something — a
+        # disabled section or all-vanilla values write nothing, so naming the
+        # pak file in the success dialog would be misleading.
+        lantern_total = counts.get("lantern_item", 0) + counts.get("lantern_recipe", 0)
+        rows = [
+            ("Loot entries",     counts.get("loot", 0),     f"{base}TreeOther_P.pak + {base}MineralOther_P.pak"),
+            ("Stack entries",    counts.get("stacks", 0),   f"{base}Other_P.pak"),
+            ("Backpack entries", counts.get("backpack", 0), f"{base}Other_P.pak"),
+            ("Building limits",  counts.get("build_limits", 0), f"{base}Other_P.pak"),
+            ("Lantern entries",  lantern_total,             f"{base}Other_P.pak"),
+        ]
+        body_lines = [f"  {label:18}: {n}  ({where})" for label, n, where in rows if n > 0]
+        if not body_lines:
+            body_lines = ["  (nothing produced — every value matched vanilla.)"]
+
         messagebox.showinfo(
             "Pak Generated",
-            f"3 files generated in your Mod Library:\n\n"
-            f"  Loot entries     : {counts['loot']}  ({base}TreeOther_P.pak + {base}MineralOther_P.pak)\n"
-            f"  Stack entries    : {counts['stacks']}  ({base}Other_P.pak)\n"
-            f"  Backpack entries : {counts['backpack']}  ({base}Other_P.pak)\n"
-            f"  Building limits  : {counts['build_limits']}  ({base}Other_P.pak)\n"
-            f"  Lantern entries  : {counts['lantern_item'] + counts['lantern_recipe']}  ({base}Other_P.pak)\n"
-            f"\nGo to Library to deploy it to your game.",
+            "Files generated in your Mod Library:\n\n"
+            + "\n".join(body_lines)
+            + "\n\nGo to Library to deploy it to your game.",
         )
 
     def _on_generate_error(self, msg: str):

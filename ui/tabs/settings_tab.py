@@ -1,4 +1,5 @@
 import os
+import threading
 import customtkinter as ctk
 from tkinter import filedialog, messagebox
 from pathlib import Path
@@ -67,6 +68,14 @@ class SettingsTab(ctk.CTkFrame):
             ftp_card, text="Dedicated Server FTP",
             font=ctk.CTkFont(size=13, weight="bold"), text_color="#94a3b8",
         ).grid(row=0, column=0, columnspan=3, sticky="w", padx=16, pady=(14, 8))
+
+        if not cfg.keyring_available():
+            ctk.CTkLabel(
+                ftp_card,
+                text="⚠ OS credential store unavailable — FTP password will not persist between runs.\n"
+                     "    Install the 'keyring' package or check your system's credential service.",
+                font=ctk.CTkFont(size=11), text_color="#fbbf24", justify="left",
+            ).grid(row=0, column=0, columnspan=3, sticky="w", padx=16, pady=(36, 0))
 
         ctk.CTkFrame(ftp_card, height=1, fg_color="#334155").grid(row=1, column=0, columnspan=3, sticky="ew", padx=16)
 
@@ -162,23 +171,31 @@ class SettingsTab(ctk.CTkFrame):
             self._status.configure(text="Could not auto-detect. Set the path manually.", text_color="#fbbf24")
 
     def _test_ftp(self):
+        # The 10s connect timeout (plus arbitrary data-transfer time) would
+        # freeze the Tk main thread, so run on a worker and marshal results
+        # back via self.after().
         self._ftp_status.configure(text="Connecting…", text_color="#94a3b8")
-        self.update()
-        try:
-            ftp = FTPManager(
-                host=self._vars["ftp_host"].get(),
-                port=int(self._vars["ftp_port"].get() or 21),
-                user=self._vars["ftp_user"].get(),
-                password=self._vars["ftp_password"].get(),
-                server_json_path=self._vars["ftp_server_json_path"].get(),
-            )
-            ok, msg = ftp.test_connection()
-            self._ftp_status.configure(
-                text=f"{'✓' if ok else '✗'} {msg}",
-                text_color="#6ee7b7" if ok else "#f87171",
-            )
-        except Exception as e:
-            self._ftp_status.configure(text=f"✗ {e}", text_color="#f87171")
+        host = self._vars["ftp_host"].get()
+        port = int(self._vars["ftp_port"].get() or 21)
+        user = self._vars["ftp_user"].get()
+        password = self._vars["ftp_password"].get()
+        server_json_path = self._vars["ftp_server_json_path"].get()
+
+        def _worker():
+            try:
+                ftp = FTPManager(host=host, port=port, user=user,
+                                 password=password, server_json_path=server_json_path)
+                ok, msg = ftp.test_connection()
+                self.after(0, lambda: self._ftp_status.configure(
+                    text=f"{'✓' if ok else '✗'} {msg}",
+                    text_color="#6ee7b7" if ok else "#f87171",
+                ))
+            except Exception as e:
+                self.after(0, lambda exc=e: self._ftp_status.configure(
+                    text=f"✗ {exc}", text_color="#f87171",
+                ))
+
+        threading.Thread(target=_worker, daemon=True).start()
 
     def _save(self):
         s = cfg.load()
@@ -195,6 +212,12 @@ class SettingsTab(ctk.CTkFrame):
         except ValueError:
             s["ftp_port"] = "21"
 
+        # Validate the game path BEFORE we persist anything, so an early-return
+        # doesn't leave the user thinking their FTP password was saved when it
+        # wasn't (or vice-versa). Pop the password out of `s` first so it never
+        # lingers in the dict that may otherwise be inspected.
+        plaintext_password = s.pop("ftp_password", "")
+
         game_str = s.get("game_path", "")
         if game_str:
             gp = GamePaths(Path(game_str))
@@ -203,7 +226,7 @@ class SettingsTab(ctk.CTkFrame):
                 return
 
         # Persist password to OS credential store, not to settings.json
-        cfg.set_ftp_password(s.pop("ftp_password", ""))
+        cfg.set_ftp_password(plaintext_password)
         cfg.save(s)
         messagebox.showinfo("Settings Saved", "Settings saved. The app will now reload.")
         self.app.reload()

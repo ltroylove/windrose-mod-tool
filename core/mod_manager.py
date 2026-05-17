@@ -190,7 +190,10 @@ class ModManager:
     def enable(self, mod: InstalledMod) -> None:
         new_files = []
         for f in mod.files:
-            if f.name.endswith(DISABLED) and f.suffix not in (MANIFEST_EXT, DISABLED):
+            # A disabled pak is named "Foo.pak.disabled" — Path(...).suffix is
+            # ".disabled", which is why we strip the suffix from the name first
+            # and then check that what's underneath is a .pak.
+            if f.name.endswith(DISABLED):
                 base = f.name[: -len(DISABLED)]
                 if Path(base).suffix == ".pak":
                     target = f.parent / base

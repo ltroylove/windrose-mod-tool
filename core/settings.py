@@ -5,8 +5,27 @@ from pathlib import Path
 try:
     import keyring as _keyring
     _KEYRING_AVAILABLE = True
-except Exception:
+    _KEYRING_UNAVAILABLE_REASON = ""
+except Exception as _kr_exc:
     _KEYRING_AVAILABLE = False
+    _KEYRING_UNAVAILABLE_REASON = f"{type(_kr_exc).__name__}: {_kr_exc}"
+    print(
+        f"[BlackFlag] WARNING: keyring unavailable ({_KEYRING_UNAVAILABLE_REASON}). "
+        "FTP passwords will not be saved between runs — install the 'keyring' "
+        "package or fix your credential store. See requirements.txt.",
+        file=sys.stderr,
+    )
+
+
+def keyring_available() -> bool:
+    """Public accessor so the UI can surface a one-time warning when the
+    credential store isn't usable on this machine."""
+    return _KEYRING_AVAILABLE
+
+
+def keyring_unavailable_reason() -> str:
+    """Empty string when keyring is available."""
+    return _KEYRING_UNAVAILABLE_REASON
 
 # When frozen by PyInstaller, __file__ lives inside a temp _MEI* folder that
 # is deleted on exit.  User data (settings) must live next to the .exe instead.

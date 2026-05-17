@@ -6,6 +6,7 @@ from tkinter import messagebox
 from core import activity_log, settings as cfg
 from core.backup_manager import BackupManager
 from core.ftp_manager import FTPManager
+from core.mod_manager import DISABLED
 from ui.theme import ACCENT, CARD_BG, MUTED
 
 COL_NAME  = 280
@@ -90,9 +91,17 @@ class LibraryTab(ctk.CTkFrame):
     # ─────────────────────────────────────────────────────────────────
 
     def _deployed_stems(self, directory: Path) -> set[str]:
+        # A disabled pak is "Foo.pak.disabled"; Path.stem only strips the final
+        # extension ".disabled" so we'd get "Foo.pak". Strip .disabled first.
         if not directory or not directory.exists():
             return set()
-        return {p.stem.removesuffix(".disabled") for p in directory.iterdir() if p.is_file()}
+        stems: set[str] = set()
+        for p in directory.iterdir():
+            if not p.is_file():
+                continue
+            name = p.name[: -len(DISABLED)] if p.name.endswith(DISABLED) else p.name
+            stems.add(Path(name).stem)
+        return stems
 
     def refresh(self):
         for w in self.scroll.winfo_children():

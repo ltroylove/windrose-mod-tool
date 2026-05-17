@@ -55,7 +55,7 @@ LANTERN_VANILLA_SECONDS = 900   # confirmed from MoreStacks extraction (MaxValue
 LANTERN_VANILLA_MINUTES = 15
 FASTTRAVEL_VANILLA_BELLS = 10
 
-# Vanilla stack-size per category (keep in sync with PRESETS["Vanilla"] in create_tab.py).
+# Vanilla stack-size per category (keep in sync with DEFAULTS in ui/tabs/create_tab.py).
 # If a user value matches its vanilla, that category is skipped — no file written, so the
 # game uses its own vanilla value. Avoids unexpected side effects from generating no-op mods.
 VANILLA_STACK_VALUES: dict[str, int] = {

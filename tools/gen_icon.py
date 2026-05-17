@@ -197,14 +197,18 @@ if __name__ == "__main__":
     sizes = [16, 32, 48, 64, 128, 256]
     resized = [icon_256.resize((s, s), Image.LANCZOS) for s in sizes]
 
-    out = os.path.join(os.path.dirname(__file__), "..", "data", "icon.ico")
+    # The runtime + release workflow load the icon from assets/icon.ico
+    # (app_window.py and the PyInstaller --icon flag both target that path).
+    assets_dir = os.path.join(os.path.dirname(__file__), "..", "assets")
+    os.makedirs(assets_dir, exist_ok=True)
+    out = os.path.join(assets_dir, "icon.ico")
     resized[0].save(
         out,
         format="ICO",
         sizes=[(s, s) for s in sizes],
         append_images=resized[1:],
     )
-    # also save a PNG for preview
+    # also save a PNG preview alongside the source
     png_out = os.path.join(os.path.dirname(__file__), "..", "data", "icon_preview.png")
     icon_256.save(png_out)
     print(f"Icon written to {out}")

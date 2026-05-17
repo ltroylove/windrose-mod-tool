@@ -2,6 +2,12 @@ import io
 import json
 from ftplib import FTP, error_perm
 
+# TODO(security): this is plain unencrypted FTP — credentials and file contents
+# (including ServerDescription.json which contains the server password) transit
+# in clear text. Migrate to FTP_TLS (explicit FTPS) when we add the next round
+# of FTP work; the keyring-backed password is undercut without it. Tracked in
+# the post-PR-5 follow-ups.
+
 
 class FTPManager:
     def __init__(self, host: str, port: int, user: str, password: str, server_json_path: str):

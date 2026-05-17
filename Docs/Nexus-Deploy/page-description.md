@@ -27,8 +27,12 @@ Install, enable, and disable .pak mods for both the Windrose game client and you
 **Game Tuning Creator**
 Generate your own custom .pak mods using simple sliders — no files to edit, no modding knowledge needed. Adjust:
 - Stack sizes — how many items fit in a single inventory slot
-- Loot drop rates — wood, fiber, stone, ore, minerals, crops, herbs, scrap, fish, and more
-- Resource spawner timing — how quickly resource nodes respawn in the world
+- Loot drop rates — fiber, stone, sulfur, clay, salt, herbs, crops, fishing, scrap piles, animal drops, and more
+- Backpack slot count
+- Fast-travel bell limit
+- Lantern burn duration
+
+(For features that need binary asset edits — base wood-per-chop, base ore-per-dig, ancient-debris spawner timing — install the dedicated community mods on Nexus.)
 
 **Mod Library**
 A unified library of all your downloaded and generated mods. Install any of them to the client or server with one click.
