@@ -208,8 +208,9 @@ if __name__ == "__main__":
         sizes=[(s, s) for s in sizes],
         append_images=resized[1:],
     )
-    # also save a PNG preview alongside the source
-    png_out = os.path.join(os.path.dirname(__file__), "..", "data", "icon_preview.png")
+    # Save the PNG preview next to the .ico in assets/ so build artifacts
+    # stay co-located.
+    png_out = os.path.join(assets_dir, "icon_preview.png")
     icon_256.save(png_out)
     print(f"Icon written to {out}")
     print(f"Preview written to {png_out}")

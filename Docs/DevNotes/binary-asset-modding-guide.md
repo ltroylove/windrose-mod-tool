@@ -1,5 +1,16 @@
 # Binary Asset Modding Guide — DA_Segment & DA_DigVolume
 
+> **⚠ Historical reference — not the current generator behavior.**
+> BlackFlag Mod Manager no longer generates binary I/O Store paks. The
+> generator emits JSON-only paks (`*Other_P.pak`); `UnrealReZen`, retoc-based
+> I/O Store packing, and the `tools/extracted_segments/` + `tools/extracted_digvol/`
+> sources have all been removed (see PR #5, May 2026). The references below to
+> `_process_segment_uexp`, `_pack_iostore`, and combined Tree/Mineral pak triples
+> describe the *previous* design and are preserved here only as a reference for
+> anyone investigating binary modding outside this tool. The community mods on
+> Nexus (MoreTreeResources, MoreMineralResources) handle these binary-asset
+> changes directly.
+
 Both MoreTreeResources and MoreMineralResources follow the same two-file mod structure:
 
 | File | Format | Contents |

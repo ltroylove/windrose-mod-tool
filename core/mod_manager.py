@@ -93,6 +93,11 @@ class ModManager:
                         covered.add(candidate.name)
             pak_files = [f for f in files if f.suffix in (".pak",) or
                          f.name.endswith(".pak" + DISABLED)]
+            # Stale manifest — every pak it referenced has been deleted. Skip it
+            # rather than show a ghost mod with zero files as "enabled" (vacuous
+            # truth would otherwise mark it enabled).
+            if not pak_files:
+                continue
             enabled = not any(f.name.endswith(DISABLED) for f in pak_files)
             result.append(InstalledMod(mod_name, sorted(files), enabled))
 
@@ -129,13 +134,19 @@ class ModManager:
         result = []
         for entry in sorted(self.library_path.iterdir()):
             if entry.is_dir() and (entry / GENERATED_MARKER).exists():
-                # New layout: primary pak is {base}Other_P.pak
+                # The "primary" pak is whichever of Other / MineralOther / TreeOther
+                # the user actually produced this run — they may have toggled the
+                # Stack/Backpack/Building/Consumables sections off and only generated
+                # loot paks. Fall back to the legacy {dir_name}.pak layout last.
                 base = entry.name[:-2] if entry.name.endswith("_P") else entry.name
-                primary = entry / f"{base}Other_P.pak"
-                if not primary.exists():
-                    primary = entry / f"{entry.name}.pak"  # backward compat
-                if primary.exists():
-                    result.append(primary)
+                for candidate_name in (f"{base}Other_P.pak",
+                                       f"{base}MineralOther_P.pak",
+                                       f"{base}TreeOther_P.pak",
+                                       f"{entry.name}.pak"):
+                    candidate = entry / candidate_name
+                    if candidate.exists():
+                        result.append(candidate)
+                        break
             elif entry.is_file() and entry.suffix == ".pak" and "_Segments" not in entry.stem:
                 result.append(entry)
         return result

@@ -25,11 +25,18 @@ Strategy:
 from __future__ import annotations
 
 import json
+import math
 import shutil
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+# Tolerance for "is this value at vanilla?" checks. CTk DoubleVar values
+# round-trip through float text entries and can land on 1.0000000000000002
+# from a 1.0× slider; exact == would bypass the skip and revive the silent
+# loot-halving bug (scale = 1.0 / ref_mult ≈ 0.5).
+_VANILLA_TOL = 1e-6
 
 # When packaged with PyInstaller the source files live inside a temp _MEI* dir
 # (sys._MEIPASS).  At runtime the tools/ bundle is extracted there, so we
@@ -210,7 +217,7 @@ def _process_loot(
         return
 
     user_mult = float(values.get(cat, 1.0))
-    if user_mult == 1.0:
+    if math.isclose(user_mult, 1.0, abs_tol=_VANILLA_TOL):
         return  # vanilla — don't write (avoids scale=1/ref_mult shrinking drops)
     scale = user_mult / ref_mult
 
@@ -249,7 +256,7 @@ def _process_animal_loot(
         return
 
     user_mult = float(values.get("loot_animals", 1.0))
-    if user_mult == 1.0:
+    if math.isclose(user_mult, 1.0, abs_tol=_VANILLA_TOL):
         return  # vanilla — leave the game's tables alone
 
     changed = False
@@ -273,7 +280,7 @@ def _process_backpack(
     src: Path, base: Path, staging: Path,
     user_mult: float, counts: dict,
 ) -> None:
-    if user_mult == 1.0:
+    if math.isclose(user_mult, 1.0, abs_tol=_VANILLA_TOL):
         return  # vanilla — leave the game's backpack slots alone
 
     try:
@@ -326,7 +333,7 @@ def _process_build_limits(
 
 def _process_lantern(staging: Path, values: dict, counts: dict) -> None:
     duration_min = float(values.get("lantern_duration_min", LANTERN_VANILLA_MINUTES))
-    if duration_min == LANTERN_VANILLA_MINUTES:
+    if math.isclose(duration_min, LANTERN_VANILLA_MINUTES, abs_tol=_VANILLA_TOL):
         return  # vanilla — leave the game's lantern duration alone
     duration_sec = round(duration_min * 60)
 
@@ -549,12 +556,20 @@ def generate(values: dict, pak_name: str, output_dir: Path) -> dict:
                 "Adjust at least one slider away from its vanilla setting."
             )
 
-        # Pack each non-empty JSON group
-        if root_tree.exists():
-            _pack(TREE_OTHER_NAME, staging, output_dir)
-        if root_mineral.exists():
-            _pack(MINERAL_OTHER_NAME, staging, output_dir)
-        other_pak = _pack(OTHER_NAME, staging, output_dir)
+        # Pack only the groups that produced staged files. _pack would otherwise
+        # call repak with a non-existent input directory and raise. Record what
+        # was written so the return path points at something that exists, even
+        # when the "Other" group has nothing in it.
+        written: list[Path] = []
+        for name, root in (
+            (TREE_OTHER_NAME,    root_tree),
+            (MINERAL_OTHER_NAME, root_mineral),
+            (OTHER_NAME,         root_other),
+        ):
+            if root.exists():
+                written.append(_pack(name, staging, output_dir))
 
-    counts["path"] = other_pak
+    # Prefer the "Other" pak as the primary handle (last in `written` if it was
+    # produced); otherwise any pak we did write is fine.
+    counts["path"] = written[-1] if written else None
     return counts

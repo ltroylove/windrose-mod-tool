@@ -9,12 +9,19 @@ try:
 except Exception as _kr_exc:
     _KEYRING_AVAILABLE = False
     _KEYRING_UNAVAILABLE_REASON = f"{type(_kr_exc).__name__}: {_kr_exc}"
-    print(
-        f"[BlackFlag] WARNING: keyring unavailable ({_KEYRING_UNAVAILABLE_REASON}). "
-        "FTP passwords will not be saved between runs — install the 'keyring' "
-        "package or fix your credential store. See requirements.txt.",
-        file=sys.stderr,
-    )
+    # sys.stderr is None in frozen PyInstaller `--windowed` builds (the
+    # release workflow target), where printing to it would AttributeError
+    # before any UI ever opens. Only emit when stderr is actually writable;
+    # the Settings tab also surfaces this state via cfg.keyring_available().
+    if sys.stderr is not None:
+        try:
+            sys.stderr.write(
+                f"[BlackFlag] WARNING: keyring unavailable ({_KEYRING_UNAVAILABLE_REASON}). "
+                "FTP passwords will not be saved between runs — install the 'keyring' "
+                "package or fix your credential store. See requirements.txt.\n"
+            )
+        except Exception:
+            pass
 
 
 def keyring_available() -> bool:

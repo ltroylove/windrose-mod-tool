@@ -1,5 +1,10 @@
 # MoreTreeResources 10x — Complete File Reference
 
+> **⚠ Historical reference — not the current generator behavior.**
+> Captured while we were investigating binary I/O Store packing. The generator
+> no longer produces the Tree/Mineral binary triples described here (see PR #5,
+> May 2026). Kept as a reference for anyone reverse-engineering tree mods.
+
 Extracted from `C:\Projects\windrose\Mods\MoreTreeResources 10x\`. This document
 describes every file precisely enough to recreate the mod from scratch.
 

@@ -225,7 +225,11 @@ class CreateTab(ctk.CTkFrame):
     def _show_section(self, label: str):
         self._active_section = label
         for name, btn in self._nav_btns.items():
-            on = self._section_enabled.get(name, ctk.BooleanVar(value=True)).get()
+            # _section_header always populates _section_enabled[name] before
+            # we get here, so the var should exist; default to True only as a
+            # safety net (avoid creating an unmanaged Tk var on every miss).
+            var = self._section_enabled.get(name)
+            on = var.get() if var is not None else True
             if name == label:
                 btn.configure(fg_color=ACCENT, hover_color="#0f766e",
                               text_color="white" if on else "#6b7280")
