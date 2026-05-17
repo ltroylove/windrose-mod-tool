@@ -56,7 +56,11 @@ jobs:
             --add-data "tools/extracted;tools/extracted" `
             --add-data "tools/extracted_mineral;tools/extracted_mineral" `
             --add-data "tools/extracted_tree;tools/extracted_tree" `
-            --add-data "tools/extracted_segments;tools/extracted_segments" `
+            --add-data "tools/extracted_backpack;tools/extracted_backpack" `
+            --add-data "tools/extracted_fasttravel;tools/extracted_fasttravel" `
+            --add-data "tools/extracted_lantern;tools/extracted_lantern" `
+            --add-data "tools/extracted_vanilla;tools/extracted_vanilla" `
+            --add-data "tools/extracted_allloot;tools/extracted_allloot" `
             --hidden-import customtkinter `
             main.py
 
