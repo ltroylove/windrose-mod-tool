@@ -7,8 +7,8 @@ A desktop GUI application for managing and creating mods for **Windrose** (Early
 ## Features
 
 - **Mod Manager** — install, enable, and disable `.pak` mods for the client and dedicated server
-- **Game Tuning Creator** — generate custom `.pak` mods that adjust stack sizes, loot drop multipliers, and resource spawner timing
-- **Mod Library** — unified library for downloaded and generated mods
+- **Game Tuning Creator** — generate custom JSON-only `.pak` mods that adjust stack sizes, loot drop multipliers (fiber, stone, sulfur, clay, salt, herbs, crops, fishing, scrap, animal drops, and more), backpack slots, fast-travel bell limit, and lantern duration
+- **Mod Library** — unified library for downloaded and generated mods, with optional FTP deployment to a dedicated server
 - **Backup System** — automatic backups of your `~mods/` folder before any destructive operation
 - **Activity Log** — persistent history of every install, remove, enable, disable, and generation
 - **Dashboard** — quick actions, recent activity, and one-click game launch
@@ -41,9 +41,11 @@ Docs/           Developer notes and planning docs
 
 ## How It Works
 
-The Game Tuning Creator applies your chosen multipliers to vanilla game values and repacks them into a custom `.pak` mod using [repak](https://github.com/trumank/repak).
+The Game Tuning Creator applies your chosen multipliers to vanilla game values and repacks them into a set of JSON `.pak` mods using [repak](https://github.com/trumank/repak). Each generated mod produces up to three paks (`*Other_P.pak`, `*MineralOther_P.pak`, `*TreeOther_P.pak`) — only the groups whose values differ from vanilla are written.
 
-Supported tuning categories: stack sizes, loot (wood, fiber, stone, ore, minerals, crops, food plants, herbs, scrap, fishing), and resource spawner respawn timing.
+Supported tuning categories: stack sizes (per item type), loot drop multipliers (sulfur, stone, clay, soil, obsidian, salt, herbs, food plants, crops, fishing, scrap, animal drops), backpack slots, fast-travel bell limit, and lantern burn duration.
+
+For features that require binary asset edits (base wood-per-chop, base ore-per-dig, ancient-debris spawner timing), install the dedicated community mods from Nexus — that's outside this tool's scope.
 
 ## License
 
