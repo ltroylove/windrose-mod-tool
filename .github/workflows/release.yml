@@ -61,7 +61,6 @@ jobs:
             --add-data "tools/extracted_lantern;tools/extracted_lantern" `
             --add-data "tools/extracted_vanilla;tools/extracted_vanilla" `
             --add-data "tools/extracted_allloot;tools/extracted_allloot" `
-            --add-data "tools/extracted_segments;tools/extracted_segments" `
             --hidden-import customtkinter `
             main.py
 

@@ -5,6 +5,7 @@ from pathlib import Path
 PAK_EXTS = {".pak", ".ucas", ".utoc"}
 DISABLED = ".disabled"
 GENERATED_MARKER = ".blackflag_generated"
+MANIFEST_EXT = ".blackflag"
 
 
 @dataclass
@@ -36,7 +37,7 @@ class InstalledMod:
 
     @property
     def file_count(self) -> int:
-        return len(self.files)
+        return sum(1 for f in self.files if f.suffix in PAK_EXTS)
 
 
 class ModManager:
@@ -73,9 +74,32 @@ class ModManager:
         if not self.mods_dir.exists():
             return []
 
+        result = []
+        covered: set[str] = set()
+
+        # Manifest-based mods (generated): one .blackflag file groups all category paks
+        for manifest in sorted(self.mods_dir.glob(f"*{MANIFEST_EXT}")):
+            mod_name = manifest.stem
+            files: list[Path] = [manifest]
+            covered.add(manifest.name)
+            for filename in manifest.read_text(encoding="utf-8").splitlines():
+                filename = filename.strip()
+                if not filename:
+                    continue
+                for candidate in (self.mods_dir / filename,
+                                  self.mods_dir / (filename + DISABLED)):
+                    if candidate.exists():
+                        files.append(candidate)
+                        covered.add(candidate.name)
+            pak_files = [f for f in files if f.suffix in (".pak",) or
+                         f.name.endswith(".pak" + DISABLED)]
+            enabled = not any(f.name.endswith(DISABLED) for f in pak_files)
+            result.append(InstalledMod(mod_name, sorted(files), enabled))
+
+        # Individual mods (downloaded): group by pak stem as before
         groups: dict[str, list[Path]] = {}
         for f in self.mods_dir.iterdir():
-            if not f.is_file():
+            if f.name in covered or not f.is_file():
                 continue
             base = f.name[: -len(DISABLED)] if f.name.endswith(DISABLED) else f.name
             if Path(base).suffix not in PAK_EXTS:
@@ -83,11 +107,11 @@ class ModManager:
             stem = Path(base).stem
             groups.setdefault(stem, []).append(f)
 
-        result = []
         for stem, files in sorted(groups.items()):
             enabled = not any(f.name.endswith(DISABLED) for f in files)
             result.append(InstalledMod(stem, sorted(files), enabled))
-        return result
+
+        return sorted(result, key=lambda m: m.name)
 
     # ------------------------------------------------------------------
     # Actions
@@ -105,11 +129,13 @@ class ModManager:
         result = []
         for entry in sorted(self.library_path.iterdir()):
             if entry.is_dir() and (entry / GENERATED_MARKER).exists():
-                paks = sorted(
-                    p for p in entry.iterdir()
-                    if p.suffix == ".pak" and "_Segments" not in p.stem
-                )
-                result.extend(paks)
+                # New layout: primary pak is {base}Other_P.pak
+                base = entry.name[:-2] if entry.name.endswith("_P") else entry.name
+                primary = entry / f"{base}Other_P.pak"
+                if not primary.exists():
+                    primary = entry / f"{entry.name}.pak"  # backward compat
+                if primary.exists():
+                    result.append(primary)
             elif entry.is_file() and entry.suffix == ".pak" and "_Segments" not in entry.stem:
                 result.append(entry)
         return result
@@ -119,23 +145,33 @@ class ModManager:
         return {m.name for m in self.list_installed()}
 
     def deploy(self, pak_file: Path, target_mods_dir: Path | None = None) -> Path:
-        """Copy a .pak and any companion I/O Store files into ~mods. Returns dest path."""
+        """Copy a .pak and companion files into ~mods. Returns dest path.
+
+        For generated mods (directory contains GENERATED_MARKER) all .pak/.ucas/.utoc
+        files in the directory are deployed together.  For downloaded mods only the
+        selected pak and its direct I/O Store companions are copied.
+        """
         dest_dir = target_mods_dir if target_mods_dir is not None else self.mods_dir
         dest_dir.mkdir(parents=True, exist_ok=True)
-        dst = dest_dir / pak_file.name
-        shutil.copy2(pak_file, dst)
-        # Copy .ucas/.utoc with the same stem (e.g. MyMod_P.ucas, MyMod_P.utoc)
-        for ext in (".ucas", ".utoc"):
-            companion = pak_file.with_suffix(ext)
-            if companion.exists():
-                shutil.copy2(companion, dest_dir / companion.name)
-        # Copy _Segments triplet if present alongside this pak
-        seg_stem = pak_file.stem + "_Segments"
-        for ext in (".pak", ".ucas", ".utoc"):
-            seg = pak_file.parent / (seg_stem + ext)
-            if seg.exists():
-                shutil.copy2(seg, dest_dir / seg.name)
-        return dst
+
+        if (pak_file.parent / GENERATED_MARKER).exists():
+            # Generated mod — deploy every pak/ucas/utoc and write a manifest
+            deployed: list[str] = []
+            for f in sorted(pak_file.parent.iterdir()):
+                if f.suffix in (".pak", ".ucas", ".utoc"):
+                    shutil.copy2(f, dest_dir / f.name)
+                    deployed.append(f.name)
+            manifest = dest_dir / f"{pak_file.parent.name}{MANIFEST_EXT}"
+            manifest.write_text("\n".join(deployed), encoding="utf-8")
+        else:
+            # Downloaded mod — deploy the selected pak + direct I/O Store companions
+            shutil.copy2(pak_file, dest_dir / pak_file.name)
+            for ext in (".ucas", ".utoc"):
+                companion = pak_file.with_suffix(ext)
+                if companion.exists():
+                    shutil.copy2(companion, dest_dir / companion.name)
+
+        return dest_dir / pak_file.name
 
     def install(self, package: ModPackage) -> list[Path]:
         self.mods_dir.mkdir(parents=True, exist_ok=True)
@@ -154,19 +190,21 @@ class ModManager:
     def enable(self, mod: InstalledMod) -> None:
         new_files = []
         for f in mod.files:
-            if f.name.endswith(DISABLED):
-                target = f.parent / f.name[: -len(DISABLED)]
-                f.rename(target)
-                new_files.append(target)
-            else:
-                new_files.append(f)
+            if f.name.endswith(DISABLED) and f.suffix not in (MANIFEST_EXT, DISABLED):
+                base = f.name[: -len(DISABLED)]
+                if Path(base).suffix == ".pak":
+                    target = f.parent / base
+                    f.rename(target)
+                    new_files.append(target)
+                    continue
+            new_files.append(f)
         mod.files = new_files
         mod.enabled = True
 
     def disable(self, mod: InstalledMod) -> None:
         new_files = []
         for f in mod.files:
-            if not f.name.endswith(DISABLED):
+            if f.suffix == ".pak" and not f.name.endswith(DISABLED):
                 target = f.parent / (f.name + DISABLED)
                 f.rename(target)
                 new_files.append(target)

@@ -48,6 +48,9 @@ class LibraryTab(ctk.CTkFrame):
         ctk.CTkButton(btn_frame, text="Check Remote", width=110, height=30,
                       fg_color="#1e293b", hover_color="#334155",
                       command=self._check_remote).pack(side="left", padx=4)
+        ctk.CTkButton(btn_frame, text="Manage Remote", width=120, height=30,
+                      fg_color="#1e293b", hover_color="#334155",
+                      command=self._manage_remote).pack(side="left", padx=4)
         ctk.CTkButton(btn_frame, text="Refresh", width=80, height=30,
                       fg_color="#1e293b", hover_color="#334155",
                       command=self.refresh).pack(side="left", padx=4)
@@ -161,7 +164,7 @@ class LibraryTab(ctk.CTkFrame):
         fr.grid_columnconfigure(2, weight=1)
         fr.grid_columnconfigure(3, minsize=80)
 
-        ctk.CTkLabel(fr, text=pak.stem, width=COL_NAME, anchor="w",
+        ctk.CTkLabel(fr, text=pak.parent.name, width=COL_NAME, anchor="w",
                      font=ctk.CTkFont(size=13),
         ).grid(row=0, column=0, padx=12, pady=10, sticky="w")
 
@@ -300,6 +303,7 @@ class LibraryTab(ctk.CTkFrame):
             label = "server" if server else "client"
             messagebox.showinfo("Deployed",
                                 f"'{pak_file.name}' deployed to {label}.\n\n{dest}")
+            self.refresh()
             if hasattr(self.app, "_refresh_status"):
                 self.app._refresh_status()
         except Exception as e:
@@ -331,6 +335,7 @@ class LibraryTab(ctk.CTkFrame):
             messagebox.showinfo("Deployed",
                                 f"'{pkg.name}' deployed to {label}.\n{len(installed)} file(s) copied.")
             activity_log.log_action("mod_installed", pkg.name)
+            self.refresh()
             if hasattr(self.app, "_refresh_status"):
                 self.app._refresh_status()
         except Exception as e:
@@ -374,6 +379,98 @@ class LibraryTab(ctk.CTkFrame):
             self.refresh()
         except Exception as e:
             messagebox.showerror("Remote Check Failed", str(e))
+
+    def _manage_remote(self):
+        ftp = self._make_ftp()
+        if not ftp:
+            return
+        remote_dir = self._remote_mods_dir()
+        try:
+            entries = ftp.list_remote_mods(remote_dir)
+        except Exception as e:
+            messagebox.showerror("Remote Check Failed", str(e))
+            return
+
+        # nlst may return bare filenames or full paths; always build a full path for deletion.
+        entry_map = {
+            Path(e).name: (e if "/" in e else f"{remote_dir.rstrip('/')}/{Path(e).name}")
+            for e in entries if Path(e).name
+        }
+        if not entry_map:
+            messagebox.showinfo("Remote Mods", "No files found in remote ~mods folder.")
+            return
+
+        self._remote_stems = {Path(n).stem for n in entry_map}
+        self._show_manage_remote_dialog(ftp, entry_map)
+
+    def _show_manage_remote_dialog(self, ftp, entry_map: dict[str, str]):
+        """entry_map: {display_name -> full_remote_path}"""
+        win = ctk.CTkToplevel(self)
+        win.title("Manage Remote Mods")
+        win.geometry("520x420")
+        win.resizable(False, False)
+        win.grab_set()
+
+        ctk.CTkLabel(win, text="Remote Server Mods",
+                     font=ctk.CTkFont(size=14, weight="bold")).pack(pady=(16, 4), padx=16, anchor="w")
+        sample_path = next(iter(entry_map.values()), "?")
+        ctk.CTkLabel(win, text=f"e.g. {sample_path}",
+                     font=ctk.CTkFont(size=11), text_color="#475569").pack(padx=16, anchor="w")
+
+        frame = ctk.CTkScrollableFrame(win, fg_color="#1e293b", corner_radius=6)
+        frame.pack(fill="both", expand=True, padx=16, pady=12)
+        frame.grid_columnconfigure(0, weight=1)
+
+        check_vars: dict[str, ctk.BooleanVar] = {}
+        for i, name in enumerate(sorted(entry_map)):
+            var = ctk.BooleanVar(value=False)
+            check_vars[name] = var
+            ctk.CTkCheckBox(frame, text=name, variable=var,
+                            font=ctk.CTkFont(size=12),
+                            text_color="#cbd5e1").grid(row=i, column=0, sticky="w", padx=8, pady=3)
+
+        btn_row = ctk.CTkFrame(win, fg_color="transparent")
+        btn_row.pack(fill="x", padx=16, pady=(0, 16))
+
+        def select_all():
+            for v in check_vars.values():
+                v.set(True)
+
+        def delete_selected():
+            to_delete = [name for name, v in check_vars.items() if v.get()]
+            if not to_delete:
+                messagebox.showwarning("Nothing Selected", "Check at least one file to delete.", parent=win)
+                return
+            if not messagebox.askyesno(
+                "Confirm Delete",
+                f"Delete {len(to_delete)} file(s) from the remote server?\n\n" + "\n".join(to_delete),
+                parent=win,
+            ):
+                return
+            errors = []
+            for name in to_delete:
+                remote_path = entry_map[name]
+                try:
+                    ftp.delete_remote_file(remote_path)
+                    self._remote_stems.discard(Path(name).stem)
+                except Exception as e:
+                    errors.append(f"{name} (path={remote_path!r}): {e}")
+            win.destroy()
+            self.refresh()
+            if errors:
+                messagebox.showerror("Some deletions failed", "\n".join(errors))
+            else:
+                messagebox.showinfo("Done", f"Deleted {len(to_delete)} file(s) from remote server.")
+
+        ctk.CTkButton(btn_row, text="Select All", width=100, height=32,
+                      fg_color="#1e293b", hover_color="#334155",
+                      command=select_all).pack(side="left", padx=(0, 8))
+        ctk.CTkButton(btn_row, text="Delete Selected", width=130, height=32,
+                      fg_color="#7f1d1d", hover_color="#991b1b",
+                      command=delete_selected).pack(side="left")
+        ctk.CTkButton(btn_row, text="Close", width=80, height=32,
+                      fg_color="#1e293b", hover_color="#334155",
+                      command=win.destroy).pack(side="right")
 
     def _remote_mods_dir(self) -> str:
         return cfg.load().get("ftp_mods_path", "R5/Content/Paks/~mods")

@@ -99,3 +99,17 @@ class FTPManager:
                 ftp.quit()
             except Exception:
                 pass
+
+    def delete_remote_file(self, remote_path: str) -> None:
+        ftp = self._connect()
+        try:
+            ftp.delete(remote_path)
+        finally:
+            try:
+                ftp.quit()
+            except Exception:
+                pass
+
+    def delete_remote_mod(self, remote_mods_dir: str, filename: str) -> None:
+        remote_path = f"{remote_mods_dir.rstrip('/')}/{filename}"
+        self.delete_remote_file(remote_path)

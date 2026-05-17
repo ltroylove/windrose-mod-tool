@@ -22,6 +22,19 @@ tools/extracted_lantern_tmp/
 tools/extracted_levels_tmp/
 tools/extracted_minimap_tmp/
 
+# Scratch / investigation artifacts — anything in tools/ starting with _
+# (debug scripts, _test_*, _inspect_*, _ref_*, _check_*, _verify_*, etc.
+# mostly from the dropped binary-pak investigation).
+tools/_*
+
+# Binary-asset data dirs from the dropped I/O Store path (no longer used)
+tools/extracted_segments/
+tools/extracted_digvol/
+tools/extracted_loot_binary/
+
+# UAssetGUI — downloaded binary tool, like FModel
+tools/UAssetGUI/
+
 # Downloaded mods — user's personal library, not source
 Mods/
 
